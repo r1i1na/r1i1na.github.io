@@ -33,7 +33,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
@@ -58,9 +58,7 @@
 <p> 不能说很像，但是事实就是很像，<del>又水一篇</del>。</p>
 <p> Butterfly主题的诞生离不开<a href="https://github.com/jerryc127">Jerry</a>,本网站即使用<a href="https://hexo.io/">Hexo</a>框架以及<a href="https://butterfly.js.org/">Butterfly</a>主题构建。</p>
 <h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><blockquote>
-<p>⚠️本文中的部分命令的执行及网站访问可能需要<code>特定的网络环境</code>。如果你在<code>中国大陆</code>地区，可能会出现<code>速度缓慢</code>甚至<code>无法访问</code>的情况，进而导致<code>Error</code>的发生。</p>
-</blockquote>
-<blockquote>
+<p>本文中的部分命令的执行及网站访问可能需要<code>特定的网络环境</code>。如果你在<code>中国大陆</code>地区，可能会出现<code>速度缓慢</code>甚至<code>无法访问</code>的情况，进而导致<code>Error</code>的发生。</p>
 <p>你需要的是<code>耐心，细心</code>。完善网站是一个<code>漫长</code>的过程。</p>
 </blockquote>
 <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装<a href="https://git-scm.com/">git</a></h2><h3 id="使用Homebrew进行安装"><a href="#使用Homebrew进行安装" class="headerlink" title="使用Homebrew进行安装"></a>使用<a href="https://brew.sh/">Homebrew</a>进行安装</h3><p>如果你未安装过<code>Homebrew</code>，请在<code>终端</code>使用该命令安装：</p>
@@ -103,7 +101,7 @@
 <p>2024-11-06 更新：若出现错误，可以参考<a href="https://r1i1na.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">此解决方案</a></p>
 </blockquote>
 <p>等待部署，过程大约30-60s。</p>
-<p>这时打开<code>[username].github.io</code>,即可访问你的博客。</p>
+<p>这时打开<code>[username].github.io</code>，即可访问你的博客。</p>
 <h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><h2 id="1-所有文章均使用Markdown编写"><a href="#1-所有文章均使用Markdown编写" class="headerlink" title="1.所有文章均使用Markdown编写"></a>1.所有文章均使用<a href="https://markdown.com.cn/">Markdown</a>编写</h2><p>因此，学习它是很重要的。</p>
 <h2 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="2.配置_config.yml"></a>2.配置<code>_config.yml</code></h2><p>用来个性化你的博客。</p>
 <h2 id="3-访问hexo官方文档，Butterfly官方文档以及github进行学习"><a href="#3-访问hexo官方文档，Butterfly官方文档以及github进行学习" class="headerlink" title="3.访问hexo官方文档，Butterfly官方文档以及github进行学习"></a>3.访问hexo官方文档，Butterfly官方文档以及github进行学习</h2><p>从入门到 <del>入土</del> 完善。</p>
