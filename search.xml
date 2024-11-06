@@ -25,41 +25,13 @@
       </tags>
   </entry>
   <entry>
-    <title>在macOS上部署hexo到github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
-    <url>/2024/11/05/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
-<p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
-<p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
-<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
-<p>2.修改其结尾为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-
-<p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
-<p><img src="/img/sctp3.png" alt="image" title="成功部署"></p>
-]]></content>
-      <categories>
-        <category>hexo 部署</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>技术领域</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>macOS环境下部署hexo并应用Butterfly主题+部署到github</title>
-    <url>/2023/08/08/%E5%9C%A8macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2hexo%E5%B9%B6%E5%BA%94%E7%94%A8Butterfly%E4%B8%BB%E9%A2%98/</url>
+    <url>/2023/08/08/macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2hexo%E5%B9%B6%E5%BA%94%E7%94%A8Butterfly%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p> 网上好多教程都是<code>Windows</code>环境下的， 那我就做一篇<code>macOS</code>环境下的吧。</p>
 <p> 不能说很像，但是事实就是很像，<del>又水一篇</del>。</p>
 <p> Butterfly主题的诞生离不开<a href="https://github.com/jerryc127">Jerry</a>,本网站即使用<a href="https://hexo.io/">Hexo</a>框架以及<a href="https://butterfly.js.org/">Butterfly</a>主题构建。</p>
-<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><blockquote>
-<p>本文中的部分命令的执行及网站访问可能需要<code>特定的网络环境</code>。如果你在<code>中国大陆</code>地区，可能会出现<code>速度缓慢</code>甚至<code>无法访问</code>的情况，进而导致<code>Error</code>的发生。</p>
-<p>你需要的是<code>耐心，细心</code>。完善网站是一个<code>漫长</code>的过程。</p>
+<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><h2 id="注意"><a href="#注意" class="headerlink" title=" 注意"></a><i class="fa-solid fa-triangle-exclamation"></i> 注意</h2><blockquote>
+<p>本文中的部分命令的执行及网站访问可能需要<code>特定的网络环境</code>。如果你在<code>中国大陆</code>地区，可能会出现<code>速度缓慢</code>甚至<code>无法访问</code>的情况，进而出现<code>Error</code>。<br>你可以使用<code>科学上网</code>解决该问题。<br>你需要的是<code>耐心，细心</code>。完善网站是一个<code>漫长</code>的过程。</p>
 </blockquote>
 <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装<a href="https://git-scm.com/">git</a></h2><h3 id="使用Homebrew进行安装"><a href="#使用Homebrew进行安装" class="headerlink" title="使用Homebrew进行安装"></a>使用<a href="https://brew.sh/">Homebrew</a>进行安装</h3><p>如果你未安装过<code>Homebrew</code>，请在<code>终端</code>使用该命令安装：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
@@ -108,6 +80,33 @@
 <h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><p><a href="https://hexo.io/zh-cn/docs/">hexo官方文档</a></p>
 <p><a href="https://butterfly.js.org/posts/dc584b87/">Butterfly官方文档</a></p>
 <h1 id="其他：Terminal-Command-Cheat-Sheet"><a href="#其他：Terminal-Command-Cheat-Sheet" class="headerlink" title="其他：Terminal Command Cheat Sheet"></a>其他：Terminal Command Cheat Sheet</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br><span class="line">brew install git</span><br><span class="line"><span class="comment"># 检查安装是否完成</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">git -v</span><br><span class="line"><span class="comment"># 定位目录</span></span><br><span class="line"><span class="built_in">cd</span> &lt;指定的博客目录&gt;</span><br><span class="line"><span class="comment"># 安装Hexo并且初始化</span></span><br><span class="line"><span class="built_in">sudo</span> npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">hexo install</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"><span class="comment"># 克隆Butterfly仓库</span></span><br><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line"><span class="comment"># 安装 pug 以及 stylus 的渲染器</span></span><br><span class="line"><span class="built_in">sudo</span> npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"><span class="comment"># 配置ssh keys</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;你的邮箱地址&quot;</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="comment"># 上传blog</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>技术领域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上部署hexo到github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
+    <url>/2024/11/05/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
+<p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
+<p>替换为:</p>
+<p>“<a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
+<p>2.修改其结尾为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
+<p><img src="/img/sctp3.png" alt="image" title="成功部署"></p>
+]]></content>
       <categories>
         <category>hexo 部署</category>
       </categories>
