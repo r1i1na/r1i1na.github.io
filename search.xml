@@ -30,8 +30,8 @@
     <content><![CDATA[<p> 网上好多教程都是<code>Windows</code>环境下的， 那我就做一篇<code>macOS</code>环境下的吧。</p>
 <p> 不能说很像，但是事实就是很像，<del>又水一篇</del>。</p>
 <p> Butterfly主题的诞生离不开<a href="https://github.com/jerryc127">Jerry</a>，本网站即使用<a href="https://hexo.io/">Hexo</a>框架以及<a href="https://butterfly.js.org/">Butterfly</a>主题构建。</p>
-<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><h2 id="注意"><a href="#注意" class="headerlink" title=" 注意"></a><i class="fa-solid fa-triangle-exclamation"></i> 注意</h2><blockquote>
-<p>本文中的部分命令的执行及网站访问可能需要<code>特定的网络环境</code>。如果你在<code>中国大陆</code>地区，可能会出现<code>速度缓慢</code>甚至<code>无法访问</code>的情况，进而出现<code>Error</code>。<br>你可以使用<code>科学上网</code>解决该问题。<br>你需要的是<code>耐心，细心</code>。完善网站是一个<code>漫长</code>的过程。</p>
+<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><blockquote>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>本文中的部分命令的执行及网站访问可能需要<code>特定的网络环境</code>。如果你在<code>中国大陆</code>地区，可能会出现<code>速度缓慢</code>甚至<code>无法访问</code>的情况，进而出现<code>Error</code>。<br>你可以使用<code>科学上网</code>解决该问题。<br>你需要的是<code>耐心，细心</code>。完善网站是一个<code>漫长</code>的过程。</p>
 </blockquote>
 <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装<a href="https://git-scm.com/">git</a></h2><h3 id="使用Homebrew进行安装"><a href="#使用Homebrew进行安装" class="headerlink" title="使用Homebrew进行安装"></a>使用<a href="https://brew.sh/">Homebrew</a>进行安装</h3><p>如果你未安装过<code>Homebrew</code>，请在<code>终端</code>使用该命令安装：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
@@ -45,12 +45,14 @@
 <p>接下来，在<code>终端</code>中定位到此目录：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;指定的博客目录&gt;</span><br><span class="line"><span class="comment"># 例如 cd /users/rin/blogfile</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>你可以直接将文件夹<code>拖放</code>到终端中来定位。</p>
+<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>你可以直接将文件夹<code>拖放</code>到终端中来定位。</p>
 </blockquote>
 <h2 id="安装Hexo并且初始化"><a href="#安装Hexo并且初始化" class="headerlink" title="安装Hexo并且初始化"></a>安装Hexo并且初始化</h2><p>在<code>终端</code>中直接输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">hexo install</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>此时打开浏览器并访问<code>localhost:4000</code>，如果出现<code>hexo</code>的<code>初始界面</code>即表明<code>hexo</code>已经部署成功。</p>
-<p>若要停止本地服务器，请在终端中按<code>Control+C</code></p>
+<blockquote>
+<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>若要停止本地服务器，请在终端中按<code>Control+C</code></p>
+</blockquote>
 <h1 id="Butterfly主题配置"><a href="#Butterfly主题配置" class="headerlink" title="Butterfly主题配置"></a>Butterfly主题配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在<code>终端</code>中执行：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆Butterfly仓库</span></span><br><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line"><span class="comment"># 安装 pug 以及 stylus 的渲染器</span></span><br><span class="line"><span class="built_in">sudo</span> npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
 
@@ -70,7 +72,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>中间会出现一个登录界面，可以用令牌登录。</p>
 <blockquote>
-<p>2024-11-06 更新：若出现错误，可以参考<a href="https://r1i1na.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">此解决方案</a></p>
+<p><i class="fa-solid fa-pen fa-lg"></i> <font size="4">2024-11-07 更新</font><br>若出现<code>Spawn failed at ChildProcess</code>错误，可以参考<a href="https://r1i1na.github.io/2024/11/05/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">此解决方案</a></p>
 </blockquote>
 <p>等待部署，过程大约30-60s。</p>
 <p>这时打开<code>[username].github.io</code>，即可访问你的博客。</p>
@@ -98,7 +100,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#64;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
