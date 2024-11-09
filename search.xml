@@ -223,7 +223,10 @@
     <url>/2024/11/08/%E5%9C%A8%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%9C%B0%E5%8C%BA%E5%BC%BA%E8%A1%8C%E7%94%A8AirPods-Pro-2%E5%81%9A%E5%90%AC%E5%8A%9B%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>Apple最近为<code>AirPods Pro 2</code>代带来了全新的<code>听力测试</code>、<code>听力保护</code>和<code>助听</code>功能，很明显<code>中国大陆</code>暂时是没有的。（不是你澳大利亚都没有是什么鬼啊）</p>
 <p><a href="https://www.apple.com/cn/airpods-pro/feature-availability/">AirPods听力测试可用性 (简体中文)</a></p>
-<h2 id="解："><a href="#解：" class="headerlink" title="解："></a>解：</h2><p>很简单，在<code>Safari浏览器</code>直接输入：</p>
+<h2 id="你需要"><a href="#你需要" class="headerlink" title="你需要"></a>你需要</h2><blockquote>
+<p>一台运行iOS 18.1 (22B83) 或更高版本的设备<br>AirPods Pro 2 且固件版本为<code>7B19</code>或更高</p>
+</blockquote>
+<h1 id="解："><a href="#解：" class="headerlink" title="解："></a>解：</h1><p>很简单，在<code>Safari浏览器</code>中直接输入：</p>
 <blockquote>
 <p>x-apple-health:&#x2F;&#x2F;HearingAppPlugin.healthplugin&#x2F;HearingTest</p>
 </blockquote>
