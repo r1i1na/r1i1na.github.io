@@ -297,6 +297,7 @@ btf.addGlobalFn('pjaxSend', () => {
 <p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>此处以Mac为例。</p>
 </blockquote>
 <p>首先给Mac和Apple TV都<code>断开连接</code>要登录的Wi-Fi。在Mac上按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标，记下网络接口名称（一般是<code>en0</code>）。</p>
+<p><img src="/img/7/sctp7_2.png" alt="image" title="网络接口"></p>
 <p>打开终端，输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ifconfig en0 ether [Apple TV的MAC地址]</span><br></pre></td></tr></table></figure>
 
