@@ -3,11 +3,11 @@
   <entry>
     <title>Apple TV无法通过iOS设备认证连接强制认证网络的解决方案</title>
     <url>/2024/10/22/Apple-TV%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87iOS%E8%AE%BE%E5%A4%87%E8%AE%A4%E8%AF%81%E8%BF%9E%E6%8E%A5%E5%BC%BA%E5%88%B6%E8%AE%A4%E8%AF%81%E7%BD%91%E7%BB%9C%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>前几天刚把<code>Apple TV</code>连接到我学生公寓的电视上，由于我的工具采用的是<code>开放式Wi-Fi</code>，即强制网络 (Captive Newrork)，因此将会弹出登录界面，认证完成后即可使用。</p>
+    <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>前几天刚把<code>Apple TV</code>连接到我学生公寓的电视上，由于我的公寓采用的是<code>开放式Wi-Fi</code>，即强制网络 (Captive Newrork)，因此将会弹出登录界面，认证完成后即可使用。</p>
 <p>早在<a href="https://support.apple.com/en-au/guide/tv/atvb00f5b993/15.0/tvos/15.0">tvOS 15.0</a>就支持了强制网络登录，因此靠近的iOS设备会弹出网络认证界面，直接从其他设备登录此网络即可。</p>
 <p>到这里，一切正常。</p>
 <p>但是！这个登录界面始终一片空白，最后直接报错，提示无法连接，尝试多次依然无果。</p>
-<p><img src="/img/7/sctp7_0.png" alt="image"></p>
+<p><img src="/img/7/sctp7_0.png" alt="image" title="又双叒叕报错"></p>
 <h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>1、基于对<a href="https://zh.wikipedia.org/zh-hans/%E5%BC%BA%E5%88%B6%E9%97%A8%E6%88%B7">强制网络</a>的定义，我们不难得出，该强制门户根据<code>MAC地址</code>追踪已连接设备，并判断是否已经通过认证。因此，我们只需要保证Apple TV的<code>MAC地址</code>通过该强制门户认证即可。</p>
 <p>2、Apple TV连接Wi-Fi使用硬件MAC地址，因此，其MAC地址并<code>不会改变</code>。</p>
 <h1 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h1><h2 id="确认Apple-TV的MAC地址"><a href="#确认Apple-TV的MAC地址" class="headerlink" title="确认Apple TV的MAC地址"></a>确认Apple TV的MAC地址</h2><p>很简单，只需进入<code>设置-网络</code>（设置-通用-关于本机也可以）即可看到MAC地址：</p>
@@ -161,7 +161,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#x74;&#64;&#103;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
