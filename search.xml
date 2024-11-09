@@ -37,30 +37,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/07/27/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>hexo default post</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SwiftUI的一种简易设计</title>
     <url>/2024/10/06/SwiftUI%E7%9A%84%E4%B8%80%E7%A7%8D%E7%AE%80%E6%98%93%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<p>一个简洁的<code>SwiftUI</code>主页设计。</p>
@@ -84,6 +60,30 @@
         <tag>SwiftUI</tag>
         <tag>开发</tag>
         <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/07/27/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>hexo default post</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -149,8 +149,74 @@
       </categories>
       <tags>
         <tag>技术领域</tag>
-        <tag>Hexo</tag>
         <tag>macOS</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
+    <url>/2023/12/24/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
+<p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
+<p>替换为:</p>
+<p>“<a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
+<p>2.修改其结尾为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
+<p><img src="/img/3/sctp3.png" alt="image" title="成功部署"></p>
+]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>macOS</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用iOS 18.1一周多后，我很无语</title>
+    <url>/2024/11/09/%E4%BD%BF%E7%94%A8iOS-18-1%E4%B8%80%E5%91%A8%E5%A4%9A%E5%90%8E%EF%BC%8C%E6%88%91%E5%BE%88%E6%97%A0%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>10月28日，啪一下，很快啊，iOS 18.1、iPadOS 18.1、watchOS 11.1<code>正式版</code>就出来了。</p>
+<p>我也是<code>第一时间</code>将手上所有设备都更新了该版本。</p>
+<blockquote>
+<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">更(shou)新(hai)设备名单</font><br>iPhone 16 Pro<br>iPad Pro 11-inch (M4)<br>Apple Watch Series 8<br>MacBook Pro 14” (2023年11月)<br>Apple TV 4K (A15)</p>
+</blockquote>
+<h1 id="iOS-18-1"><a href="#iOS-18-1" class="headerlink" title="iOS 18.1"></a>iOS 18.1</h1><p>最明显的点就是设置中多了<code>Apple Intelligence</code>的选项，<del>可以装B</del>。</p>
+<p>然而这只是噩梦的开始。</p>
+<p>由于我的系统语言是英语(澳大利亚)，因此Apple Intelligence并没有启用，但是我还是能感受到耗电<code>明显加快</code>。</p>
+<p><img src="/img/9/sctp9_1.png" alt="image" title="稳稳的6个小时续航"></p>
+<p>相较于18.0.1，这个续航大约少了快<code>2个小时</code>。。。</p>
+<p>然后就是<code>发热</code>，虽然没有这么离谱，但是还是可以感受到比18.0.1严重。（应该是调度没有那么保守了罢）</p>
+<p>还有各种bug，比如<code>动画随机掉帧，控制中心图标消失，文件夹深浅色显示异常，iPhone镜像状态栏偏移的问题...</code>要不就是根本没解决，要不就是新的。</p>
+<p><del>Beta版逐渐把那个硕大的网络控制模块分开就是最好的挤牙膏证明。</del></p>
+<p>好处确实也有，控制中心自定义程度更大，通话录音…都是些小升级，甚至可有可无。</p>
+<h1 id="iPadOS-18-1"><a href="#iPadOS-18-1" class="headerlink" title="iPadOS 18.1"></a>iPadOS 18.1</h1><p>主要还是耗电！耗电！耗电！</p>
+<p>库克，克雷格！！！</p>
+<p><img src="/img/9/sctp9_2.png" alt="image" title="史"></p>
+<p>本人用iPad在学校做笔记，电量在那掉得跟<code>水</code>一样。</p>
+<p>还有控制中心的抽象<code>个人热点图标</code>还在（我的iPad是Wi-Fi版本）：</p>
+<p><img src="/img/9/sctp9_3.png" alt="image" title="抽象个人热点"></p>
+<p>除了AI，没感觉iPad有很大的更新，最近Apple正在疯狂在AI上发力赶上友商，<del>毕竟说落后两年嘛</del>。</p>
+<h1 id="watchOS-11-1"><a href="#watchOS-11-1" class="headerlink" title="watchOS 11.1"></a>watchOS 11.1</h1><p>逆天掉电。</p>
+<p>但是过几天好了，应该是 Apple 特色了。</p>
+<h1 id="macOS-15-1"><a href="#macOS-15-1" class="headerlink" title="macOS 15.1"></a>macOS 15.1</h1><p>还不错，或者说无感，Mac目前唯一正常使用AI的设备，国行Mac破解后可以在<code>澳大利亚英语</code>使用Apple Intelligence。</p>
+<h1 id="tvOS-11-1"><a href="#tvOS-11-1" class="headerlink" title="tvOS 11.1"></a>tvOS 11.1</h1><p>无感(shui)。</p>
+<h1 id="总结：iOS-和-iPadOS，菜就多练！"><a href="#总结：iOS-和-iPadOS，菜就多练！" class="headerlink" title="总结：iOS 和 iPadOS，菜就多练！"></a>总结：iOS 和 iPadOS，菜就多练！</h1>]]></content>
+      <categories>
+        <category>iOS 简评</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>日常</tag>
+        <tag>评价</tag>
       </tags>
   </entry>
   <entry>
@@ -188,34 +254,6 @@
         <tag>macOS</tag>
         <tag>游戏</tag>
         <tag>CrossOver</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
-    <url>/2023/12/24/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
-<p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
-<p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
-<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
-<p>2.修改其结尾为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-
-<p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
-<p><img src="/img/3/sctp3.png" alt="image" title="成功部署"></p>
-]]></content>
-      <categories>
-        <category>hexo 部署</category>
-      </categories>
-      <tags>
-        <tag>技术领域</tag>
-        <tag>Hexo</tag>
-        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
