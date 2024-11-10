@@ -63,6 +63,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows on ARM安装adb与Fastboot驱动解决安卓刷机折腾问题</title>
+    <url>/2024/07/21/Windows-on-ARM%E5%AE%89%E8%A3%85adb%E4%B8%8EFastboot%E9%A9%B1%E5%8A%A8%E8%A7%A3%E5%86%B3%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA%E6%8A%98%E8%85%BE%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>众所周知，Windows on ARM的兼容性其实并不能媲美x86，即使拥有转译。正常的安卓刷机驱动装上去要不就没反应，要不直接报错</p>
+<p>感谢<a href="https://github.com/HikariCalyx">HikariCalyx</a>提供的<a href="https://github.com/HikariCalyx/OSTRemote/blob/master/tccadb_arm64_drivers/README.md">Triple-color company ADB - Fastboot Driver for Windows 10 on ARM</a>驱动使得Fastboot驱动成为可能。</p>
+<p>虽然是<code>Windows 10</code>的驱动，但是<code>Windows 11</code>也是可以用的，<del>毕竟换皮嘛</del>。</p>
+<h1 id="禁用驱动程序强制签名"><a href="#禁用驱动程序强制签名" class="headerlink" title="禁用驱动程序强制签名"></a>禁用驱动程序强制签名</h1><p>打开系统设置，依次进入<code>恢复-高级重启</code>，点击<code>重新启动</code>。</p>
+<p><img src="/img/10/sctp10_1.png" alt="image" title="高级重启"></p>
+<p>依次点击<code>疑难解答-高级选项-启动设置</code>，再次重启。</p>
+<p><img src="/img/10/sctp10_2.png" alt="image" title="启动设置"></p>
+<p>按下键盘上的<code>7</code>，禁用驱动程序强制签名，此时系统将正常启动。</p>
+<p><img src="/img/10/sctp10_3.png" alt="image" title="高级启动选项"></p>
+<h1 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h1><p>在<a href="https://github.com/HikariCalyx/OSTRemote/tree/master">这里</a>克隆一下zip，我们只需要其中的<code>tccadb_arm64_drivers</code>文件夹。</p>
+<p>打开<code>tccadb_arm64_drivers</code>文件夹，打开<code>hctsw.cer</code>,在弹出的对话框中点击<code>安装证书</code>。</p>
+<p><img src="/img/10/sctp10_4.png" alt="image" title="安装证书"></p>
+<p>注意，你需要为<code>本地主机</code>安装证书，而不是当前用户。</p>
+<p><img src="/img/10/sctp10_5.png" alt="image" title="导入选项"></p>
+<p>可能会弹出UAC提示，允许即可，接下来选项都保持默认。</p>
+<p><img src="/img/10/sctp10_6.png" alt="image" title="成功导入"></p>
+<p>看到此对话框就说明证书导入成功了。</p>
+<h1 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h1><p>将安卓设备置于<code>Fastboot</code>模式，连接电脑，此时<code>设备管理器</code>中将看到名为<code>Android</code>的未知设备。</p>
+<blockquote>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>对于同时存在Fastboot的Bootloader重启选项的情况，请务必<code>重启到Bootloader</code>。<br><img src="/img/10/sctp10_11.jpg" alt="image" title="重启到Bootloader"></p>
+</blockquote>
+<p>右键它，点击更新设备驱动程序，然后选择<code>从本地选取驱动程序</code>。</p>
+<p><img src="/img/10/sctp10_7.png" alt="image" title="选择驱动程序来源"></p>
+<p>上面的路径直接填写下载的<code>tccadb_arm64_drivers</code>文件夹即可。</p>
+<p><img src="/img/10/sctp10_8.png" alt="image" title="驱动程序路径"></p>
+<p>继续后将会弹出警告，这是数字签名导致的，选择<code>仍要安装</code>。</p>
+<p><img src="/img/10/sctp10_9.png" alt="image" title="安装警告"></p>
+<p>大功告成！现在，你可以开机玩机了！</p>
+<p><img src="/img/10/sctp10_10.png" alt="image" title="安装完成"></p>
+]]></content>
+      <categories>
+        <category>安卓玩机</category>
+      </categories>
+      <tags>
+        <tag>玩机</tag>
+        <tag>Windows on ARM</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/07/27/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -154,34 +196,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
-    <url>/2023/12/24/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
-<p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
-<p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
-<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
-<p>2.修改其结尾为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-
-<p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
-<p><img src="/img/3/sctp3.png" alt="image" title="成功部署"></p>
-]]></content>
-      <categories>
-        <category>hexo 部署</category>
-      </categories>
-      <tags>
-        <tag>技术领域</tag>
-        <tag>macOS</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用iOS 18.1一周多后，我很无语</title>
     <url>/2024/11/09/%E4%BD%BF%E7%94%A8iOS-18-1%E4%B8%80%E5%91%A8%E5%A4%9A%E5%90%8E%EF%BC%8C%E6%88%91%E5%BE%88%E6%97%A0%E8%AF%AD/</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>10月28日，啪一下，很快啊，iOS 18.1、iPadOS 18.1、watchOS 11.1<code>正式版</code>就出来了。</p>
@@ -217,10 +231,38 @@
         <tag>tvOS</tag>
         <tag>macOS</tag>
         <tag>iOS</tag>
-        <tag>日常</tag>
-        <tag>评价</tag>
         <tag>iPadOS</tag>
         <tag>watchOS</tag>
+        <tag>日常</tag>
+        <tag>评价</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
+    <url>/2023/12/24/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
+<p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
+<p>替换为:</p>
+<p>“<a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
+<p>2.修改其结尾为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
+<p><img src="/img/3/sctp3.png" alt="image" title="成功部署"></p>
+]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>macOS</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -282,9 +324,9 @@
         <category>iOS 玩机</category>
       </categories>
       <tags>
+        <tag>玩机</tag>
         <tag>iOS</tag>
         <tag>AirPods</tag>
-        <tag>玩机</tag>
       </tags>
   </entry>
 </search>
