@@ -65,7 +65,7 @@
   <entry>
     <title>Windows on ARM安装adb与Fastboot驱动解决安卓刷机折腾问题</title>
     <url>/2024/07/21/Windows-on-ARM%E5%AE%89%E8%A3%85adb%E4%B8%8EFastboot%E9%A9%B1%E5%8A%A8%E8%A7%A3%E5%86%B3%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA%E6%8A%98%E8%85%BE%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>众所周知，Windows on ARM的兼容性其实并不能媲美x86，即使拥有转译。正常的安卓刷机驱动装上去要不就没反应，要不直接报错</p>
+    <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>众所周知，Windows on ARM的兼容性其实并不能媲美x86，即使拥有转译。正常的安卓刷机驱动装上去要不就没反应，要不直接报错。</p>
 <p>感谢<a href="https://github.com/HikariCalyx">HikariCalyx</a>提供的<a href="https://github.com/HikariCalyx/OSTRemote/blob/master/tccadb_arm64_drivers/README.md">Triple-color company ADB - Fastboot Driver for Windows 10 on ARM</a>驱动使得Fastboot驱动成为可能。</p>
 <p>虽然是<code>Windows 10</code>的驱动，但是<code>Windows 11</code>也是可以用的，<del>毕竟换皮嘛</del>。</p>
 <h1 id="禁用驱动程序强制签名"><a href="#禁用驱动程序强制签名" class="headerlink" title="禁用驱动程序强制签名"></a>禁用驱动程序强制签名</h1><p>打开系统设置，依次进入<code>恢复-高级重启</code>，点击<code>重新启动</code>。</p>
@@ -298,6 +298,7 @@
       </categories>
       <tags>
         <tag>macOS</tag>
+        <tag>玩机</tag>
         <tag>游戏</tag>
         <tag>CrossOver</tag>
       </tags>
