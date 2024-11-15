@@ -47,6 +47,28 @@
       </tags>
   </entry>
   <entry>
+    <title>【里程碑】Broadcom宣布 VMware Workstation 与 Fusion 对个人及商业用户免费</title>
+    <url>/2024/11/13/%E3%80%90%E9%87%8C%E7%A8%8B%E7%A2%91%E3%80%91Broadcom%E5%AE%A3%E5%B8%83VMware-Workstation-%E4%B8%8E-Fusion-%E5%AF%B9%E4%B8%AA%E4%BA%BA%E5%8F%8A%E5%95%86%E4%B8%9A%E7%94%A8%E6%88%B7%E5%85%8D%E8%B4%B9/</url>
+    <content><![CDATA[<p>2024 年 5 月，VMware 宣布对<code>个人用户</code>免费提供 VMware Workstation Pro 和 Fusion Pro 。而<code>2024 年 11 月 11 日</code>，博通 (Broadcom) 直接更进一步，这两款软件对个人和<code>商业</code>用户直接<code>完全免费</code>。</p>
+<p>看到这个消息我其实是震惊的，毕竟我早就开始用 VMware Workstation Pro 了，记得那时还是 VMware Workstation 9。</p>
+<p>我只记得当时直接搜<code>vmware密钥</code>就能直接出来一大堆，而且随便一个就能用。</p>
+<p><del>上头真的管吗（笑）</del></p>
+<p>总的来说至少目前确实是好事，毕竟别人付费它免费，肯定更加有竞争力，也能提高知名度。</p>
+<p>但是长期来看并不好下结论，作为<code>商业公司</code>，长期使用这种方式可能导致<code>维护与开发</code>的问题。</p>
+<p>但是，VMware 大版本到底更新了啥？？我也不知道。</p>
+<p><del>又不是不能用（笑）</del></p>
+<p>对于个人来说，终于可以大大方方用<code>正版</code>了。（确信）</p>
+<p>参考：<br><a href="https://mp.weixin.qq.com/s/EVkPmmehYrvnZhb7R-FAKg">https://mp.weixin.qq.com/s/EVkPmmehYrvnZhb7R-FAKg</a><br><a href="https://blogs.vmware.com/workstation/2024/05/vmware-workstation-pro-now-available-free-for-personal-use.html">https://blogs.vmware.com/workstation/2024/05/vmware-workstation-pro-now-available-free-for-personal-use.html</a></p>
+]]></content>
+      <categories>
+        <category>大事记</category>
+      </categories>
+      <tags>
+        <tag>VMware</tag>
+        <tag>大事记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Batch批处理循环分析</title>
     <url>/2024/11/12/Batch%E6%89%B9%E5%A4%84%E7%90%86%E5%BE%AA%E7%8E%AF%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>众所周知，批处理经常要用到循环。不管是认真的还是<del>整人</del>。这里大致收集了几种批处理的循环方式以及各种附加语句。</p>
@@ -334,7 +356,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
