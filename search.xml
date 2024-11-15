@@ -47,6 +47,31 @@
       </tags>
   </entry>
   <entry>
+    <title>WeChat 通行密钥初体验</title>
+    <url>/2024/11/15/WeChat-%E9%80%9A%E8%A1%8C%E5%AF%86%E9%92%A5%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+    <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>就今天，微信推出了全新的版本<code>8.0.54</code>，老规矩，更新日志还是一句话：</p>
+<blockquote>
+<p>Bug fixes and improvements.<br><img src="/img/14/1.png" alt="image" title="连对联都算不上的更新日志"></p>
+</blockquote>
+<p><del>张**，不愧是你。</del></p>
+<h1 id="新的通行密钥功能"><a href="#新的通行密钥功能" class="headerlink" title="新的通行密钥功能"></a>新的通行密钥功能</h1><p>这版本的<code>WeChat</code>悄悄加入了Apple设备<code>通行密钥</code>登录的功能。这意味着，登录微信只需要简单的<code>面容ID</code>或<code>触控ID</code>验证即可搞定。<br><img src="/img/14/2.png" alt="image" title="通行密钥登录"><br>但是明眼人已经看出来了，这是<code>WeChat</code>而不是微信，这意味着，你需要绑定<code>非中国大陆手机号</code>才能使用这个功能。</p>
+<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>很简单，进入<code>设置-账号与安全-通行密钥</code>设置，仅需简单的<code>面容ID</code>或<code>触控ID</code>验证即可成功添加通行密钥。<br><img src="/img/14/3.jpg" alt="image" title="生物认证添加"></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>退出WeChat后，登录时会自动弹出<code>面容ID</code>或<code>触控ID</code>认证界面，认证成功后即可登录。<br><img src="/img/14/4.jpg" alt="image" title="使用通行密钥登录"></p>
+<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>还是那句话，新功能要不大陆版没有，要不搞灰度测试，难道真的就不能普及使用吗？</p>
+<p>有的功能是真的方便啊（CallKit），但是又被砍了，但是据说又要回归了？</p>
+<p>记得上次在新设备上登小号，又是认证又是啥的，硬控我10分钟。</p>
+<p>没话说。</p>
+]]></content>
+      <categories>
+        <category>新功能初体验</category>
+      </categories>
+      <tags>
+        <tag>微信</tag>
+        <tag>iOS</tag>
+        <tag>体验</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【里程碑】Broadcom 宣布 VMware Workstation 与 Fusion 对个人及商业用户免费</title>
     <url>/2024/11/13/%E3%80%90%E9%87%8C%E7%A8%8B%E7%A2%91%E3%80%91Broadcom%E5%AE%A3%E5%B8%83VMware-Workstation-%E4%B8%8E-Fusion-%E5%AF%B9%E4%B8%AA%E4%BA%BA%E5%8F%8A%E5%95%86%E4%B8%9A%E7%94%A8%E6%88%B7%E5%85%8D%E8%B4%B9/</url>
     <content><![CDATA[<p>2024 年 5 月，VMware 宣布对<code>个人用户</code>免费提供 VMware Workstation Pro 和 Fusion Pro 。而<code>2024 年 11 月 11 日</code>，博通 (Broadcom) 直接更进一步，宣布这两款软件对个人和<code>商业</code>用户直接<code>完全免费</code>。</p>
@@ -172,10 +197,10 @@
         <tag>tvOS</tag>
         <tag>macOS</tag>
         <tag>iOS</tag>
+        <tag>体验</tag>
         <tag>iPadOS</tag>
         <tag>watchOS</tag>
         <tag>日常</tag>
-        <tag>评价</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +225,8 @@
         <category>iOS 玩机</category>
       </categories>
       <tags>
-        <tag>玩机</tag>
         <tag>iOS</tag>
+        <tag>玩机</tag>
         <tag>AirPods</tag>
       </tags>
   </entry>
@@ -356,7 +381,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
