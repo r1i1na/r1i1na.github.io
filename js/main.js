@@ -1,927 +1,775 @@
-document.addEventListener('DOMContentLoaded', () => {
-  let headerContentWidth, $nav
-  let mobileSidebarOpen = false
+const sidebarFn = () => {
+  const $toggleMenu = document.getElementById('toggle-menu');
+  const $mobileSidebarMenus = document.getElementById('sidebar-menus');
+  const $menuMask = document.getElementById('menu-mask');
+  const $body = document.body;
 
-  const adjustMenu = init => {
-    const getAllWidth = ele => Array.from(ele).reduce((width, i) => width + i.offsetWidth, 0)
+  const toggleMobileSidebar = (isOpen) => {
+    utils.sidebarPaddingR();
+    $body.style.overflow = isOpen ? 'hidden' : '';
+    utils[isOpen ? 'fadeIn' : 'fadeOut']($menuMask, 0.5);
+    $mobileSidebarMenus.classList.toggle('open', isOpen);
+  };
 
-    if (init) {
-      const blogInfoWidth = getAllWidth(document.querySelector('#blog-info > a').children)
-      const menusWidth = getAllWidth(document.getElementById('menus').children)
-      headerContentWidth = blogInfoWidth + menusWidth
-      $nav = document.getElementById('nav')
+  const closeMobileSidebar = () => {
+    if ($mobileSidebarMenus.classList.contains('open')) {
+      toggleMobileSidebar(false);
     }
+  };
 
-    const hideMenuIndex = window.innerWidth <= 768 || headerContentWidth > $nav.offsetWidth - 120
-    $nav.classList.toggle('hide-menu', hideMenuIndex)
-  }
+  $toggleMenu.addEventListener('click', () => toggleMobileSidebar(true));
+  $menuMask.addEventListener('click', closeMobileSidebar);
 
-  // 初始化header
-  const initAdjust = () => {
-    adjustMenu(true)
-    $nav.classList.add('show')
-  }
-
-  // sidebar menus
-  const sidebarFn = {
-    open: () => {
-      btf.overflowPaddingR.add()
-      btf.animateIn(document.getElementById('menu-mask'), 'to_show 0.5s')
-      document.getElementById('sidebar-menus').classList.add('open')
-      mobileSidebarOpen = true
-    },
-    close: () => {
-      btf.overflowPaddingR.remove()
-      btf.animateOut(document.getElementById('menu-mask'), 'to_hide 0.5s')
-      document.getElementById('sidebar-menus').classList.remove('open')
-      mobileSidebarOpen = false
+  window.addEventListener('resize', () => {
+    if (utils.isHidden($toggleMenu) && $mobileSidebarMenus.classList.contains('open')) {
+      closeMobileSidebar();
     }
-  }
+    sco.refreshWaterFall();
+  });
+};
 
-  /**
-   * 首頁top_img底下的箭頭
-   */
-  const scrollDownInIndex = () => {
-    const handleScrollToDest = () => {
-      btf.scrollToDest(document.getElementById('content-inner').offsetTop, 300)
-    }
+const scrollFn = () => {
+  let initTop = 0;
+  const $header = document.getElementById('page-header');
+  const $rightside = document.getElementById('rightside') || null;
 
-    const $scrollDownEle = document.getElementById('scroll-down')
-    $scrollDownEle && btf.addEventListenerPjax($scrollDownEle, 'click', handleScrollToDest)
-  }
+  const throttledScroll = utils.throttle(() => {
+    initThemeColor();
+    const currentTop = window.scrollY || document.documentElement.scrollTop;
+    const isDown = currentTop > initTop;
+    initTop = currentTop;
 
-  /**
-   * 代碼
-   * 只適用於Hexo默認的代碼渲染
-   */
-  const addHighlightTool = () => {
-    const highLight = GLOBAL_CONFIG.highlight
-    if (!highLight) return
-
-    const { highlightCopy, highlightLang, highlightHeightLimit, highlightFullpage, highlightMacStyle, plugin } = highLight
-    const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
-    const isShowTool = highlightCopy || highlightLang || isHighlightShrink !== undefined || highlightFullpage || highlightMacStyle
-    const $figureHighlight = plugin === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]')
-
-    if (!((isShowTool || highlightHeightLimit) && $figureHighlight.length)) return
-
-    const isPrismjs = plugin === 'prismjs'
-    const highlightShrinkClass = isHighlightShrink === true ? 'closed' : ''
-    const highlightShrinkEle = isHighlightShrink !== undefined ? '<i class="fas fa-angle-down expand"></i>' : ''
-    const highlightCopyEle = highlightCopy ? '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>' : ''
-    const highlightMacStyleEle = '<div class="macStyle"><div class="mac-close"></div><div class="mac-minimize"></div><div class="mac-maximize"></div></div>'
-    const highlightFullpageEle = highlightFullpage ? '<i class="fa-solid fa-up-right-and-down-left-from-center fullpage-button"></i>' : ''
-
-    const alertInfo = (ele, text) => {
-      if (GLOBAL_CONFIG.Snackbar !== undefined) {
-        btf.snackbarShow(text)
-      } else {
-        ele.textContent = text
-        ele.style.opacity = 1
-        setTimeout(() => { ele.style.opacity = 0 }, 800)
+    if (currentTop > 0) {
+      $header.classList.toggle('nav-visible', !isDown);
+      $header.classList.add('nav-fixed');
+      if ($rightside) {
+        $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px);';
       }
-    }
-
-    const copy = async (text, ctx) => {
-      try {
-        await navigator.clipboard.writeText(text)
-        alertInfo(ctx, GLOBAL_CONFIG.copy.success)
-      } catch (err) {
-        console.error('Failed to copy: ', err)
-        alertInfo(ctx, GLOBAL_CONFIG.copy.noSupport)
-      }
-    }
-
-    // click events
-    const highlightCopyFn = (ele, clickEle) => {
-      const $buttonParent = ele.parentNode
-      $buttonParent.classList.add('copy-true')
-      const preCodeSelector = isPrismjs ? 'pre code' : 'table .code pre'
-      const codeElement = $buttonParent.querySelector(preCodeSelector)
-      if (!codeElement) return
-      copy(codeElement.innerText, clickEle.previousElementSibling)
-      $buttonParent.classList.remove('copy-true')
-    }
-
-    const highlightShrinkFn = ele => ele.classList.toggle('closed')
-
-    const codeFullpage = (item, clickEle) => {
-      const wrapEle = item.closest('figure.highlight')
-      const isFullpage = wrapEle.classList.toggle('code-fullpage')
-
-      document.body.style.overflow = isFullpage ? 'hidden' : ''
-      clickEle.classList.toggle('fa-down-left-and-up-right-to-center', isFullpage)
-      clickEle.classList.toggle('fa-up-right-and-down-left-from-center', !isFullpage)
-    }
-
-    const highlightToolsFn = e => {
-      const $target = e.target.classList
-      const currentElement = e.currentTarget
-      if ($target.contains('expand')) highlightShrinkFn(currentElement)
-      else if ($target.contains('copy-button')) highlightCopyFn(currentElement, e.target)
-      else if ($target.contains('fullpage-button')) codeFullpage(currentElement, e.target)
-    }
-
-    const expandCode = e => e.currentTarget.classList.toggle('expand-done')
-
-    // 獲取隱藏狀態下元素的真實高度
-    const getActualHeight = item => {
-      const hiddenElements = new Map()
-
-      const fix = () => {
-        let current = item
-        while (current !== document.body && current != null) {
-          if (window.getComputedStyle(current).display === 'none') {
-            hiddenElements.set(current, current.getAttribute('style') || '')
-          }
-          current = current.parentNode
-        }
-
-        const style = 'visibility: hidden !important; display: block !important;'
-        hiddenElements.forEach((originalStyle, elem) => {
-          elem.setAttribute('style', originalStyle ? originalStyle + ';' + style : style)
-        })
-      }
-
-      const restore = () => {
-        hiddenElements.forEach((originalStyle, elem) => {
-          if (originalStyle === '') elem.removeAttribute('style')
-          else elem.setAttribute('style', originalStyle)
-        })
-      }
-
-      fix()
-      const height = item.offsetHeight
-      restore()
-      return height
-    }
-
-    const createEle = (lang, item) => {
-      const fragment = document.createDocumentFragment()
-
-      if (isShowTool) {
-        const hlTools = document.createElement('div')
-        hlTools.className = `highlight-tools ${highlightShrinkClass}`
-        hlTools.innerHTML = highlightMacStyleEle + highlightShrinkEle + lang + highlightCopyEle + highlightFullpageEle
-        btf.addEventListenerPjax(hlTools, 'click', highlightToolsFn)
-        fragment.appendChild(hlTools)
-      }
-
-      if (highlightHeightLimit && getActualHeight(item) > highlightHeightLimit + 30) {
-        const ele = document.createElement('div')
-        ele.className = 'code-expand-btn'
-        ele.innerHTML = '<i class="fas fa-angle-double-down"></i>'
-        btf.addEventListenerPjax(ele, 'click', expandCode)
-        fragment.appendChild(ele)
-      }
-
-      isPrismjs ? item.parentNode.insertBefore(fragment, item) : item.insertBefore(fragment, item.firstChild)
-    }
-
-    $figureHighlight.forEach(item => {
-      let langName = ''
-      if (isPrismjs) btf.wrap(item, 'figure', { class: 'highlight' })
-
-      if (!highlightLang) {
-        createEle('', item)
-        return
-      }
-
-      if (isPrismjs) {
-        langName = item.getAttribute('data-language') || 'Code'
-      } else {
-        langName = item.getAttribute('class').split(' ')[1]
-        if (langName === 'plain' || langName === undefined) langName = 'Code'
-      }
-      createEle(`<div class="code-lang">${langName}</div>`, item)
-    })
-  }
-
-  /**
-   * PhotoFigcaption
-   */
-  const addPhotoFigcaption = () => {
-    if (!GLOBAL_CONFIG.isPhotoFigcaption) return
-    document.querySelectorAll('#article-container img').forEach(item => {
-      const altValue = item.title || item.alt
-      if (!altValue) return
-      const ele = document.createElement('div')
-      ele.className = 'img-alt text-center'
-      ele.textContent = altValue
-      item.insertAdjacentElement('afterend', ele)
-    })
-  }
-
-  /**
-   * Lightbox
-   */
-  const runLightbox = () => {
-    btf.loadLightbox(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
-  }
-
-  /**
-   * justified-gallery 圖庫排版
-   */
-
-  const fetchUrl = async url => {
-    const response = await fetch(url)
-    return await response.json()
-  }
-
-  const runJustifiedGallery = (item, data, isButton = false, tabs) => {
-    const dataLength = data.length
-
-    const ig = new InfiniteGrid.JustifiedInfiniteGrid(item, {
-      gap: 5,
-      isConstantSize: true,
-      sizeRange: [150, 600],
-      // useResizeObserver: true,
-      // observeChildren: true,
-      useTransform: true
-      // useRecycle: false
-    })
-
-    const replaceDq = str => str.replace(/"/g, '&quot;') // replace double quotes to &quot;
-
-    const getItems = (nextGroupKey, count) => {
-      const nextItems = []
-      const startCount = (nextGroupKey - 1) * count
-
-      for (let i = 0; i < count; ++i) {
-        const num = startCount + i
-        if (num >= dataLength) {
-          break
-        }
-
-        const item = data[num]
-        const alt = item.alt ? `alt="${replaceDq(item.alt)}"` : ''
-        const title = item.title ? `title="${replaceDq(item.title)}"` : ''
-
-        nextItems.push(`<div class="item">
-            <img src="${item.url}" data-grid-maintained-target="true" ${alt + title} />
-          </div>`)
-      }
-      return nextItems
-    }
-
-    const buttonText = GLOBAL_CONFIG.infinitegrid.buttonText
-    const addButton = item => {
-      const button = document.createElement('button')
-      button.innerHTML = buttonText + '<i class="fa-solid fa-arrow-down"></i>'
-
-      button.addEventListener('click', e => {
-        e.target.closest('button').remove()
-        btf.setLoading.add(item)
-        appendItem(ig.getGroups().length + 1, 10)
-      }, { once: true })
-
-      item.insertAdjacentElement('afterend', button)
-    }
-
-    const appendItem = (nextGroupKey, count) => {
-      ig.append(getItems(nextGroupKey, count), nextGroupKey)
-    }
-
-    const maxGroupKey = Math.ceil(dataLength / 10)
-    let isLayoutHidden = false
-
-    const completeFn = e => {
-      if (tabs) {
-        const parentNode = item.parentNode
-
-        if (isLayoutHidden) {
-          parentNode.style.visibility = 'visible'
-        }
-
-        if (item.offsetHeight === 0) {
-          parentNode.style.visibility = 'hidden'
-          isLayoutHidden = true
-        }
-      }
-
-      const { updated, isResize, mounted } = e
-      if (!updated.length || !mounted.length || isResize) {
-        return
-      }
-
-      btf.loadLightbox(item.querySelectorAll('img:not(.medium-zoom-image)'))
-
-      if (ig.getGroups().length === maxGroupKey) {
-        btf.setLoading.remove(item)
-        !tabs && ig.off('renderComplete', completeFn)
-        return
-      }
-
-      if (isButton) {
-        btf.setLoading.remove(item)
-        addButton(item)
-      }
-    }
-
-    const requestAppendFn = btf.debounce(e => {
-      const nextGroupKey = (+e.groupKey || 0) + 1
-      appendItem(nextGroupKey, 10)
-
-      if (nextGroupKey === maxGroupKey) {
-        ig.off('requestAppend', requestAppendFn)
-      }
-    }, 300)
-
-    btf.setLoading.add(item)
-    ig.on('renderComplete', completeFn)
-
-    if (isButton) {
-      appendItem(1, 10)
     } else {
-      ig.on('requestAppend', requestAppendFn)
-      ig.renderItems()
-    }
-
-    btf.addGlobalFn('pjaxSendOnce', () => { ig.destroy() })
-  }
-
-  const addJustifiedGallery = async (ele, tabs = false) => {
-    if (!ele.length) return
-    const init = async () => {
-      for (const item of ele) {
-        if (btf.isHidden(item) || item.classList.contains('loaded')) continue
-
-        const isButton = item.getAttribute('data-button') === 'true'
-        const children = item.firstElementChild
-        const text = children.textContent
-        children.textContent = ''
-        item.classList.add('loaded')
-        try {
-          const content = item.getAttribute('data-type') === 'url' ? await fetchUrl(text) : JSON.parse(text)
-          runJustifiedGallery(children, content, isButton, tabs)
-        } catch (e) {
-          console.error('Gallery data parsing failed:', e)
-        }
+      $header.classList.remove('nav-fixed', 'nav-visible');
+      if ($rightside) {
+        $rightside.style.cssText = "opacity: ''; transform: ''";
       }
     }
+  }, 200);
 
-    if (typeof InfiniteGrid === 'function') {
-      init()
-    } else {
-      await btf.getScript(`${GLOBAL_CONFIG.infinitegrid.js}`)
-      init()
-    }
-  }
+  window.addEventListener('scroll', throttledScroll);
+};
 
-  /**
-   * rightside scroll percent
-   */
-  const rightsideScrollPercent = currentTop => {
-    const scrollPercent = btf.getScrollPercent(currentTop, document.body)
-    const goUpElement = document.getElementById('go-up')
+const percent = () => {
+  const docEl = document.documentElement;
+  const body = document.body;
+  const scrollPos = window.pageYOffset || docEl.scrollTop;
+  const totalScrollableHeight = Math.max(body.scrollHeight, docEl.scrollHeight, body.offsetHeight, docEl.offsetHeight, body.clientHeight, docEl.clientHeight) - docEl.clientHeight;
+  const scrolledPercent = Math.round((scrollPos / totalScrollableHeight) * 100);
+  const navToTop = document.querySelector("#nav-totop");
+  const rsToTop = document.querySelector(".rs_show .top i");
+  const percentDisplay = document.querySelector("#percent");
+  const isNearEnd = (window.scrollY + docEl.clientHeight) >= (document.getElementById("post-comment") || document.getElementById("footer")).offsetTop;
 
-    if (scrollPercent < 95) {
-      goUpElement.classList.add('show-percent')
-      goUpElement.querySelector('.scroll-percent').textContent = scrollPercent
-    } else {
-      goUpElement.classList.remove('show-percent')
-    }
-  }
+  navToTop?.classList.toggle("long", isNearEnd || scrolledPercent > 90);
+  rsToTop?.classList.toggle("show", isNearEnd || scrolledPercent > 90);
+  percentDisplay.textContent = isNearEnd || scrolledPercent > 90 ? (navToTop ? GLOBAL_CONFIG.lang.backtop : '') : scrolledPercent;
 
-  /**
-   * 滾動處理
-   */
-  const scrollFn = () => {
-    const $rightside = document.getElementById('rightside')
-    const innerHeight = window.innerHeight + 56
-    let initTop = 0
-    const $header = document.getElementById('page-header')
-    const isChatBtn = typeof chatBtn !== 'undefined'
-    const isShowPercent = GLOBAL_CONFIG.percent.rightside
+  document.querySelectorAll(".needEndHide").forEach(item => item.classList.toggle("hide", totalScrollableHeight - scrollPos < 100));
+};
 
-    // 檢查文檔高度是否小於視窗高度
-    const checkDocumentHeight = () => {
-      if (document.body.scrollHeight <= innerHeight) {
-        $rightside.classList.add('rightside-show')
-        return true
-      }
-      return false
-    }
+const showTodayCard = () => {
+  const el = document.getElementById('todayCard');
+  const topGroup = document.querySelector('.topGroup');
+  topGroup?.addEventListener('mouseleave', () => el?.classList.remove('hide'));
+};
 
-    // 如果文檔高度小於視窗高度,直接返回
-    if (checkDocumentHeight()) return
+const initObserver = () => {
+  const commentElement = document.getElementById("post-comment");
+  const paginationElement = document.getElementById("pagination");
+  const commentBarrageElement = document.querySelector(".comment-barrage");
 
-    // find the scroll direction
-    const scrollDirection = currentTop => {
-      const result = currentTop > initTop // true is down & false is up
-      initTop = currentTop
-      return result
-    }
-
-    let flag = ''
-    const scrollTask = btf.throttle(() => {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      const isDown = scrollDirection(currentTop)
-      if (currentTop > 56) {
-        if (flag === '') {
-          $header.classList.add('nav-fixed')
-          $rightside.classList.add('rightside-show')
+  if (commentElement && paginationElement) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        paginationElement.classList.toggle("show-window", entry.isIntersecting);
+        if (GLOBAL_CONFIG.comment.commentBarrage) {
+          commentBarrageElement.style.bottom = entry.isIntersecting ? "-200px" : "0px";
         }
+      });
+    });
+    observer.observe(commentElement);
+  }
+};
 
-        if (isDown) {
-          if (flag !== 'down') {
-            $header.classList.remove('nav-visible')
-            isChatBtn && window.chatBtn.hide()
-            flag = 'down'
+const addCopyright = () => {
+  if (!GLOBAL_CONFIG.copyright) return;
+  const { limit, author, link, source, info } = GLOBAL_CONFIG.copyright;
+
+  document.body.addEventListener('copy', (e) => {
+    e.preventDefault();
+    const copyText = window.getSelection().toString();
+    const text = copyText.length > limit ? `${copyText}\n\n${author}\n${link}${window.location.href}\n${source}\n${info}` : copyText;
+    e.clipboardData.setData('text', text);
+  });
+};
+
+const asideStatus = () => {
+  const status = utils.saveToLocal.get('aside-status');
+  document.documentElement.classList.toggle('hide-aside', status === 'hide');
+};
+
+function initThemeColor() {
+  const currentTop = window.scrollY || document.documentElement.scrollTop;
+  const themeColor = currentTop > 0 ? '--efu-card-bg' : PAGE_CONFIG.is_post ? '--efu-main' : '--efu-background';
+  applyThemeColor(getComputedStyle(document.documentElement).getPropertyValue(themeColor));
+}
+
+function applyThemeColor(color) {
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  const appleMobileWebAppMeta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+  themeColorMeta?.setAttribute("content", color);
+  appleMobileWebAppMeta?.setAttribute("content", color);
+  if (window.matchMedia("(display-mode: standalone)").matches) {
+    document.body.style.backgroundColor = color;
+  }
+}
+
+const handleThemeChange = mode => {
+  const themeChange = window.globalFn?.themeChange || {};
+  Object.values(themeChange).forEach(fn => fn(mode));
+};
+
+const sco = {
+  lastSayHello: "",
+  wasPageHidden: false,
+  musicPlaying: false,
+  scrollTo(elementId) {
+    const targetElement = document.getElementById(elementId);
+    if (targetElement) {
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scroll({ top: targetPosition, behavior: "smooth" });
+    }
+  },
+  musicToggle(isMeting = true) {
+    if (!this.isMusicBind) {
+      this.musicBind();
+    }
+    const $music = document.querySelector('#nav-music');
+    const $meting = document.querySelector('meting-js');
+    const $console = document.getElementById('consoleMusic');
+    const $rmText = document.querySelector('#menu-music-toggle span');
+    const $rmIcon = document.querySelector('#menu-music-toggle i');
+
+    this.musicPlaying = !this.musicPlaying;
+    $music.classList.toggle("playing", this.musicPlaying);
+    $music.classList.toggle("stretch", this.musicPlaying);
+    $console?.classList.toggle("on", this.musicPlaying);
+
+    if (typeof rm !== 'undefined' && rm?.menuItems.music[0]) {
+      $rmText.textContent = this.musicPlaying ? GLOBAL_CONFIG.right_menu.music.stop : GLOBAL_CONFIG.right_menu.music.start;
+      $rmIcon.className = this.musicPlaying ? 'solitude fas fa-pause' : 'solitude fas fa-play';
+    }
+
+    if (isMeting) {
+      this.musicPlaying ? $meting.aplayer.play() : $meting.aplayer.pause();
+    }
+  },
+  musicBind() {
+    const $music = document.querySelector('#nav-music');
+    const $name = document.querySelector('#nav-music .aplayer-music');
+    const $button = document.querySelector('#nav-music .aplayer-button');
+
+    $name?.addEventListener('click', () => {
+      $music.classList.toggle("stretch");
+    });
+
+    $button?.addEventListener('click', () => {
+      this.musicToggle(false);
+    });
+
+    this.isMusicBind = true;
+  },
+  switchCommentBarrage() {
+    const commentBarrageElement = document.querySelector(".comment-barrage");
+    const consoleCommentBarrage = document.querySelector("#consoleCommentBarrage");
+    if (!commentBarrageElement) return;
+
+    const isDisplayed = window.getComputedStyle(commentBarrageElement).display === "flex";
+    commentBarrageElement.style.display = isDisplayed ? "none" : "flex";
+    consoleCommentBarrage?.classList.toggle("on", !isDisplayed);
+    utils.saveToLocal.set("commentBarrageSwitch", !isDisplayed, .2);
+    rm?.menuItems.barrage && rm.barrage(isDisplayed);
+  },
+  switchHideAside() {
+    const htmlClassList = document.documentElement.classList;
+    const consoleHideAside = document.querySelector("#consoleHideAside");
+    const isHideAside = htmlClassList.contains("hide-aside");
+    utils.saveToLocal.set("aside-status", isHideAside ? "show" : "hide", 1);
+    htmlClassList.toggle("hide-aside");
+    consoleHideAside.classList.toggle("on", !isHideAside);
+  },
+  switchKeyboard() {
+    this.sco_keyboards = !this.sco_keyboards;
+    const consoleKeyboard = document.querySelector("#consoleKeyboard");
+    const keyboardFunction = this.sco_keyboards ? openKeyboard : closeKeyboard;
+    consoleKeyboard?.classList.toggle("on", this.sco_keyboards);
+    keyboardFunction();
+    localStorage.setItem("keyboard", this.sco_keyboards);
+    document.getElementById('keyboard-tips')?.classList.remove('show');
+  },
+  initConsoleState() {
+    const consoleHideAside = document.querySelector("#consoleHideAside");
+    if (!consoleHideAside) return;
+    consoleHideAside.classList.toggle("on", document.documentElement.classList.contains("hide-aside"));
+  },
+  changeSayHelloText() {
+    const greetings = GLOBAL_CONFIG.aside.sayhello2;
+    const greetingElement = document.getElementById("author-info__sayhi");
+    let randomGreeting;
+    do {
+      randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+    } while (randomGreeting === this.lastSayHello);
+    greetingElement.textContent = randomGreeting;
+    this.lastSayHello = randomGreeting;
+  },
+  switchDarkMode() {
+    const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+    const newMode = isDarkMode ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newMode);
+    utils.saveToLocal.set('theme', newMode, 0.02);
+    utils.snackbarShow(GLOBAL_CONFIG.lang.theme[newMode], false, 2000);
+    if (typeof rm === 'object') rm.mode(!isDarkMode) && rm.hideRightMenu();
+    handleThemeChange(newMode);
+  },
+  hideTodayCard: () => document.getElementById('todayCard').classList.add('hide'),
+  toTop: () => utils.scrollToDest(0),
+  showConsole: () => document.getElementById('console')?.classList.toggle('show', true),
+  hideConsole: () => document.getElementById('console')?.classList.remove('show'),
+  refreshWaterFall() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            waterfall(entry.target).then(() => {
+              entry.target.classList.add('show');
+            });
+          }, 300);
+        }
+      });
+    });
+    document.querySelectorAll('.waterfall').forEach(el => observer.observe(el));
+  },
+  addRuntime() {
+    const el = document.getElementById('runtimeshow');
+    if (el && GLOBAL_CONFIG.runtime) {
+      el.innerText = utils.timeDiff(new Date(GLOBAL_CONFIG.runtime), new Date()) + GLOBAL_CONFIG.lang.day;
+    }
+  },
+  toTalk(txt) {
+    const inputs = ["#wl-edit", ".el-textarea__inner", "#veditor", ".atk-textarea"];
+    inputs.forEach(selector => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.dispatchEvent(new Event('input', { bubble: true, cancelable: true }));
+        el.value = '> ' + txt.replace(/\n/g, '\n> ') + '\n\n';
+        utils.scrollToDest(utils.getEleTop(document.getElementById('post-comment')), 300);
+        el.focus();
+        el.setSelectionRange(-1, -1);
+      }
+    });
+    utils.snackbarShow(GLOBAL_CONFIG.lang.totalk, false, 2000);
+  },
+  initbbtalk() {
+    const bberTalkElement = document.querySelector('#bber-talk');
+    if (bberTalkElement) {
+      new Swiper('.swiper-container', {
+        direction: 'vertical',
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          pauseOnMouseEnter: true
+        },
+      });
+    }
+  },
+  addPhotoFigcaption() {
+    document.querySelectorAll('#article-container img:not(.gallery-item img)').forEach(image => {
+      const captionText = image.getAttribute('alt');
+      if (captionText) {
+        image.insertAdjacentHTML('afterend', `<div class="img-alt is-center">${utils.escapeHtml(captionText)}</div>`);
+      }
+    });
+  },
+  scrollToComment: () => utils.scrollToDest(utils.getEleTop(document.getElementById('post-comment')), 300),
+  setTimeState() {
+    const el = document.getElementById('author-info__sayhi');
+    if (el) {
+      const hours = new Date().getHours();
+      const lang = GLOBAL_CONFIG.aside.sayhello;
+
+      const localData = getLocalData(['twikoo', 'WALINE_USER_META', 'WALINE_USER', '_v_Cache_Meta', 'ArtalkUser']);
+
+      function getLocalData(keys) {
+        for (let key of keys) {
+          const data = localStorage.getItem(key);
+          if (data) {
+            return JSON.parse(data);
           }
-        } else {
-          if (flag !== 'up') {
-            $header.classList.add('nav-visible')
-            isChatBtn && window.chatBtn.show()
-            flag = 'up'
-          }
         }
-      } else {
-        flag = ''
-        if (currentTop === 0) {
-          $header.classList.remove('nav-fixed', 'nav-visible')
+        return null;
+      };
+      const nick = localData ? (localData.nick || localData.display_name) : null;
+
+      const prefix = this.wasPageHidden ? GLOBAL_CONFIG.aside.sayhello3.back + nick : GLOBAL_CONFIG.aside.sayhello3.prefix + nick;
+
+      const greetings = [
+        { start: 0, end: 5, text: nick ? prefix : lang.goodnight },
+        { start: 6, end: 10, text: nick ? prefix : lang.morning },
+        { start: 11, end: 14, text: nick ? prefix : lang.noon },
+        { start: 15, end: 18, text: nick ? prefix : lang.afternoon },
+        { start: 19, end: 24, text: nick ? prefix : lang.night },
+      ];
+      const greeting = greetings.find(g => hours >= g.start && hours <= g.end);
+      el.innerText = greeting.text;
+    }
+  },
+  tagPageActive() {
+    const decodedPath = decodeURIComponent(window.location.pathname);
+    const isTagPage = /\/tags\/.*?\//.test(decodedPath);
+    if (isTagPage) {
+      const tag = decodedPath.split("/").slice(-2, -1)[0];
+      const tagElement = document.getElementById(tag);
+      if (tagElement) {
+        document.querySelectorAll("a.select").forEach(link => {
+          link.classList.remove("select");
+        });
+        tagElement.classList.add("select");
+      }
+    }
+  },
+  categoriesBarActive() {
+    const categoryBar = document.querySelector("#category-bar");
+    const currentPath = decodeURIComponent(window.location.pathname);
+    const isHomePage = currentPath === GLOBAL_CONFIG.root;
+    if (categoryBar) {
+      const categoryItems = categoryBar.querySelectorAll(".category-bar-item");
+      categoryItems.forEach(item => item.classList.remove("select"));
+      const activeItemId = isHomePage ? "category-bar-home" : currentPath.split("/").slice(-2, -1)[0];
+      const activeItem = document.getElementById(activeItemId);
+      if (activeItem) {
+        activeItem.classList.add("select");
+      }
+    }
+  },
+  scrollCategoryBarToRight() {
+    const scrollBar = document.getElementById("category-bar-items");
+    const nextElement = document.getElementById("category-bar-next");
+    if (scrollBar) {
+      const isScrollBarAtEnd = () => scrollBar.scrollLeft + scrollBar.clientWidth >= scrollBar.scrollWidth - 8;
+      const scroll = () => {
+        scrollBar.scroll({ left: isScrollBarAtEnd() ? 0 : scrollBar.clientWidth, behavior: "smooth" });
+      };
+      scrollBar.addEventListener("scroll", () => {
+        clearTimeout(this.timeoutId);
+        this.timeoutId = setTimeout(() => {
+          nextElement.style.transform = isScrollBarAtEnd() ? "rotate(180deg)" : "";
+        }, 150);
+      });
+      scroll();
+    }
+  },
+  openAllTags() {
+    document.querySelectorAll(".card-allinfo .card-tag-cloud").forEach(tagCloudElement => tagCloudElement.classList.add("all-tags"));
+    document.getElementById("more-tags-btn")?.remove();
+  },
+  listenToPageInputPress() {
+    const toGroup = document.querySelector(".toPageGroup");
+    const pageText = document.getElementById("toPageText");
+    if (!pageText) return;
+    const pageButton = document.getElementById("toPageButton");
+    const pageNumbers = document.querySelectorAll(".page-number");
+    const lastPageNumber = +pageNumbers[pageNumbers.length - 1].textContent;
+    if (!pageText || lastPageNumber === 1) {
+      toGroup.style.display = "none";
+      return;
+    }
+    pageText.addEventListener("keydown", (event) => {
+      if (event.keyCode === 13) {
+        sco.toPage();
+        pjax.loadUrl(pageButton.href);
+      }
+    });
+    pageText.addEventListener("input", () => {
+      pageButton.classList.toggle("haveValue", pageText.value !== "" && pageText.value !== "0");
+      if (+pageText.value > lastPageNumber) {
+        pageText.value = lastPageNumber;
+      }
+    });
+  },
+  addNavBackgroundInit() {
+    const scrollTop = document.documentElement.scrollTop;
+    if (scrollTop !== 0) {
+      document.getElementById("page-header").classList.add("nav-fixed", "nav-visible");
+    }
+  },
+  toPage() {
+    const pageNumbers = document.querySelectorAll(".page-number");
+    const maxPageNumber = parseInt(pageNumbers[pageNumbers.length - 1].innerHTML);
+    const inputElement = document.getElementById("toPageText");
+    const inputPageNumber = parseInt(inputElement.value);
+    document.getElementById("toPageButton").href = (!isNaN(inputPageNumber) && inputPageNumber <= maxPageNumber && inputPageNumber > 1)
+      ? window.location.href.replace(/\/page\/\d+\/$/, "/") + "page/" + inputPageNumber + "/"
+      : '/';
+  },
+  owoBig(owoSelector) {
+    let owoBig = document.getElementById('owo-big');
+    if (!owoBig) {
+      owoBig = document.createElement('div');
+      owoBig.id = 'owo-big';
+      document.body.appendChild(owoBig);
+    }
+    const showOwoBig = event => {
+      const target = event.target;
+      const owoItem = target.closest(owoSelector.item);
+      if (owoItem && target.closest(owoSelector.body)) {
+        const imgSrc = owoItem.querySelector('img')?.src;
+        if (imgSrc) {
+          owoBig.innerHTML = `<img src="${imgSrc}" style="max-width: 100%; height: auto;">`;
+          owoBig.style.display = 'block';
+          positionOwoBig(owoItem);
         }
-        $rightside.classList.remove('rightside-show')
       }
-
-      isShowPercent && rightsideScrollPercent(currentTop)
-      checkDocumentHeight()
-    }, 300)
-
-    btf.addEventListenerPjax(window, 'scroll', scrollTask, { passive: true })
-  }
-
-  /**
-  * toc,anchor
-  */
-  const scrollFnToDo = () => {
-    const isToc = GLOBAL_CONFIG_SITE.isToc
-    const isAnchor = GLOBAL_CONFIG.isAnchor
-    const $article = document.getElementById('article-container')
-
-    if (!($article && (isToc || isAnchor))) return
-
-    let $tocLink, $cardToc, autoScrollToc, $tocPercentage, isExpand
-
-    if (isToc) {
-      const $cardTocLayout = document.getElementById('card-toc')
-      $cardToc = $cardTocLayout.querySelector('.toc-content')
-      $tocLink = $cardToc.querySelectorAll('.toc-link')
-      $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
-      isExpand = $cardToc.classList.contains('is-expand')
-
-      // toc元素點擊
-      const tocItemClickFn = e => {
-        const target = e.target.closest('.toc-link')
-        if (!target) return
-
-        e.preventDefault()
-        btf.scrollToDest(btf.getEleTop(document.getElementById(decodeURI(target.getAttribute('href')).replace('#', ''))), 300)
-        if (window.innerWidth < 900) {
-          $cardTocLayout.classList.remove('open')
-        }
+    };
+    const hideOwoBig = event => {
+      if (event.target.closest(owoSelector.item) && event.target.closest(owoSelector.body)) {
+        owoBig.style.display = 'none';
       }
-
-      btf.addEventListenerPjax($cardToc, 'click', tocItemClickFn)
-
-      autoScrollToc = item => {
-        const sidebarHeight = $cardToc.clientHeight
-        const itemOffsetTop = item.offsetTop
-        const itemHeight = item.clientHeight
-        const scrollTop = $cardToc.scrollTop
-        const offset = itemOffsetTop - scrollTop
-        const middlePosition = (sidebarHeight - itemHeight) / 2
-
-        if (offset !== middlePosition) {
-          $cardToc.scrollTop = scrollTop + (offset - middlePosition)
-        }
-      }
-
-      // 處理 hexo-blog-encrypt 事件
-      $cardToc.style.display = 'block'
-    }
-
-    // find head position & add active class
-    const $articleList = $article.querySelectorAll('h1,h2,h3,h4,h5,h6')
-    let detectItem = ''
-
-    const findHeadPosition = top => {
-      if (top === 0) return false
-
-      let currentId = ''
-      let currentIndex = ''
-
-      for (let i = 0; i < $articleList.length; i++) {
-        const ele = $articleList[i]
-        if (top > btf.getEleTop(ele) - 80) {
-          const id = ele.id
-          currentId = id ? '#' + encodeURI(id) : ''
-          currentIndex = i
-        } else {
-          break
-        }
-      }
-
-      if (detectItem === currentIndex) return
-
-      if (isAnchor) btf.updateAnchor(currentId)
-
-      detectItem = currentIndex
-
-      if (isToc) {
-        $cardToc.querySelectorAll('.active').forEach(i => i.classList.remove('active'))
-
-        if (currentId) {
-          const currentActive = $tocLink[currentIndex]
-          currentActive.classList.add('active')
-
-          setTimeout(() => autoScrollToc(currentActive), 0)
-
-          if (!isExpand) {
-            let parent = currentActive.parentNode
-            while (!parent.matches('.toc')) {
-              if (parent.matches('li')) parent.classList.add('active')
-              parent = parent.parentNode
-            }
-          }
-        }
-      }
-    }
-
-    // main of scroll
-    const tocScrollFn = btf.throttle(() => {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      if (isToc && GLOBAL_CONFIG.percent.toc) {
-        $tocPercentage.textContent = btf.getScrollPercent(currentTop, $article)
-      }
-      findHeadPosition(currentTop)
-    }, 100)
-
-    btf.addEventListenerPjax(window, 'scroll', tocScrollFn, { passive: true })
-  }
-
-  const handleThemeChange = mode => {
-    const globalFn = window.globalFn || {}
-    const themeChange = globalFn.themeChange || {}
-    if (!themeChange) {
-      return
-    }
-
-    Object.keys(themeChange).forEach(key => {
-      const themeChangeFn = themeChange[key]
-      if (['disqus', 'disqusjs'].includes(key)) {
-        setTimeout(() => themeChangeFn(mode), 300)
-      } else {
-        themeChangeFn(mode)
-      }
-    })
-  }
-
-  /**
-   * Rightside
-   */
-  const rightSideFn = {
-    readmode: () => { // read mode
-      const $body = document.body
-      const newEle = document.createElement('button')
-
-      const exitReadMode = () => {
-        $body.classList.remove('read-mode')
-        newEle.remove()
-        newEle.removeEventListener('click', exitReadMode)
-      }
-
-      $body.classList.add('read-mode')
-      newEle.type = 'button'
-      newEle.className = 'fas fa-sign-out-alt exit-readmode'
-      newEle.addEventListener('click', exitReadMode)
-      $body.appendChild(newEle)
-    },
-    darkmode: () => { // switch between light and dark mode
-      const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-      if (willChangeMode === 'dark') {
-        btf.activateDarkMode()
-        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
-      } else {
-        btf.activateLightMode()
-        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
-      }
-      btf.saveToLocal.set('theme', willChangeMode, 2)
-      handleThemeChange(willChangeMode)
-    },
-    'rightside-config': item => { // Show or hide rightside-hide-btn
-      const hideLayout = item.firstElementChild
-      if (hideLayout.classList.contains('show')) {
-        hideLayout.classList.add('status')
-        setTimeout(() => {
-          hideLayout.classList.remove('status')
-        }, 300)
-      }
-
-      hideLayout.classList.toggle('show')
-    },
-    'go-up': () => { // Back to top
-      btf.scrollToDest(0, 500)
-    },
-    'hide-aside-btn': () => { // Hide aside
-      const $htmlDom = document.documentElement.classList
-      const saveStatus = $htmlDom.contains('hide-aside') ? 'show' : 'hide'
-      btf.saveToLocal.set('aside-status', saveStatus, 2)
-      $htmlDom.toggle('hide-aside')
-    },
-    'mobile-toc-button': (p, item) => { // Show mobile toc
-      const tocEle = document.getElementById('card-toc')
-      tocEle.style.transition = 'transform 0.3s ease-in-out'
-
-      const tocEleHeight = tocEle.clientHeight
-      const btData = item.getBoundingClientRect()
-
-      const tocEleBottom = window.innerHeight - btData.bottom - 30
-      if (tocEleHeight > tocEleBottom) {
-        tocEle.style.transformOrigin = `right ${tocEleHeight - tocEleBottom - btData.height / 2}px`
-      }
-
-      tocEle.classList.toggle('open')
-      tocEle.addEventListener('transitionend', () => {
-        tocEle.style.cssText = ''
-      }, { once: true })
-    },
-    'chat-btn': () => { // Show chat
-      window.chatBtnFn()
-    },
-    translateLink: () => { // switch between traditional and simplified chinese
-      window.translateFn.translatePage()
-    }
-  }
-
-  document.getElementById('rightside').addEventListener('click', e => {
-    const $target = e.target.closest('[id]')
-    if ($target && rightSideFn[$target.id]) {
-      rightSideFn[$target.id](e.currentTarget, $target)
-    }
-  })
-
-  /**
-   * menu
-   * 側邊欄sub-menu 展開/收縮
-   */
-  const clickFnOfSubMenu = () => {
-    const handleClickOfSubMenu = e => {
-      const target = e.target.closest('.site-page.group')
-      if (!target) return
-      target.classList.toggle('hide')
-    }
-
-    const menusItems = document.querySelector('#sidebar-menus .menus_items')
-    menusItems && menusItems.addEventListener('click', handleClickOfSubMenu)
-  }
-
-  /**
-   * 手机端目录点击
-   */
-  const openMobileMenu = () => {
-    const toggleMenu = document.getElementById('toggle-menu')
-    if (!toggleMenu) return
-    btf.addEventListenerPjax(toggleMenu, 'click', () => { sidebarFn.open() })
-  }
-
-  /**
- * 複製時加上版權信息
- */
-  const addCopyright = () => {
-    const { limitCount, languages } = GLOBAL_CONFIG.copyright
-
-    const handleCopy = (e) => {
-      e.preventDefault()
-      const copyFont = window.getSelection(0).toString()
-      let textFont = copyFont
-      if (copyFont.length > limitCount) {
-        textFont = `${copyFont}\n\n\n${languages.author}\n${languages.link}${window.location.href}\n${languages.source}\n${languages.info}`
-      }
-      if (e.clipboardData) {
-        return e.clipboardData.setData('text', textFont)
-      } else {
-        return window.clipboardData.setData('text', textFont)
-      }
-    }
-
-    document.body.addEventListener('copy', handleCopy)
-  }
-
-  /**
-   * 網頁運行時間
-   */
-  const addRuntime = () => {
-    const $runtimeCount = document.getElementById('runtimeshow')
-    if ($runtimeCount) {
-      const publishDate = $runtimeCount.getAttribute('data-publishDate')
-      $runtimeCount.textContent = `${btf.diffDate(publishDate)} ${GLOBAL_CONFIG.runtime}`
-    }
-  }
-
-  /**
-   * 最後一次更新時間
-   */
-  const addLastPushDate = () => {
-    const $lastPushDateItem = document.getElementById('last-push-date')
-    if ($lastPushDateItem) {
-      const lastPushDate = $lastPushDateItem.getAttribute('data-lastPushDate')
-      $lastPushDateItem.textContent = btf.diffDate(lastPushDate, true)
-    }
-  }
-
-  /**
-   * table overflow
-   */
-  const addTableWrap = () => {
-    const $table = document.querySelectorAll('#article-container table')
-    if (!$table.length) return
-
-    $table.forEach(item => {
-      if (!item.closest('.highlight')) {
-        btf.wrap(item, 'div', { class: 'table-wrap' })
-      }
-    })
-  }
-
-  /**
-   * tag-hide
-   */
-  const clickFnOfTagHide = () => {
-    const hideButtons = document.querySelectorAll('#article-container .hide-button')
-    if (!hideButtons.length) return
-    hideButtons.forEach(item => item.addEventListener('click', e => {
-      const currentTarget = e.currentTarget
-      currentTarget.classList.add('open')
-      addJustifiedGallery(currentTarget.nextElementSibling.querySelectorAll('.gallery-container'))
-    }, { once: true }))
-  }
-
-  const tabsFn = () => {
-    const navTabsElements = document.querySelectorAll('#article-container .tabs')
-    if (!navTabsElements.length) return
-
-    const setActiveClass = (elements, activeIndex) => {
-      elements.forEach((el, index) => {
-        el.classList.toggle('active', index === activeIndex)
-      })
-    }
-
-    const handleNavClick = e => {
-      const target = e.target.closest('button')
-      if (!target || target.classList.contains('active')) return
-
-      const navItems = [...e.currentTarget.children]
-      const tabContents = [...e.currentTarget.nextElementSibling.children]
-      const indexOfButton = navItems.indexOf(target)
-      setActiveClass(navItems, indexOfButton)
-      e.currentTarget.classList.remove('no-default')
-      setActiveClass(tabContents, indexOfButton)
-      addJustifiedGallery(tabContents[indexOfButton].querySelectorAll('.gallery-container'), true)
-    }
-
-    const handleToTopClick = tabElement => e => {
-      if (e.target.closest('button')) {
-        btf.scrollToDest(btf.getEleTop(tabElement), 300)
-      }
-    }
-
-    navTabsElements.forEach(tabElement => {
-      btf.addEventListenerPjax(tabElement.firstElementChild, 'click', handleNavClick)
-      btf.addEventListenerPjax(tabElement.lastElementChild, 'click', handleToTopClick(tabElement))
-    })
-  }
-
-  const toggleCardCategory = () => {
-    const cardCategory = document.querySelector('#aside-cat-list.expandBtn')
-    if (!cardCategory) return
-
-    const handleToggleBtn = e => {
-      const target = e.target
-      if (target.nodeName === 'I') {
-        e.preventDefault()
-        target.parentNode.classList.toggle('expand')
-      }
-    }
-    btf.addEventListenerPjax(cardCategory, 'click', handleToggleBtn, true)
-  }
-
-  const addPostOutdateNotice = () => {
-    const { limitDay, messagePrev, messageNext, position } = GLOBAL_CONFIG.noticeOutdate
-    const diffDay = btf.diffDate(GLOBAL_CONFIG_SITE.postUpdate)
-    if (diffDay >= limitDay) {
-      const ele = document.createElement('div')
-      ele.className = 'post-outdate-notice'
-      ele.textContent = `${messagePrev} ${diffDay} ${messageNext}`
-      const $targetEle = document.getElementById('article-container')
-      if (position === 'top') {
-        $targetEle.insertBefore(ele, $targetEle.firstChild)
-      } else {
-        $targetEle.appendChild(ele)
-      }
-    }
-  }
-
-  const lazyloadImg = () => {
-    window.lazyLoadInstance = new LazyLoad({
-      elements_selector: 'img',
-      threshold: 0,
-      data_src: 'lazy-src'
-    })
-
-    btf.addGlobalFn('pjaxComplete', () => {
-      window.lazyLoadInstance.update()
-    }, 'lazyload')
-  }
-
-  const relativeDate = selector => {
+    };
+    const positionOwoBig = owoItem => {
+      const itemRect = owoItem.getBoundingClientRect();
+      owoBig.style.left = `${itemRect.left - (owoBig.offsetWidth / 4)}px`;
+      owoBig.style.top = `${itemRect.top}px`;
+    };
+    document.addEventListener('mouseover', showOwoBig);
+    document.addEventListener('mouseout', hideOwoBig);
+  },
+  changeTimeFormat(selector) {
     selector.forEach(item => {
-      item.textContent = btf.diffDate(item.getAttribute('datetime'), true)
-      item.style.display = 'inline'
-    })
+      const timeVal = item.getAttribute('datetime');
+      item.textContent = utils.diffDate(timeVal, true);
+      item.style.display = 'inline';
+    });
+  },
+  switchComments() {
+    const switchBtn = document.getElementById('switch-btn');
+    if (!switchBtn) return;
+    let switchDone = false;
+    const commentContainer = document.getElementById('post-comment');
+    const handleSwitchBtn = () => {
+      commentContainer.classList.toggle('move');
+      if (!switchDone && typeof loadTwoComment === 'function') {
+        switchDone = true;
+        loadTwoComment();
+      }
+    };
+    utils.addEventListenerPjax(switchBtn, 'click', handleSwitchBtn);
   }
+};
 
-  const justifiedIndexPostUI = () => {
-    const recentPostsElement = document.getElementById('recent-posts')
-    if (!(recentPostsElement && recentPostsElement.classList.contains('masonry'))) return
+const addHighlight = () => {
+  const highlight = GLOBAL_CONFIG.highlight;
+  if (!highlight) return;
+  const { copy, expand, limit, syntax } = highlight;
+  const $isPrismjs = syntax === 'prismjs';
+  const $isShowTool = highlight.enable || copy || expand || limit;
+  const expandClass = expand ? '' : 'closed';
+  const $syntaxHighlight = syntax === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]');
+  
+  if (!(($isShowTool || limit) && $syntaxHighlight.length)) return;
 
-    const init = () => {
-      const masonryItem = new InfiniteGrid.MasonryInfiniteGrid('.recent-post-items', {
-        gap: { horizontal: 10, vertical: 20 },
-        useTransform: true,
-        useResizeObserver: true
-      })
-      masonryItem.renderItems()
-      btf.addGlobalFn('pjaxCompleteOnce', () => { masonryItem.destroy() }, 'removeJustifiedIndexPostUI')
+  const copyEle = copy ? `<i class="solitude fas fa-copy copy-button"></i>` : '<i></i>';
+  const expandEle = `<i class="solitude fas fa-angle-down expand"></i>`;
+  const limitEle = limit ? `<i class="solitude fas fa-angles-down"></i>` : '<i></i>';
+  
+  const alertInfo = (ele, text) => utils.snackbarShow(text, false, 2000);
+  
+  const copyFn = (e) => {
+    const $buttonParent = e.parentNode;
+    $buttonParent.classList.add('copy-true');
+    const selection = window.getSelection();
+    const range = document.createRange();
+    const preCodeSelector = $isPrismjs ? 'pre code' : 'table .code pre';
+    range.selectNodeContents($buttonParent.querySelectorAll(`${preCodeSelector}`)[0]);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    alertInfo(e.lastChild, GLOBAL_CONFIG.lang.copy.success);
+    selection.removeAllRanges();
+    $buttonParent.classList.remove('copy-true');
+  };
+
+  const expandClose = (e) => e.classList.toggle('closed');
+  const shrinkEle = function () {
+    this.classList.toggle('expand-done');
+  };
+
+  const ToolsFn = function (e) {
+    const $target = e.target.classList;
+    if ($target.contains('expand')) expandClose(this);
+    else if ($target.contains('copy-button')) copyFn(this);
+  };
+
+  const createEle = (lang, item, service) => {
+    const fragment = document.createDocumentFragment();
+    if ($isShowTool) {
+      const captionItem = item.querySelector('figcaption');
+      let caption = '';
+      if (captionItem) {
+        caption = `<div class="caption">${captionItem.innerHTML}</div>`;
+        item.removeChild(captionItem);
+      }
+      const hlTools = document.createElement('div');
+      hlTools.className = `highlight-tools ${expandClass}`;
+      hlTools.innerHTML = expandEle + lang + caption + copyEle;
+      utils.addEventListenerPjax(hlTools, 'click', ToolsFn);
+      fragment.appendChild(hlTools);
     }
-
-    typeof InfiniteGrid === 'function' ? init() : btf.getScript(`${GLOBAL_CONFIG.infinitegrid.js}`).then(init)
-  }
-
-  const unRefreshFn = () => {
-    window.addEventListener('resize', () => {
-      adjustMenu(false)
-      mobileSidebarOpen && btf.isHidden(document.getElementById('toggle-menu')) && sidebarFn.close()
-    })
-
-    const menuMask = document.getElementById('menu-mask')
-    menuMask && menuMask.addEventListener('click', () => { sidebarFn.close() })
-
-    clickFnOfSubMenu()
-    GLOBAL_CONFIG.islazyload && lazyloadImg()
-    GLOBAL_CONFIG.copyright !== undefined && addCopyright()
-
-    if (GLOBAL_CONFIG.autoDarkmode) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (btf.saveToLocal.get('theme') !== undefined) return
-        e.matches ? handleThemeChange('dark') : handleThemeChange('light')
-      })
+    if (limit && item.offsetHeight > limit + 30) {
+      const ele = document.createElement('div');
+      ele.className = 'code-expand-btn';
+      ele.innerHTML = limitEle;
+      utils.addEventListenerPjax(ele, 'click', shrinkEle);
+      fragment.appendChild(ele);
     }
-  }
-
-  const forPostFn = () => {
-    addHighlightTool()
-    addPhotoFigcaption()
-    addJustifiedGallery(document.querySelectorAll('#article-container .gallery-container'))
-    runLightbox()
-    scrollFnToDo()
-    addTableWrap()
-    clickFnOfTagHide()
-    tabsFn()
-  }
-
-  const refreshFn = () => {
-    initAdjust()
-    justifiedIndexPostUI()
-
-    if (GLOBAL_CONFIG_SITE.isPost) {
-      GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
-      GLOBAL_CONFIG.relativeDate.post && relativeDate(document.querySelectorAll('#post-meta time'))
+    if (service === 'hl') {
+      item.insertBefore(fragment, item.firstChild);
     } else {
-      GLOBAL_CONFIG.relativeDate.homepage && relativeDate(document.querySelectorAll('#recent-posts time'))
-      GLOBAL_CONFIG.runtime && addRuntime()
-      addLastPushDate()
-      toggleCardCategory()
+      item.parentNode.insertBefore(fragment, item);
     }
+  };
 
-    GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
-    scrollFn()
+  if ($isPrismjs) {
+    $syntaxHighlight.forEach(item => {
+      const langName = item.getAttribute('data-language') || 'Code';
+      const highlightLangEle = `<div class="code-lang">${utils.escapeHtml(langName)}</div>`;
+      utils.wrap(item, 'figure', { class: 'highlight' });
+      createEle(highlightLangEle, item);
+    });
+  } else {
+    $syntaxHighlight.forEach(item => {
+      let langName = item.getAttribute('class').split(' ')[1];
+      if (langName === 'plain' || langName === undefined) langName = 'Code';
+      const highlightLangEle = `<div class="code-lang">${utils.escapeHtml(langName)}</div>`;
+      createEle(highlightLangEle, item, 'hl');
+    });
+  }
+};
 
-    forPostFn()
-    !GLOBAL_CONFIG_SITE.isShuoshuo && btf.switchComments(document)
-    openMobileMenu()
+class toc {
+  static init() {
+    const tocContainer = document.getElementById('card-toc');
+    if (!tocContainer || !tocContainer.querySelector('.toc a')) {
+      tocContainer.style.display = 'none';
+      return;
+    }
+    const el = document.querySelectorAll('.toc a');
+    el.forEach((e) => {
+      e.addEventListener('click', (event) => {
+        event.preventDefault();
+        utils.scrollToDest(utils.getEleTop(document.getElementById(decodeURI((event.target.className === 'toc-text' ? event.target.parentNode.hash : event.target.hash).replace('#', '')))), 300);
+      });
+    });
+    this.active(el);
   }
 
-  btf.addGlobalFn('pjaxComplete', refreshFn, 'refreshFn')
-  refreshFn()
-  unRefreshFn()
+  static active(toc) {
+    const $article = document.getElementById('article-container');
+    const $tocContent = document.getElementById('toc-content');
+    const list = $article.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    let detectItem = '';
 
-  // 處理 hexo-blog-encrypt 事件
-  window.addEventListener('hexo-blog-decrypt', e => {
-    forPostFn()
-    window.translateFn.translateInitialization()
-    Object.values(window.globalFn.encrypt).forEach(fn => {
-      fn()
-    })
-  })
-})
+    const autoScroll = (el) => {
+      const activePosition = el.getBoundingClientRect().top;
+      const sidebarScrollTop = $tocContent.scrollTop;
+      if (activePosition > (document.documentElement.clientHeight - 100)) {
+        $tocContent.scrollTop = sidebarScrollTop + 150;
+      }
+      if (activePosition < 100) {
+        $tocContent.scrollTop = sidebarScrollTop - 150;
+      }
+    };
+
+    const findHeadPosition = (top) => {
+      if (top === 0) return false;
+      let currentIndex = '';
+      list.forEach((ele, index) => {
+        if (top > utils.getEleTop(ele) - 80) {
+          currentIndex = index;
+        }
+      });
+      if (detectItem === currentIndex) return;
+      detectItem = currentIndex;
+      document.querySelectorAll('.toc .active').forEach((i) => {
+        i.classList.remove('active');
+      });
+      const activeitem = toc[detectItem];
+      if (activeitem) {
+        let parent = toc[detectItem].parentNode;
+        activeitem.classList.add('active');
+        autoScroll(activeitem);
+        for (; !parent.matches('.toc'); parent = parent.parentNode) {
+          if (parent.matches('li')) parent.classList.add('active');
+        }
+      }
+    };
+
+    window.tocScrollFn = utils.throttle(() => {
+      const currentTop = window.scrollY || document.documentElement.scrollTop;
+      findHeadPosition(currentTop);
+    }, 100);
+    window.addEventListener('scroll', tocScrollFn);
+  }
+}
+
+class tabs {
+  static init() {
+    this.clickFnOfTabs();
+    this.backToTop();
+  }
+
+  static clickFnOfTabs() {
+    document.querySelectorAll('#article-container .tab > button').forEach((item) => {
+      item.addEventListener('click', function () {
+        const $tabItem = this.parentNode;
+        if (!$tabItem.classList.contains('active')) {
+          const $tabContent = $tabItem.parentNode.nextElementSibling;
+          const $siblings = utils.siblings($tabItem, '.active')[0];
+          $siblings && $siblings.classList.remove('active');
+          $tabItem.classList.add('active');
+          const tabId = this.getAttribute('data-href').replace('#', '');
+          [...$tabContent.children].forEach((item) => {
+            item.classList.toggle('active', item.id === tabId);
+          });
+        }
+      });
+    });
+  }
+
+  static backToTop() {
+    document.querySelectorAll('#article-container .tabs .tab-to-top').forEach((item) => {
+      item.addEventListener('click', function () {
+        utils.scrollToDest(utils.getEleTop(this.parentElement.parentElement.parentNode), 300);
+      });
+    });
+  }
+
+  static lureAddListener() {
+    if (!GLOBAL_CONFIG.lure) return;
+    const title = document.title;
+    document.addEventListener('visibilitychange', () => {
+      const { lure } = GLOBAL_CONFIG;
+      document.title = document.visibilityState === 'hidden' ? lure.jump : lure.back;
+      if (document.visibilityState === 'visible') {
+        setTimeout(() => {
+          document.title = title;
+        }, 2000);
+      }
+    });
+  }
+
+  static expireAddListener() {
+    const { expire } = GLOBAL_CONFIG;
+    if (!expire) return;
+    const list = document.querySelectorAll('.post-meta-date time');
+    const post_date = list.length ? list[list.length - 1] : document.querySelector('.datatime');
+    if (!post_date) return;
+    const ex = Math.ceil((new Date().getTime() - new Date(post_date.getAttribute('datetime')).getTime()) / 1000 / 60 / 60 / 24);
+    if (expire.time > ex) return;
+    const ele = document.createElement('div');
+    ele.className = 'expire';
+    ele.innerHTML = `<i class="solitude fas fa-circle-exclamation"></i>${expire.text_prev}${-(expire.time - ex)}${expire.text_next}`;
+    const articleContainer = document.getElementById('article-container');
+    articleContainer.insertAdjacentElement(expire.position === 'top' ? 'afterbegin' : 'beforeend', ele);
+  }
+}
+
+const scrollFnToDo = () => {
+  const { toc } = PAGE_CONFIG;
+
+  if (toc) {
+    const $cardTocLayout = document.getElementById('card-toc');
+    const $cardToc = $cardTocLayout.querySelector('.toc-content');
+    const $tocLink = $cardToc.querySelectorAll('.toc-link');
+    const $tocPercentage = $cardTocLayout.querySelector('.toc-percentage');
+    const isExpand = $cardToc.classList.contains('is-expand');
+
+    const tocItemClickFn = e => {
+      const target = e.target.closest('.toc-link');
+      if (!target) return;
+
+      e.preventDefault();
+      utils.scrollToDest(utils.getEleTop(document.getElementById(decodeURI(target.getAttribute('href')).replace('#', ''))), 300);
+      if (window.innerWidth < 900) {
+        $cardTocLayout.classList.remove('open');
+      }
+    };
+    utils.addEventListenerPjax($cardToc, 'click', tocItemClickFn);
+  }
+};
+
+const forPostFn = () => {
+  scrollFnToDo();
+};
+
+window.refreshFn = () => {
+  const { is_home, is_page, page, is_post } = PAGE_CONFIG;
+  const { runtime, lazyload, lightbox, randomlink, covercolor, post_ai, lure, expire } = GLOBAL_CONFIG;
+  const timeSelector = (is_home ? '.post-meta-date time' : is_post ? '.post-meta-date time' : '.datatime') + ', .webinfo-item time';
+  document.body.setAttribute('data-type', page);
+  sco.changeTimeFormat(document.querySelectorAll(timeSelector));
+  runtime && sco.addRuntime();
+  [scrollFn, sidebarFn, sco.addPhotoFigcaption, sco.setTimeState, sco.tagPageActive, sco.categoriesBarActive, sco.listenToPageInputPress, sco.addNavBackgroundInit, sco.refreshWaterFall].forEach(fn => fn());
+  lazyload.enable && utils.lazyloadImg();
+  lightbox && utils.lightbox(document.querySelectorAll("#article-container img:not(.flink-avatar,.gallery-group img, .no-lightbox)"));
+  randomlink && randomLinksList();
+  post_ai && is_post && ai.init();
+  sco.switchComments();
+  initObserver();
+  if (is_home) {
+    showTodayCard();
+  }
+  typeof updatePostsBasedOnComments === 'function' && updatePostsBasedOnComments();
+  if (is_post || is_page) {
+    addHighlight();
+    tabs.init();
+  }
+  if (is_post && expire) {
+    tabs.expireAddListener();
+  }
+  if (covercolor.enable) coverColor();
+  if (PAGE_CONFIG.toc) toc.init();
+  if (lure) tabs.lureAddListener();
+
+  forPostFn();
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  [addCopyright, window.refreshFn, asideStatus, () => window.onscroll = percent, sco.initConsoleState].forEach(fn => fn());
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    sco.wasPageHidden = true;
+  }
+});
+
+window.onkeydown = e => {
+  const { keyCode, ctrlKey, shiftKey } = e;
+  if (keyCode === 123 || (ctrlKey && shiftKey && keyCode === 67)) {
+    utils.snackbarShow(GLOBAL_CONFIG.lang.f12, false, 3000);
+  }
+  if (keyCode === 27) {
+    sco.hideConsole();
+  }
+};
+
+document.addEventListener('copy', () => {
+  utils.snackbarShow(GLOBAL_CONFIG.lang.copy.success, false, 3000);
+});
