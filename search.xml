@@ -43,6 +43,7 @@
 <blockquote>
 <p>Bug fixes and improvements.</p>
 </blockquote>
+<p><img src="/img/14/2.PNG" alt="对联都不如的更新日志"></p>
 <p><del>张**，不愧是你。</del></p>
 <h1 id="新的通行密钥功能"><a href="#新的通行密钥功能" class="headerlink" title="新的通行密钥功能"></a>新的通行密钥功能</h1><p>这版本的<code>WeChat</code>悄悄加入了Apple设备<code>通行密钥</code>登录的功能。这意味着，登录微信只需要简单的<code>面容ID</code>或<code>触控ID</code>验证即可搞定。</p>
 <p>但是明眼人已经看出来了，这是<code>WeChat</code>而不是微信，这意味着，你需要绑定<code>非中国大陆手机号</code>才能使用这个功能。</p>
@@ -418,7 +419,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
