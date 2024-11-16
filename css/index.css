@@ -4289,10 +4289,17 @@ span.tags-punctuation i {
   line-height: 1;
   color: var(--efu-card-bg);
 }
-#nav #site-name img {
-  max-width: 120px;
-  max-height: 35px;
-  padding: 4px 8px;
+#nav #site-name span.title {
+  letter-spacing: normal;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0 5px;
+  line-height: 2rem;
+}
+@media screen and (max-width: 768px) {
+  #nav #site-name span.title {
+    padding-left: 8px;
+  }
 }
 #nav #blog_name {
   flex-wrap: nowrap;
