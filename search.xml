@@ -3,13 +3,13 @@
   <entry>
     <title>从 Butterfly 迁移到 Solitude 主题</title>
     <url>/2024/11/16/%E4%BB%8E-Butterfly-%E8%BF%81%E7%A7%BB%E5%88%B0-Solitude-%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>在经历了几天与审美疲劳的斗争之后，我决定将我博客的主题从Butterfly切换为<code>Solitude</code>。</p>
+    <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>在经历了几天与审美疲劳的斗争之后，我决定将我博客的主题从 Butterfly 切换为<code>Solitude</code>。</p>
 <p>其实 Hexo 切换主题还是非常简单的。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b main https://github.com/everfu/hexo-theme-solitude.git themes/solitude</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>由于应用主题之前已经安装了 pug 以及 stylus 的渲染器，因此不需要重复安装。</p>
 </blockquote>
-<h2 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h2><p>使用<code>Nano</code>或<code>VS Code</code>打开hexo<code>根目录</code>下的<code>_config.yml</code>，修改其中的主题配置：</p>
+<h2 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h2><p>使用 Nano 或 VS Code 打开hexo<code>根目录</code>下的<code>_config.yml</code>，修改其中的主题配置：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">solitude</span></span><br></pre></td></tr></table></figure>
 <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>强烈建议对当前的博客文件夹进行备份，如果出问题还可以还原！</p>
@@ -418,7 +418,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
