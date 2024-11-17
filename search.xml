@@ -43,12 +43,12 @@
 <blockquote>
 <p>Bug fixes and improvements.</p>
 </blockquote>
-<p><img src="/img/14/2.PNG" alt="对联都不如的更新日志"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/447655938fbcade45cc6a6d113377606.png" alt="对联都不如的更新日志"></p>
 <p><del>张**，不愧是你。</del></p>
 <h1 id="新的通行密钥功能"><a href="#新的通行密钥功能" class="headerlink" title="新的通行密钥功能"></a>新的通行密钥功能</h1><p>这版本的<code>WeChat</code>悄悄加入了Apple设备<code>通行密钥</code>登录的功能。这意味着，登录微信只需要简单的<code>面容ID</code>或<code>触控ID</code>验证即可搞定。</p>
 <p>但是明眼人已经看出来了，这是<code>WeChat</code>而不是微信，这意味着，你需要绑定<code>非中国大陆手机号</code>才能使用这个功能。</p>
-<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>很简单，进入<code>设置-账号与安全-通行密钥</code>设置，仅需简单的<code>面容ID</code>或<code>触控ID</code>验证即可成功添加通行密钥。<br><img src="/img/14/3.png" alt="生物认证添加"></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>退出WeChat后，登录时会自动弹出<code>面容ID</code>或<code>触控ID</code>认证界面，认证成功后即可登录。<br><img src="/img/14/4.png" alt="使用通行密钥登录"></p>
+<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>很简单，进入<code>设置-账号与安全-通行密钥</code>设置，仅需简单的<code>面容ID</code>或<code>触控ID</code>验证即可成功添加通行密钥。<br><img src="https://s1.imagehub.cc/images/2024/11/17/4b4a2ed4b70a7c68547ed3ec5ec2769c.jpeg" alt="生物认证添加"></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>退出WeChat后，登录时会自动弹出<code>面容ID</code>或<code>触控ID</code>认证界面，认证成功后即可登录。<br><img src="https://s1.imagehub.cc/images/2024/11/17/29253b0e9869a091ec1614986595bba7.jpeg" alt="使用通行密钥登录"></p>
 <h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>还是那句话，新功能要不大陆版没有，要不搞灰度测试，难道真的就不能普及使用吗？</p>
 <p>有的功能是真的方便啊（CallKit），但是又被砍了，但是据说又要回归了？</p>
 <p>记得上次在新设备上登小号，又是认证又是啥的，硬控我10分钟。</p>
@@ -107,13 +107,13 @@
 <h2 id="引用系统图标"><a href="#引用系统图标" class="headerlink" title="引用系统图标"></a>引用系统图标</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Image</span>(systemName: <span class="string">&quot;globe&quot;</span>) <span class="comment">// 内置地球图标</span></span><br></pre></td></tr></table></figure>
 <h2 id="图像属性"><a href="#图像属性" class="headerlink" title="图像属性"></a>图像属性</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Image</span>(<span class="string">&quot;ImageName&quot;</span>)</span><br><span class="line">     .resizable() <span class="comment">// 可变大小</span></span><br><span class="line">     .scaledToFit() <span class="comment">// 适合屏幕（原始比例缩放）</span></span><br><span class="line">     .scaledToFill() <span class="comment">// 缩放以填充</span></span><br></pre></td></tr></table></figure>
 <h1 id="垂直、水平与叠加视图"><a href="#垂直、水平与叠加视图" class="headerlink" title="垂直、水平与叠加视图"></a>垂直、水平与叠加视图</h1><h2 id="垂直视图"><a href="#垂直视图" class="headerlink" title="垂直视图"></a>垂直视图</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">VStack</span>(</span><br><span class="line">        alignment: .leading,</span><br><span class="line">        spacing: <span class="number">10</span></span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="type">ForEach</span>(</span><br><span class="line">            <span class="number">1</span><span class="operator">...</span><span class="number">10</span>,</span><br><span class="line">            id: \.<span class="keyword">self</span></span><br><span class="line">        ) &#123;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;Item <span class="subst">\(<span class="variable">$0</span>)</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述10个item将按<code>垂直</code>方向排列，如图所示：<br><img src="/img/12/1.png" alt="VStack"></p>
+<p>上述10个item将按<code>垂直</code>方向排列，如图所示：<br><img src="https://s1.imagehub.cc/images/2024/11/17/ee1ce1c06bfae7e4a080cc072609a3a3.png" alt="VStack"></p>
 <h2 id="水平视图"><a href="#水平视图" class="headerlink" title="水平视图"></a>水平视图</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">HStack</span>(</span><br><span class="line">        alignment: .top,</span><br><span class="line">        spacing: <span class="number">10</span></span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="type">ForEach</span>(</span><br><span class="line">            <span class="number">1</span><span class="operator">...</span><span class="number">5</span>,</span><br><span class="line">            id: \.<span class="keyword">self</span></span><br><span class="line">        ) &#123;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;Item <span class="subst">\(<span class="variable">$0</span>)</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述5个item将按<code>水平</code>方向排列，如图所示：<br><img src="/img/12/2.png" alt="HStack"></p>
+<p>上述5个item将按<code>水平</code>方向排列，如图所示：<br><img src="https://s1.imagehub.cc/images/2024/11/17/3719fdf6d2fd3eef809d3ea1b63f0968.png" alt="HStack"></p>
 <h2 id="堆叠视图"><a href="#堆叠视图" class="headerlink" title="堆叠视图"></a>堆叠视图</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> colors: [<span class="type">Color</span>] <span class="operator">=</span></span><br><span class="line">    [.red, .orange, .yellow, .green, .blue, .purple]</span><br><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">ZStack</span> &#123;</span><br><span class="line">        <span class="type">ForEach</span>(<span class="number">0</span><span class="operator">..&lt;</span>colors.count) &#123;</span><br><span class="line">            <span class="type">Rectangle</span>()</span><br><span class="line">                .fill(colors[<span class="variable">$0</span>])</span><br><span class="line">                .frame(width: <span class="number">100</span>, height: <span class="number">100</span>)</span><br><span class="line">                .offset(x: <span class="type">CGFloat</span>(<span class="variable">$0</span>) <span class="operator">*</span> <span class="number">10.0</span>,</span><br><span class="line">                        y: <span class="type">CGFloat</span>(<span class="variable">$0</span>) <span class="operator">*</span> <span class="number">10.0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例子创建了6种颜色的大小为100x100的<code>正方形</code>堆叠，并偏移10点。<br><img src="/img/12/3.png" alt="eg1"></p>
+<p>例子创建了6种颜色的大小为100x100的<code>正方形</code>堆叠，并偏移10点。<br><img src="https://s1.imagehub.cc/images/2024/11/17/2e3fd8cdfc05e5b990f86d64b983b227.png" alt="eg1"></p>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">ZStack</span>(alignment: .bottomLeading) &#123; <span class="comment">// 左下角对齐</span></span><br><span class="line">        <span class="type">Rectangle</span>()</span><br><span class="line">            .fill(<span class="type">Color</span>.red)</span><br><span class="line">            .frame(width: <span class="number">100</span>, height: <span class="number">50</span>)</span><br><span class="line">        <span class="type">Rectangle</span>()</span><br><span class="line">            .fill(<span class="type">Color</span>.blue)</span><br><span class="line">            .frame(width:<span class="number">50</span>, height: <span class="number">100</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .border(<span class="type">Color</span>.green, width: <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例子创建了2个<code>堆叠于左下角</code>的矩形，并使用绿色<code>外框</code>。<br><img src="/img/12/4.png" alt="eg2"></p>
+<p>例子创建了2个<code>堆叠于左下角</code>的矩形，并使用绿色<code>外框</code>。<br><img src="https://s1.imagehub.cc/images/2024/11/17/f6c084ed3890f00fd26b15dcd3169c2a.png" alt="eg2"></p>
 <h1 id="Stack-属性"><a href="#Stack-属性" class="headerlink" title="Stack 属性"></a>Stack 属性</h1><h2 id="VStack（仅左右对齐）"><a href="#VStack（仅左右对齐）" class="headerlink" title="VStack（仅左右对齐）"></a>VStack（仅左右对齐）</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">VStack</span> (alignment: .leading) &#123; <span class="comment">// 向左对齐</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">VStack</span> (alignment: .trailing) &#123; <span class="comment">// 向右对齐</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="HStack（仅上下对齐）"><a href="#HStack（仅上下对齐）" class="headerlink" title="HStack（仅上下对齐）"></a>HStack（仅上下对齐）</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">HStack</span> (alignment: .top) &#123; <span class="comment">// 向上对齐</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">HStack</span> (alignment: .bottom) &#123; <span class="comment">// 向下对齐</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="元素对齐方式"><a href="#元素对齐方式" class="headerlink" title="元素对齐方式"></a>元素对齐方式</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Image</span>(systemName: <span class="string">&quot;globe&quot;</span>)</span><br><span class="line">	.frame(alignment: .leading) <span class="comment">// 向左对齐</span></span><br></pre></td></tr></table></figure>
@@ -210,7 +210,7 @@
 <h1 id="iOS-18-1"><a href="#iOS-18-1" class="headerlink" title="iOS 18.1"></a>iOS 18.1</h1><p>最明显的点就是设置中多了<code>Apple Intelligence</code>的选项，<del>可以装B</del>。</p>
 <p>然而这只是噩梦的开始。</p>
 <p>由于我的系统语言是英语(澳大利亚)，因此Apple Intelligence并没有启用，但是我还是能感受到耗电<code>明显加快</code>。</p>
-<p><img src="/img/9/sctp9_1.png" alt="稳稳的6个小时续航"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/87251d908de251c410363540a2fba527.png" alt="稳稳的6个小时续航"></p>
 <p>相较于18.0.1，这个续航大约少了快<code>2个小时</code>。。。</p>
 <p>然后就是<code>发热</code>，虽然没有这么离谱，但是还是可以感受到比18.0.1严重。（应该是调度没有那么保守了罢）</p>
 <p>还有各种bug，比如<code>动画随机掉帧，控制中心图标消失，文件夹深浅色显示异常，iPhone镜像状态栏偏移的问题...</code>要不就是根本没解决，要不就是新的。</p>
@@ -218,10 +218,10 @@
 <p>好处确实也有，控制中心自定义程度更大，通话录音…都是些小升级，甚至可有可无。</p>
 <h1 id="iPadOS-18-1"><a href="#iPadOS-18-1" class="headerlink" title="iPadOS 18.1"></a>iPadOS 18.1</h1><p>主要还是耗电！耗电！耗电！</p>
 <p>库克，克雷格！！！</p>
-<p><img src="/img/9/sctp9_2.png" alt="史"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/27c9c2fa86b7654a8e49a5c8bb05b479.jpeg" alt="史"></p>
 <p>本人用iPad在学校做笔记，电量在那掉得跟<code>水</code>一样。</p>
 <p>还有控制中心的抽象<code>个人热点图标</code>还在（我的iPad是Wi-Fi版本）：</p>
-<p><img src="/img/9/sctp9_3.png" alt="抽象个人热点"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/4135feafc6068bd10266a16e74a03b39.jpg" alt="抽象个人热点"></p>
 <p>除了AI，没感觉iPad有很大的更新，最近Apple正在疯狂在AI上发力赶上友商，<del>毕竟说落后两年嘛</del>。</p>
 <h1 id="watchOS-11-1"><a href="#watchOS-11-1" class="headerlink" title="watchOS 11.1"></a>watchOS 11.1</h1><p>逆天掉电。</p>
 <p>但是过几天好了，应该是 Apple 特色了。</p>
@@ -254,7 +254,7 @@
 <p>x-apple-health:&#x2F;&#x2F;HearingAppPlugin.healthplugin&#x2F;HearingTest</p>
 </blockquote>
 <p>然后你会发现你直接就跳到了听力测试界面，戴上耳机 找个安静的环境，开始测试吧！</p>
-<p><img src="/img/8/sctp8.PNG" alt="听力测试"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/c4e60bf7e9baf200cc15b5193eb9fbaa.png" alt="听力测试"></p>
 <blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>1.此方法仅为打开隐藏的听力测试界面，并不能启用设置中的听力测试选项。<br>2.此方法<code>可以</code>保存听力测试结果。<br>3.听力保护和助听功能暂时无解。</p>
 </blockquote>
@@ -282,14 +282,14 @@
 <p>打开<code>终端</code>，直接输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/launchctl setenv MTL_HUD_ENABLED 1</span><br></pre></td></tr></table></figure>
 <p>启动游戏，可以发现 MetalHUD 已经成功显示。</p>
-<p><img src="/img/5/sctp5.png" alt="MetalHUD"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/a3751618367c0f8421ec343dfd3d4f7c.png" alt="MetalHUD"></p>
 <h2 id="禁用"><a href="#禁用" class="headerlink" title="禁用"></a>禁用</h2><p>打开<code>终端</code>，直接输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/launchctl setenv MTL_HUD_ENABLED 0</span><br></pre></td></tr></table></figure>
 <p>下次运行游戏时将不再显示<code>MetalHUD</code>。</p>
 <h1 id="CrossOver玩家"><a href="#CrossOver玩家" class="headerlink" title="CrossOver玩家"></a>CrossOver玩家</h1><h2 id="启用-1"><a href="#启用-1" class="headerlink" title="启用"></a>启用</h2><p>打开CrossOver主界面</p>
 <p>在你要启用的游戏上<code>右键</code>并选择<code>Run with Options</code></p>
 <p>在弹出窗口中<code>Environment variables</code>后面填入<code>MTL_HUD_ENABLED=1</code></p>
-<p><img src="/img/5/sctp5_1.png" alt="启用MetalHUD"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/7b814579e5354d87a2b51d4a9642cb74.png" alt="启用MetalHUD"></p>
 <p>启动游戏，可以发现 MetalHUD 已经成功显示。</p>
 <h2 id="禁用-1"><a href="#禁用-1" class="headerlink" title="禁用"></a>禁用</h2><p>将<code>MTL_HUD_ENABLED=1</code>删除即可。</p>
 <blockquote>
@@ -313,25 +313,25 @@
 <p>早在<a href="https://support.apple.com/en-au/guide/tv/atvb00f5b993/15.0/tvos/15.0">tvOS 15.0</a>就支持了强制网络登录，因此靠近的iOS设备会弹出网络认证界面，直接从该设备登录此网络即可。</p>
 <p>到这里，一切正常。</p>
 <p>但是！这个登录界面始终一片空白，最后直接报错，提示无法连接，尝试多次依然无果。</p>
-<p><img src="/img/7/sctp7_0.png" alt="又双叒叕报错"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/3e42c7fb2049dd92274539ced0d37223.jpeg" alt="又双叒叕报错"></p>
 <h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>1、基于对<a href="https://zh.wikipedia.org/zh-hans/%E5%BC%BA%E5%88%B6%E9%97%A8%E6%88%B7">强制网络</a>的定义，我们不难得出，该强制门户根据<code>MAC地址</code>追踪已连接设备，并判断是否已经通过认证。因此，我们只需要保证Apple TV的<code>MAC地址</code>通过该强制门户认证即可。</p>
 <p>2、Apple TV连接Wi-Fi使用硬件MAC地址，因此，其MAC地址并<code>不会改变</code>。</p>
 <h1 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h1><h2 id="确认Apple-TV的MAC地址"><a href="#确认Apple-TV的MAC地址" class="headerlink" title="确认Apple TV的MAC地址"></a>确认Apple TV的MAC地址</h2><p>很简单，只需进入<code>设置-网络</code>（设置-通用-关于本机也可以）即可看到MAC地址：</p>
-<p><img src="/img/7/sctp7_1.png" alt="查看MAC地址"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/60c0c3e581ddb305d1b48c09bc291554.jpeg" alt="查看MAC地址"></p>
 <h2 id="通过其他设备更改MAC地址，使Apple-TV通过认证"><a href="#通过其他设备更改MAC地址，使Apple-TV通过认证" class="headerlink" title="通过其他设备更改MAC地址，使Apple TV通过认证"></a>通过其他设备更改MAC地址，使Apple TV通过认证</h2><blockquote>
 <p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>此处以Mac为例。</p>
 </blockquote>
 <p>首先给Mac和Apple TV都<code>断开连接</code>要登录的Wi-Fi。在Mac上按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标，记下网络接口名称（一般是<code>en0</code>）。</p>
-<p><img src="/img/7/sctp7_2.png" alt="网络接口"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/16507afc06563f887dfdcd6d1a7b8fe8.jpeg" alt="网络接口"></p>
 <p>打开终端，输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ifconfig en0 ether [Apple TV的MAC地址]</span><br></pre></td></tr></table></figure>
 
 <p>此时连接需要登录的Wi-Fi，不出意外将弹出登录界面，在按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标后，可以发现用于连接此Wi-Fi的MAC地址已经变成Apple TV的MAC地址。如果没有弹出登录界面，可以尝试重新连接或者随便打开一个网页。</p>
-<p><img src="/img/7/sctp7_3.png" alt="登录"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/4a1a19a314c2158efacfbfdab20038b9.jpeg" alt="登录"></p>
 <p>登录完成后，可打开几个网页测试连通性。</p>
 <h2 id="后续操作"><a href="#后续操作" class="headerlink" title="后续操作"></a>后续操作</h2><p>重启你的<code>Mac</code>，之前修改MAC地址将会被完全清除。</p>
 <p>将Apple TV连接到此Wi-Fi，此时会发现状态栏的感叹号已经消失，可以正常访问网络了。</p>
-<p><img src="/img/7/sctp7_4.png" alt="正常连接网络"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/d0c6d2480f7e561e9035d3de5c01b38c.jpeg" alt="正常连接网络"></p>
 ]]></content>
       <categories>
         <category>Apple TV 解决方案</category>
@@ -357,7 +357,7 @@
 <h2 id="底部按钮"><a href="#底部按钮" class="headerlink" title="底部按钮"></a>底部按钮</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Button</span>(<span class="string">&quot;Button&quot;</span>)&#123;</span><br><span class="line">&#125;</span><br><span class="line">.frame(width:<span class="number">100.0</span>,height:<span class="number">50.0</span>)</span><br><span class="line">.background(.tint)</span><br><span class="line">.foregroundColor(.white)</span><br><span class="line">.cornerRadius(<span class="number">30.0</span>)</span><br><span class="line">.padding()</span><br></pre></td></tr></table></figure>
 
 <p>完成后再添加Preview，运行后即可看到效果。</p>
-<p><img src="/img/6/sctp6.png" alt="运行情况"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/6d0682e6cda03d934261eda9c0697df7.png" alt="运行情况"></p>
 <h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">LocationView</span>: <span class="title class_ inherited__">View</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">ZStack</span> &#123;</span><br><span class="line">            <span class="type">VStack</span> &#123;</span><br><span class="line">                <span class="type">Text</span>(<span class="string">&quot;I&quot;</span>)</span><br><span class="line">                    .font(.system(size: <span class="number">80</span>))</span><br><span class="line">                <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                    .foregroundColor(.primary)</span><br><span class="line">                    .font(.largeTitle)</span><br><span class="line">                <span class="type">HStack</span>&#123;</span><br><span class="line">                    <span class="type">VStack</span>(alignment: .center) &#123;</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">18</span>, weight: .bold, design: .rounded))</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">12</span>, weight: .regular, design: .rounded))</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="type">Spacer</span>()</span><br><span class="line">                    <span class="type">VStack</span>(alignment: .center) &#123;</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">18</span>, weight: .bold, design: .rounded))</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">12</span>, weight: .regular, design: .rounded))</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="type">Spacer</span>()</span><br><span class="line">                    <span class="type">VStack</span>(alignment: .center) &#123;</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">18</span>, weight: .bold, design: .rounded))</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">12</span>, weight: .regular, design: .rounded))</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                .padding()</span><br><span class="line">                .foregroundStyle(<span class="type">LinearGradient</span>(colors: [.blue, .indigo], startPoint: .top, endPoint: .bottom))</span><br><span class="line">                .background(.ultraThinMaterial, in: <span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">12</span>, style: .continuous))</span><br><span class="line">                <span class="type">VStack</span>(alignment: .leading, spacing: <span class="number">2</span>) &#123;</span><br><span class="line">                    <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                        .font(.headline)</span><br><span class="line">                        .foregroundColor(.primary)</span><br><span class="line">                    <span class="type">HStack</span>(alignment: .top, content: &#123;</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Your text here.&quot;</span>)</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.caption)</span><br><span class="line">                            .multilineTextAlignment(.leading)</span><br><span class="line">                            .frame(width: <span class="number">300</span>, height: <span class="number">32</span>)</span><br><span class="line">                        <span class="type">Spacer</span>()</span><br><span class="line">                        <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                            .foregroundColor(.primary)</span><br><span class="line">                            .font(.system(size: <span class="number">12</span>, weight: .bold))</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .padding(.vertical)</span><br><span class="line">                    <span class="type">HStack</span> &#123;</span><br><span class="line">                        <span class="type">VStack</span>(alignment: .center, content: &#123;</span><br><span class="line">                            <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                                .foregroundColor(.primary)</span><br><span class="line">                                .font(.system(size: <span class="number">24</span>, weight: .bold, design: .rounded))</span><br><span class="line">                            <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                                .foregroundColor(.primary)</span><br><span class="line">                                .font(.system(size: <span class="number">12</span>, weight: .regular, design: .rounded))</span><br><span class="line">                        &#125;)</span><br><span class="line">                        <span class="type">Spacer</span>()</span><br><span class="line">                        <span class="type">VStack</span>(alignment: .center, content: &#123;</span><br><span class="line">                            <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                                .font(.system(size: <span class="number">24</span>, weight: .bold, design: .rounded))</span><br><span class="line">                                .foregroundColor(.green)</span><br><span class="line">                            <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                                .foregroundColor(.primary)</span><br><span class="line">                                .font(.system(size: <span class="number">12</span>, weight: .regular, design: .rounded))</span><br><span class="line">                        &#125;)</span><br><span class="line">                        <span class="type">Spacer</span>()</span><br><span class="line">                        <span class="type">VStack</span>(alignment: .center, content: &#123;</span><br><span class="line">                            <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>)</span><br><span class="line">                                .foregroundColor(.primary)</span><br><span class="line">                                .font(.system(size: <span class="number">24</span>, weight: .bold, design: .rounded))</span><br><span class="line">                            <span class="type">Text</span>(<span class="string">&quot;Text&quot;</span>.uppercased())</span><br><span class="line">                                .foregroundColor(.primary)</span><br><span class="line">                                .font(.system(size: <span class="number">12</span>, weight: .regular, design: .rounded))</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                .padding()</span><br><span class="line">                .foregroundColor(<span class="type">Color</span>.black.opacity(<span class="number">0.8</span>))</span><br><span class="line">                .background(.ultraThinMaterial, in: <span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">20</span>, style: .continuous))</span><br><span class="line">                <span class="type">Text</span>(<span class="string">&quot;Your text here.&quot;</span>)</span><br><span class="line">                    .foregroundColor(.primary)</span><br><span class="line">                    .padding()</span><br><span class="line">                    .foregroundStyle(.black)</span><br><span class="line">                    .background(.ultraThinMaterial, in: <span class="type">RoundedRectangle</span>(cornerRadius: <span class="number">12</span>, style: .continuous))</span><br><span class="line">                <span class="type">Button</span>(<span class="string">&quot;Button&quot;</span>)&#123;</span><br><span class="line">                &#125;</span><br><span class="line">                .frame(width:<span class="number">100.0</span>,height:<span class="number">50.0</span>)</span><br><span class="line">                .background(.tint)</span><br><span class="line">                .foregroundColor(.white)</span><br><span class="line">                .cornerRadius(<span class="number">30.0</span>)</span><br><span class="line">                .padding()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">LocationView_Previews</span>: <span class="title class_ inherited__">PreviewProvider</span> &#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">var</span> previews: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">            <span class="type">LocationView</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>SwiftUI设计</category>
@@ -375,31 +375,31 @@
 <p>感谢<a href="https://github.com/HikariCalyx">HikariCalyx</a>提供的<a href="https://github.com/HikariCalyx/OSTRemote/blob/master/tccadb_arm64_drivers/README.md">Triple-color company ADB - Fastboot Driver for Windows 10 on ARM</a>驱动使得Fastboot驱动成为可能。</p>
 <p>虽然是<code>Windows 10</code>的驱动，但是<code>Windows 11</code>也是可以用的，<del>毕竟换皮嘛</del>。</p>
 <h1 id="禁用驱动程序强制签名"><a href="#禁用驱动程序强制签名" class="headerlink" title="禁用驱动程序强制签名"></a>禁用驱动程序强制签名</h1><p>打开系统设置，依次进入<code>恢复-高级重启</code>，点击<code>重新启动</code>。</p>
-<p><img src="/img/10/sctp10_1.png" alt="高级重启"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/c2be494839e859285b1f4497e68626b0.png" alt="高级重启"></p>
 <p>依次点击<code>疑难解答-高级选项-启动设置</code>，再次重启。</p>
-<p><img src="/img/10/sctp10_2.png" alt="启动设置"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/d4f7e11fe583dbfd3c4d918a1131033a.png" alt="启动设置"></p>
 <p>按下键盘上的<code>7</code>，禁用驱动程序强制签名，此时系统将正常启动。</p>
-<p><img src="/img/10/sctp10_3.png" alt="高级启动选项"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/479ffe5fb1f54db2ef90b4c2fa17c723.png" alt="高级启动选项"></p>
 <h1 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h1><p>在<a href="https://github.com/HikariCalyx/OSTRemote/tree/master">这里</a>克隆一下zip，我们只需要其中的<code>tccadb_arm64_drivers</code>文件夹。</p>
 <p>打开<code>tccadb_arm64_drivers</code>文件夹，打开<code>hctsw.cer</code>,在弹出的对话框中点击<code>安装证书</code>。</p>
-<p><img src="/img/10/sctp10_4.png" alt="安装证书"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/1734438145ad4a3aebd3651e38f8457b.png" alt="安装证书"></p>
 <p>注意，你需要为<code>本地主机</code>安装证书，而不是当前用户。</p>
-<p><img src="/img/10/sctp10_5.png" alt="导入选项&quot;"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/ef45bc329b822b0e8b9cc2d2b9c83de7.png" alt="导入选项&quot;"></p>
 <p>可能会弹出UAC提示，允许即可，接下来选项都保持默认。</p>
-<p><img src="/img/10/sctp10_6.png" alt="成功导入"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/1358d62bd48c7a8d5aa52858f23d94be.png" alt="成功导入"></p>
 <p>看到此对话框就说明证书导入成功了。</p>
 <h1 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h1><p>将安卓设备置于<code>Fastboot</code>模式，连接电脑，此时<code>设备管理器</code>中将看到名为<code>Android</code>的未知设备。</p>
 <blockquote>
-<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>对于同时存在Fastboot的Bootloader重启选项的情况，请务必<code>重启到Bootloader</code>。<br><img src="/img/10/sctp10_11.jpg" alt="重启到Bootloader"></p>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>对于同时存在Fastboot的Bootloader重启选项的情况，请务必<code>重启到Bootloader</code>。<br><img src="https://s1.imagehub.cc/images/2024/11/17/013bf70e1676b33c3e01b979608fa301.jpg" alt="重启到Bootloader"></p>
 </blockquote>
 <p>右键它，点击更新设备驱动程序，然后选择<code>从本地选取驱动程序</code>。</p>
-<p><img src="/img/10/sctp10_7.png" alt="选择驱动程序来源"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/a2e03e401a79023d5f5c2af84f7c32d3.png" alt="选择驱动程序来源"></p>
 <p>上面的路径直接填写下载的<code>tccadb_arm64_drivers</code>文件夹即可。</p>
-<p><img src="/img/10/sctp10_8.png" alt="驱动程序路径"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/e0ccec73bf1705a744d513c35e6deddb.png" alt="驱动程序路径"></p>
 <p>继续后将会弹出警告，这是数字签名导致的，选择<code>仍要安装</code>。</p>
-<p><img src="/img/10/sctp10_9.png" alt="安装警告"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/c906e9963301d0baf734e205252719dd.png" alt="安装警告"></p>
 <p>大功告成！现在，你可以开机玩机了！</p>
-<p><img src="/img/10/sctp10_10.png" alt="安装完成"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/04ef815cd6228ea4a84206a4cea4fea3.png" alt="安装完成"></p>
 ]]></content>
       <categories>
         <category>安卓玩机</category>
@@ -419,7 +419,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
@@ -427,7 +427,7 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:[yourgitname]/[yourgitname].github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
 
 <p>3.再次运行<code>hexo d</code>，问题应该已经解决。</p>
-<p><img src="/img/3/sctp3.png" alt="成功部署"></p>
+<p><img src="https://s1.imagehub.cc/images/2024/11/17/6caa9397c4f9827012bec2ac705f8414.png" alt="成功部署"></p>
 ]]></content>
       <categories>
         <category>hexo 部署</category>
