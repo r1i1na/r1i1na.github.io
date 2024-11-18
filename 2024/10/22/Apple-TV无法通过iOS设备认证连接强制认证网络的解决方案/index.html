@@ -179,14 +179,14 @@ setTimeout(() => {
 <p>到这里，一切正常。</p>
 <p>但是！这个登录界面始终一片空白，最后直接报错，提示无法连接，尝试多次依然无果。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/11/17/3e42c7fb2049dd92274539ced0d37223.jpeg" alt="又双叒叕报错"></p>
-<h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>1、基于对<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E5%BC%BA%E5%88%B6%E9%97%A8%E6%88%B7">强制网络</a>的定义，我们不难得出，该强制门户根据<code>MAC地址</code>追踪已连接设备，并判断是否已经通过认证。因此，我们只需要保证Apple TV的<code>MAC地址</code>通过该强制门户认证即可。</p>
+<h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>1、基于对<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E5%BC%BA%E5%88%B6%E9%97%A8%E6%88%B7">强制网络</a>的定义，我们不难得出，该强制门户根据<code>MAC地址</code>追踪已连接设备，并判断是否已经通过认证。因此，我们只需要保证Apple TV的MAC地址通过该强制门户认证即可。</p>
 <p>2、Apple TV连接Wi-Fi使用硬件MAC地址，因此，其MAC地址并<code>不会改变</code>。</p>
 <h1 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h1><h2 id="确认Apple-TV的MAC地址"><a href="#确认Apple-TV的MAC地址" class="headerlink" title="确认Apple TV的MAC地址"></a>确认Apple TV的MAC地址</h2><p>很简单，只需进入<code>设置-网络</code>（设置-通用-关于本机也可以）即可看到MAC地址：</p>
 <p><img src="https://s1.imagehub.cc/images/2024/11/17/60c0c3e581ddb305d1b48c09bc291554.jpeg" alt="查看MAC地址"></p>
 <h2 id="通过其他设备更改MAC地址，使Apple-TV通过认证"><a href="#通过其他设备更改MAC地址，使Apple-TV通过认证" class="headerlink" title="通过其他设备更改MAC地址，使Apple TV通过认证"></a>通过其他设备更改MAC地址，使Apple TV通过认证</h2><blockquote>
 <p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>此处以Mac为例。</p>
 </blockquote>
-<p>首先给Mac和Apple TV都<code>断开连接</code>要登录的Wi-Fi。在Mac上按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标，记下网络接口名称（一般是<code>en0</code>）。</p>
+<p>首先给Mac和Apple TV都断开连接要登录的Wi-Fi。在Mac上按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标，记下网络接口名称（一般是en0）。</p>
 <p><img src="https://s1.imagehub.cc/images/2024/11/17/16507afc06563f887dfdcd6d1a7b8fe8.jpeg" alt="网络接口"></p>
 <p>打开终端，输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ifconfig en0 ether [Apple TV的MAC地址]</span><br></pre></td></tr></table></figure>
