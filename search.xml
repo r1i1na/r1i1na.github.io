@@ -35,7 +35,7 @@
   </entry>
   <entry>
     <title>从 Butterfly 迁移到 Solitude 主题</title>
-    <url>/2024/11/17/%E4%BB%8E-Butterfly-%E8%BF%81%E7%A7%BB%E5%88%B0-Solitude-%E4%B8%BB%E9%A2%98/</url>
+    <url>/2024/11/16/%E4%BB%8E-Butterfly-%E8%BF%81%E7%A7%BB%E5%88%B0-Solitude-%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>在经历了几天与审美疲劳的斗争之后，我决定将我博客的主题从 Butterfly 切换为<code>Solitude</code>。</p>
 <p>其实 Hexo 切换主题还是非常简单的。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b main https://github.com/everfu/hexo-theme-solitude.git themes/solitude</span><br></pre></td></tr></table></figure>
@@ -120,7 +120,7 @@
   </entry>
   <entry>
     <title>SwiftUI 学习小笔记</title>
-    <url>/2024/11/13/Swift-UI-%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%AC%94%E8%AE%B0/</url>
+    <url>/2024/11/12/Swift-UI-%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SwiftUIView</span>: <span class="title class_ inherited__">View</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line"><span class="comment">// 程序代码区</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 预览</span></span><br><span class="line">#<span class="type">Preview</span> &#123;</span><br><span class="line">    <span class="type">SwiftUIView</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h1><h2 id="添加文本"><a href="#添加文本" class="headerlink" title="添加文本"></a>添加文本</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">&quot;Hello world!&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>显示文本为<code>&quot;Hello world!&quot;</code></p>
@@ -234,7 +234,7 @@
   </entry>
   <entry>
     <title>使用iOS 18.1一周多后，我很无语</title>
-    <url>/2024/11/10/%E4%BD%BF%E7%94%A8iOS-18-1%E4%B8%80%E5%91%A8%E5%A4%9A%E5%90%8E%EF%BC%8C%E6%88%91%E5%BE%88%E6%97%A0%E8%AF%AD/</url>
+    <url>/2024/11/09/%E4%BD%BF%E7%94%A8iOS-18-1%E4%B8%80%E5%91%A8%E5%A4%9A%E5%90%8E%EF%BC%8C%E6%88%91%E5%BE%88%E6%97%A0%E8%AF%AD/</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>10月28日，啪一下，很快啊，iOS 18.1、iPadOS 18.1、watchOS 11.1<code>正式版</code>就出来了。</p>
 <p>我也是<code>第一时间</code>将手上所有设备都更新了该版本。</p>
 <blockquote>
@@ -276,7 +276,7 @@
   </entry>
   <entry>
     <title>在不支持的地区强行用AirPods Pro 2做听力测试</title>
-    <url>/2024/11/09/%E5%9C%A8%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%9C%B0%E5%8C%BA%E5%BC%BA%E8%A1%8C%E7%94%A8AirPods-Pro-2%E5%81%9A%E5%90%AC%E5%8A%9B%E6%B5%8B%E8%AF%95/</url>
+    <url>/2024/11/08/%E5%9C%A8%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%9C%B0%E5%8C%BA%E5%BC%BA%E8%A1%8C%E7%94%A8AirPods-Pro-2%E5%81%9A%E5%90%AC%E5%8A%9B%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>Apple最近为<code>AirPods Pro 2</code>代带来了全新的听力测试、听力保护和助听功能，很明显<code>中国大陆</code>暂时是没有的。（不是你澳大利亚都没有是什么鬼啊）</p>
 <p><a href="https://www.apple.com/cn/airpods-pro/feature-availability/">AirPods听力健康可用性 (简体中文)</a></p>
 <h2 id="你需要"><a href="#你需要" class="headerlink" title="你需要"></a>你需要</h2><blockquote>
@@ -303,7 +303,7 @@
   </entry>
   <entry>
     <title>在macOS上为游戏启用MetalHUD</title>
-    <url>/2024/11/08/%E5%9C%A8macOS%E4%B8%8A%E4%B8%BA%E6%B8%B8%E6%88%8F%E5%90%AF%E7%94%A8MetalHUD/</url>
+    <url>/2024/11/07/%E5%9C%A8macOS%E4%B8%8A%E4%B8%BA%E6%B8%B8%E6%88%8F%E5%90%AF%E7%94%A8MetalHUD/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>作为<del>帧率敏感型玩家</del>极客，肯定希望在游戏时看到电脑的实时状况。</p>
 <p>因此在 Windows 下，我们有<code>MSI Afterburner</code>这个解决方案，可以在游戏中看到实时帧率和占用情况。</p>
 <p>macOS就不友好了：没有第三方软件可以做到这一点。</p>
@@ -445,14 +445,14 @@
   </entry>
   <entry>
     <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
-    <url>/2023/12/25/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <url>/2023/12/24/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#x63;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
