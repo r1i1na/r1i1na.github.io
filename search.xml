@@ -5,6 +5,9 @@
     <url>/2024/11/18/%E7%BB%99Hexo%E6%8D%A2%E4%B8%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93/</url>
     <content><![CDATA[<p>知周所众，默认字体看久了是会疲劳的。作为自己的博客，<del>换字体肯定是必要的。</del></p>
 <h1 id="获得字体"><a href="#获得字体" class="headerlink" title="获得字体"></a>获得字体</h1><p><del>废话，没字体怎么继续！</del></p>
+<blockquote>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>请注意字体版权！在使用字体前，请确保其可以免费使用或者获得授权！</p>
+</blockquote>
 <h1 id="压缩与裁剪字体"><a href="#压缩与裁剪字体" class="headerlink" title="压缩与裁剪字体"></a>压缩与裁剪字体</h1><p>显然一个字体文件大小几十MB，肯定是会拖慢网站加载速度的，<del>所以速度和美观只能二选一。</del></p>
 <p>但是有解决方案，可以使用在线工具或者离线工具。</p>
 <p>离线剪裁与压缩字体：</p>
@@ -16,8 +19,40 @@
 <p>然后新建<code>/themes/&#123;主题名字&#125;/source/css/custom.css</code>这个文件，内容如下:</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;&#123;字体名称&#125;&quot;</span>;</span><br><span class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;../fonts/&#123;字体名称&#125;.woff2&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;truetype&quot;</span>);</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>请自行调整<code>font-weight</code>。</p>
+<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>请自行调整 font-weight。</p>
 </blockquote>
+<h2 id="附：各种字体格式类型对照："><a href="#附：各种字体格式类型对照：" class="headerlink" title="附：各种字体格式类型对照："></a>附：各种字体格式类型对照：</h2><table>
+<thead>
+<tr>
+<th>字体格式</th>
+<th>字体类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.ttf</td>
+<td>truetype</td>
+</tr>
+<tr>
+<td>.otf</td>
+<td>opentype</td>
+</tr>
+<tr>
+<td>.woff</td>
+<td>woff</td>
+</tr>
+<tr>
+<td>.woff2</td>
+<td>woff2</td>
+</tr>
+<tr>
+<td>.svg</td>
+<td>svg</td>
+</tr>
+<tr>
+<td>.eot</td>
+<td>embedded-opentype</td>
+</tr>
+</tbody></table>
 <p>接着，在你的主题head下引入该CSS（此处以Solitude为例）：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">extends:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/custom.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">body:</span></span><br></pre></td></tr></table></figure>
 <p>然后修改主题配置文件，应用字体，填入刚才的<code>font-family</code>名称即可：</p>
@@ -452,7 +487,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#x67;&#105;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
