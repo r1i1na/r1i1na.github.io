@@ -16,6 +16,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">yes</span> &gt; /dev/null/ &amp;</span><br></pre></td></tr></table></figure>
 <p>这个也需要多运行几次，使 CPU 跑到 90% 以上。<br><img src="https://s1.imagehub.cc/images/2024/11/21/55e05210cd3ff5c477ff766dcd9f5443.png" alt="rt"><br>结束则输入:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">killall <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+<h2 id="脚本法"><a href="#脚本法" class="headerlink" title="脚本法"></a>脚本法</h2><p><del>本质还是终端跑的。</del><br>这个自己看吧，链接挂一下：<br><a href="https://github.com/ITJesse/MacHeat">MacHeat</a></p>
 <h1 id="物理取暖"><a href="#物理取暖" class="headerlink" title="物理取暖"></a>物理取暖</h1><p><del>放上一个火炉，盖上被子，开几个IDE，挖个矿。</del></p>
 ]]></content>
       <categories>
