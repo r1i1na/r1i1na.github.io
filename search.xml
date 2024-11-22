@@ -23,8 +23,8 @@
         <category>macOS 教程</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>玩机</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -174,8 +174,8 @@
         <category>hexo 部署</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>技术领域</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -210,8 +210,8 @@
         <category>hexo 部署</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>技术领域</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -281,9 +281,9 @@
         <category>SwiftUI</category>
       </categories>
       <tags>
-        <tag>SwiftUI</tag>
         <tag>开发</tag>
         <tag>macOS</tag>
+        <tag>SwiftUI</tag>
         <tag>笔记</tag>
       </tags>
   </entry>
@@ -410,10 +410,10 @@
         <category>系统简评</category>
       </categories>
       <tags>
+        <tag>tvOS</tag>
         <tag>macOS</tag>
         <tag>iOS</tag>
         <tag>体验</tag>
-        <tag>tvOS</tag>
         <tag>iPadOS</tag>
         <tag>watchOS</tag>
         <tag>日常</tag>
@@ -478,8 +478,8 @@
         <category>macOS 教程</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>玩机</tag>
+        <tag>macOS</tag>
         <tag>游戏</tag>
         <tag>CrossOver</tag>
       </tags>
@@ -541,9 +541,9 @@
         <category>SwiftUI</category>
       </categories>
       <tags>
-        <tag>SwiftUI</tag>
         <tag>开发</tag>
         <tag>macOS</tag>
+        <tag>SwiftUI</tag>
       </tags>
   </entry>
   <entry>
@@ -597,7 +597,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#105;&#116;&#64;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
@@ -611,9 +611,9 @@
         <category>hexo 部署</category>
       </categories>
       <tags>
+        <tag>技术领域</tag>
         <tag>macOS</tag>
         <tag>Hexo</tag>
-        <tag>技术领域</tag>
       </tags>
   </entry>
   <entry>
@@ -677,9 +677,9 @@
         <category>hexo 部署</category>
       </categories>
       <tags>
+        <tag>技术领域</tag>
         <tag>macOS</tag>
         <tag>Hexo</tag>
-        <tag>技术领域</tag>
       </tags>
   </entry>
   <entry>
