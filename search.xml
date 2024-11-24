@@ -164,13 +164,33 @@
 <td>embedded-opentype</td>
 </tr>
 </tbody></table>
-<p>接着，在你的主题head下引入该CSS（此处以Solitude为例）：</p>
+<p>接着，在<code>_comfig.solitudfe.yml</code>配置文件中<code>head</code>下引入该CSS：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">extends:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/custom.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">body:</span></span><br></pre></td></tr></table></figure>
-<p>然后修改主题配置文件，应用字体，填入刚才的<code>font-family</code>名称即可：</p>
+<p>继续修改主题配置文件，应用字体，填入刚才的<code>font-family</code>名称即可：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="attr">font-size:</span> <span class="string">16px</span></span><br><span class="line">  <span class="attr">code-font-size:</span> <span class="string">16px</span></span><br><span class="line">  <span class="attr">font-family:</span> <span class="string">&quot;&#123;字体名称&#125;&quot;</span></span><br><span class="line">  <span class="attr">code-font-family:</span> <span class="string">&#x27;&quot;monospace&quot;, monospace&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>最后重新生成就能看到效果了：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<h1 id="2-修改代码高亮样式"><a href="#2-修改代码高亮样式" class="headerlink" title="2.修改代码高亮样式"></a>2.修改代码高亮样式</h1><p>总觉得默认的代码高亮样式有点太亮了，有必要对齐样式进行修改。</p>
+<p>打开<code>/themes/solitude/css/_layout/article-container.sytl</code>，找到以下字段：</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">code:not([class*=&#x27;language-&#x27;])</span><br><span class="line">  color var(--efu-white)</span><br><span class="line">  padding 0.2rem 0.4rem</span><br><span class="line">  border-radius 4px</span><br><span class="line">  margin 0 4px</span><br><span class="line">  background var(--efu-red)</span><br><span class="line">  line-height 2</span><br><span class="line">  box-shadow var(--efu-shadow-border)</span><br></pre></td></tr></table></figure>
+<p>我们需要修改的是<code>color var(--efu-white)</code>和<code>background var(--efu-red)</code>。<br>那么后面的<code>--efu-...</code>就是我们需要修改的颜色了。<br>打开<code>/themes/solitude/css/_mode/index.sytl</code>，可以看到所有可用的颜色，填入你需要的颜色即可。<br>例如：<code>color var(--efu-red)</code>，即可将其代码高亮修改为<code>红色(#ff3842)</code>。</p>
+<h2 id="自定义颜色？"><a href="#自定义颜色？" class="headerlink" title="自定义颜色？"></a>自定义颜色？</h2><h3 id="1-写入-index-sytl-后引用："><a href="#1-写入-index-sytl-后引用：" class="headerlink" title="1.写入 index.sytl 后引用："></a>1.写入 index.sytl 后引用：</h3><p>注意到该<code>index.styl</code>的格式为：</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">--efu-&#123;name&#125; &#123;hex&#125;</span><br></pre></td></tr></table></figure>
+<p>同时可以看到<code>data-theme=dark</code>和<code>data-theme=light</code>，这意味着可以分别自定义深色和浅色的颜色。<br>举个栗子：<br>我们分别在<code>末尾</code>加上：</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">[data-theme=dark]</span><br><span class="line">  --efu-code-text #f47466</span><br><span class="line">  --efu-code-background #2c2c2c</span><br><span class="line">[data-theme=light]</span><br><span class="line">  --efu-code-text #f47466</span><br><span class="line">  --efu-code-background #2c2c2c</span><br></pre></td></tr></table></figure>
+<p>接着，修改<code>article-container.sytl</code>：</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">code:not([class*=&#x27;language-&#x27;])</span><br><span class="line">  color var(--efu-code-text)</span><br><span class="line">  padding 0.2rem 0.4rem</span><br><span class="line">  border-radius 4px</span><br><span class="line">  margin 0 4px</span><br><span class="line">  background var(--efu-code-background)</span><br><span class="line">  line-height 2</span><br><span class="line">  box-shadow var(--efu-shadow-border)</span><br></pre></td></tr></table></figure>
+<p>这样，无论深色还是浅色模式，代码高亮都被修改为：<br><img src="https://s1.imagehub.cc/images/2024/11/24/abd5eec6d75317a387698aed0287bf5a.png" alt="修改后的代码高亮"></p>
+<blockquote>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>一定要加末尾！否则你就可以体验网页怀旧服！</p>
+</blockquote>
+<h3 id="2-直接引入-Hex-颜色"><a href="#2-直接引入-Hex-颜色" class="headerlink" title="2.直接引入 Hex 颜色"></a>2.直接引入 Hex 颜色</h3><p>例如：</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">background var(#2c2c2c)</span><br></pre></td></tr></table></figure>
+<h1 id="附：找到要修改元素对应文件的小技巧"><a href="#附：找到要修改元素对应文件的小技巧" class="headerlink" title="附：找到要修改元素对应文件的小技巧"></a>附：找到要修改元素对应文件的小技巧</h1><p>例如找到<code>代码高亮的元素</code>：<br>首先用万能的<code>F12大法</code>打开开发者工具，左上角抓取对应的元素，找到Styles。<br><img src="https://s1.imagehub.cc/images/2024/11/24/1b4c9ec9bf890151b18fdf2cc41dc505.png" alt="Styles"><br>点击右上角的<code>index.css</code>，可以看到文件的大概结构。<br><img src="https://s1.imagehub.cc/images/2024/11/24/64d36a2d1c17e02ba4b037e6affb52d0.png" alt="index.css"><br>可以确定是css，那么直接定位到<code>/themes/solitude/css/</code>。<br>接下来，关键词搜索，可以找到该条目对应的原始css文件，即例子中的的<code>article-container.sytl</code>。<br>找到对应配置，直接修改即可。</p>
+<blockquote>
+<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>请注意做好备份。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>hexo 部署</category>
@@ -601,7 +621,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
