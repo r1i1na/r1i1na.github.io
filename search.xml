@@ -418,7 +418,7 @@
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>10月28日，啪一下，很快啊，iOS 18.1、iPadOS 18.1、watchOS 11.1<code>正式版</code>就出来了。</p>
 <p>我也是<code>第一时间</code>将手上所有设备都更新了该版本。</p>
 <blockquote>
-<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">更(shou)新(hai)设备名单</font><br>iPhone 16 Pro<br>iPad Pro 11-inch (M4)<br>Apple Watch Series 8<br>MacBook Pro 14” (2023年11月)<br>Apple TV 4K (A15)</p>
+<p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">更(shou)新(hai)设备名单</font><br>iPhone 16 Pro<br>iPad Pro 11-inch (M4)<br>Apple Watch Series 8<br>MacBook Pro 14” (2023年11月)</p>
 </blockquote>
 <h1 id="iOS-18-1"><a href="#iOS-18-1" class="headerlink" title="iOS 18.1"></a>iOS 18.1</h1><p>最明显的点就是设置中多了<code>Apple Intelligence</code>的选项，<del>可以装B</del>。</p>
 <p>然而这只是噩梦的开始。</p>
@@ -439,7 +439,6 @@
 <h1 id="watchOS-11-1"><a href="#watchOS-11-1" class="headerlink" title="watchOS 11.1"></a>watchOS 11.1</h1><p>逆天掉电。</p>
 <p>但是过几天好了，应该是 Apple 特色了。</p>
 <h1 id="macOS-15-1"><a href="#macOS-15-1" class="headerlink" title="macOS 15.1"></a>macOS 15.1</h1><p>还不错，或者说无感，Mac目前唯一正常使用AI的设备，国行Mac破解后可以在<code>澳大利亚英语</code>使用Apple Intelligence。</p>
-<h1 id="tvOS-11-1"><a href="#tvOS-11-1" class="headerlink" title="tvOS 11.1"></a>tvOS 11.1</h1><p>无感(shui)。</p>
 <h1 id="总结：iOS-和-iPadOS，菜就多练！"><a href="#总结：iOS-和-iPadOS，菜就多练！" class="headerlink" title="总结：iOS 和 iPadOS，菜就多练！"></a>总结：iOS 和 iPadOS，菜就多练！</h1>]]></content>
       <categories>
         <category>系统简评</category>
@@ -632,7 +631,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
