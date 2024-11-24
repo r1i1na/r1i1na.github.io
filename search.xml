@@ -183,7 +183,7 @@
 <figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">code:not([class*=&#x27;language-&#x27;])</span><br><span class="line">  color var(--efu-code-text)</span><br><span class="line">  padding 0.2rem 0.4rem</span><br><span class="line">  border-radius 4px</span><br><span class="line">  margin 0 4px</span><br><span class="line">  background var(--efu-code-background)</span><br><span class="line">  line-height 2</span><br><span class="line">  box-shadow var(--efu-shadow-border)</span><br></pre></td></tr></table></figure>
 <p>这样，无论深色还是浅色模式，代码高亮都被修改为：<br><img src="https://s1.imagehub.cc/images/2024/11/24/abd5eec6d75317a387698aed0287bf5a.png" alt="修改后的代码高亮"></p>
 <blockquote>
-<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>一定要加末尾！否则将渲染失败！<del>但是可以体验网页怀旧服！</del></p>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>请加在末尾！否则可能会渲染失败！<del>但是可以体验网页怀旧服！</del></p>
 </blockquote>
 <h3 id="2-直接引入-Hex-颜色"><a href="#2-直接引入-Hex-颜色" class="headerlink" title="2.直接引入 Hex 颜色"></a>2.直接引入 Hex 颜色</h3><p>例如：</p>
 <figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">background var(#2c2c2c)</span><br></pre></td></tr></table></figure>
@@ -316,8 +316,8 @@
         <category>SwiftUI</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>开发</tag>
+        <tag>macOS</tag>
         <tag>SwiftUI</tag>
         <tag>笔记</tag>
       </tags>
@@ -575,8 +575,8 @@
         <category>SwiftUI</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>开发</tag>
+        <tag>macOS</tag>
         <tag>SwiftUI</tag>
       </tags>
   </entry>
@@ -617,8 +617,8 @@
         <category>安卓玩机</category>
       </categories>
       <tags>
-        <tag>玩机</tag>
         <tag>Windows</tag>
+        <tag>玩机</tag>
         <tag>Android</tag>
       </tags>
   </entry>
@@ -631,7 +631,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
