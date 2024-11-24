@@ -2208,11 +2208,11 @@ span.tags-punctuation i {
   font-size: 15px;
 }
 .post-content code:not([class*='language-']) {
-  color: var(--efu-white);
+  color: var(--efu-code-text);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   margin: 0 4px;
-  background: var(--efu-pink);
+  background: var(--efu-code-background);
   line-height: 2;
   box-shadow: var(--efu-shadow-border);
 }
@@ -10130,6 +10130,8 @@ div#banners .bannerText {
   --style-border-forever: 2px solid var(--efu-lighttext);
   --efu-hl-bg: #1c1e1e;
   --efu-hltools-bg: #454a50;
+  --efu-code-text: #f47466;
+  --efu-code-background: #2c2c2c;
 }
 [data-theme=light] {
   --efu-theme: #4f4252;
@@ -10177,6 +10179,8 @@ div#banners .bannerText {
   --efu-navbg: var(--efu-theme-op);
   --efu-hl-bg: #fff;
   --efu-hltools-bg: #e7e7e7;
+  --efu-code-text: #f47466;
+  --efu-code-background: #2c2c2c;
 }
 @media screen and (max-width: 768px) {
   :root {
