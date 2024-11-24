@@ -171,7 +171,7 @@
 
 <p>最后重新生成就能看到效果了：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-<h1 id="2-修改代码高亮样式"><a href="#2-修改代码高亮样式" class="headerlink" title="2.修改代码高亮样式"></a>2.修改代码高亮样式</h1><p>总觉得默认的代码高亮样式有点太亮了，有必要对齐样式进行修改。</p>
+<h1 id="2-修改代码高亮样式"><a href="#2-修改代码高亮样式" class="headerlink" title="2.修改代码高亮样式"></a>2.修改代码高亮样式</h1><p>总觉得默认的代码高亮样式有点太亮了，有必要对其样式进行修改。</p>
 <p>打开<code>/themes/solitude/css/_layout/article-container.styl</code>，找到以下字段：</p>
 <figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">code:not([class*=&#x27;language-&#x27;])</span><br><span class="line">  color var(--efu-white)</span><br><span class="line">  padding 0.2rem 0.4rem</span><br><span class="line">  border-radius 4px</span><br><span class="line">  margin 0 4px</span><br><span class="line">  background var(--efu-red)</span><br><span class="line">  line-height 2</span><br><span class="line">  box-shadow var(--efu-shadow-border)</span><br></pre></td></tr></table></figure>
 <p>我们需要修改的是<code>color var(--efu-white)</code>和<code>background var(--efu-red)</code>。<br>那么后面的<code>--efu-...</code>就是我们需要修改的颜色了。<br>打开<code>/themes/solitude/css/_mode/index.styl</code>，可以看到所有可用的颜色，填入你需要的颜色即可。<br>例如：<code>color var(--efu-red)</code>，即可将其代码高亮修改为<code>红色(#ff3842)</code>。</p>
@@ -316,8 +316,8 @@
         <category>SwiftUI</category>
       </categories>
       <tags>
-        <tag>开发</tag>
         <tag>macOS</tag>
+        <tag>开发</tag>
         <tag>SwiftUI</tag>
         <tag>笔记</tag>
       </tags>
@@ -575,8 +575,8 @@
         <category>SwiftUI</category>
       </categories>
       <tags>
-        <tag>开发</tag>
         <tag>macOS</tag>
+        <tag>开发</tag>
         <tag>SwiftUI</tag>
       </tags>
   </entry>
@@ -617,8 +617,8 @@
         <category>安卓玩机</category>
       </categories>
       <tags>
-        <tag>Windows</tag>
         <tag>玩机</tag>
+        <tag>Windows</tag>
         <tag>Android</tag>
       </tags>
   </entry>
@@ -631,7 +631,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
