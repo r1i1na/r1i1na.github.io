@@ -269,7 +269,7 @@ return;
 
  if (welcomeInfoElement) {
      welcomeInfoElement.innerHTML =
-         `欢迎来自 <b><span style="color: var(--efu-main)">${pos}</span></b> 的小友💖<br>当前位置距博主约 <b><span style="color: var(--efu-main)">${dist.toFixed(2)}</span></b> 公里！<br>${timeChange}<br>Tip：<b><span style="font-size: 15px;">${posdesc}</span></b>`;
+         `欢迎来自 <b><span style="color: var(--efu-main)">${pos}</span></b> 的朋友！💖<br>当前位置距博主约 <b><span style="color: var(--efu-main)">${dist.toFixed(2)}</span></b> 公里！<br>${timeChange}<br>Tip：<b><span style="font-size: 15px;">${posdesc}</span></b>`;
  }
 }
 
