@@ -1,1 +1,10 @@
-function copyPostLink(){const o=window.location.href;navigator.clipboard.writeText(o).then((()=>{utils.snackbarShow("当前页面链接已复制到剪贴板",!1,2e3)})).catch((o=>{console.error("无法复制链接:",o),utils.snackbarShow("复制失败，请重试",!1,2e3)}))}
+function copyPostLink() {
+    const postLink = window.location.href;
+
+    navigator.clipboard.writeText(postLink).then(() => {
+        utils.snackbarShow("当前页面链接已复制到剪贴板", false, 2000);
+    }).catch(err => {
+        console.error("无法复制链接:", err);
+        utils.snackbarShow("复制失败，请重试", false, 2000);
+    });
+}
