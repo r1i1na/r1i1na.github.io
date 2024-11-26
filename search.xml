@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Mac取暖非正常方案指北</title>
-    <url>/2024/11/21/Mac%E5%8F%96%E6%9A%96%E9%9D%9E%E6%AD%A3%E5%B8%B8%E6%96%B9%E6%A1%88%E6%8C%87%E5%8C%97/</url>
+    <url>/post/bc890828.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>众所周知，冬天到了，对于 Mac 用户来说又是手凉的季节。因为金属机身摸起来特别冰，而且是功耗贼低的 M 系还不容易发热。<br>此处列举了几种奇奇怪怪的加热方式。</p>
 <blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>长时间高负载、高温状态运行可能会导致使用寿命缩短！</p>
@@ -29,7 +29,7 @@
   </entry>
   <entry>
     <title>经济学名词初步整理(English)</title>
-    <url>/2024/11/19/%E7%BB%8F%E6%B5%8E%E5%AD%A6%E5%90%8D%E8%AF%8D%E5%88%9D%E6%AD%A5%E6%95%B4%E7%90%86-English/</url>
+    <url>/post/6cd176d1.html</url>
     <content><![CDATA[<blockquote>
 <p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>是啊，为什么是英语呢？:-)</p>
 </blockquote>
@@ -112,7 +112,7 @@
   </entry>
   <entry>
     <title>Solitude 主题初步改造记录</title>
-    <url>/2024/11/17/Solitude%20%E4%B8%BB%E9%A2%98%E5%88%9D%E6%AD%A5%E6%94%B9%E9%80%A0%E8%AE%B0%E5%BD%95/</url>
+    <url>/post/c28e60f4.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>Solitude 确实有些不能满足我<del>日益增长</del>的需求，于是动手对其进行初步修改。</p>
 <blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>请做好备份工作！魔改不规范，恢复两行泪！</p>
@@ -253,7 +253,7 @@
   </entry>
   <entry>
     <title>从 Butterfly 迁移到 Solitude 主题</title>
-    <url>/2024/11/16/%E4%BB%8E-Butterfly-%E8%BF%81%E7%A7%BB%E5%88%B0-Solitude-%E4%B8%BB%E9%A2%98/</url>
+    <url>/post/ad6b1c36.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>在经历了几天与审美疲劳的斗争之后，我决定将我博客的主题从 Butterfly 切换为<code>Solitude</code>。</p>
 <p>其实 Hexo 切换主题还是非常简单的。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b main https://github.com/everfu/hexo-theme-solitude.git themes/solitude</span><br></pre></td></tr></table></figure>
@@ -290,7 +290,7 @@
   </entry>
   <entry>
     <title>WeChat 通行密钥初体验</title>
-    <url>/2024/11/15/WeChat-%E9%80%9A%E8%A1%8C%E5%AF%86%E9%92%A5%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+    <url>/post/798e5df3.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>就今天，微信推出了全新的版本<code>8.0.54</code>，老规矩，更新日志还是一句话：</p>
 <blockquote>
 <p>Bug fixes and improvements.</p>
@@ -317,7 +317,7 @@
   </entry>
   <entry>
     <title>SwiftUI 学习小笔记</title>
-    <url>/2024/11/14/Swift-UI-%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%AC%94%E8%AE%B0/</url>
+    <url>/post/8d1f986e.html</url>
     <content><![CDATA[<h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SwiftUIView</span>: <span class="title class_ inherited__">View</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line"><span class="comment">// 程序代码区</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 预览</span></span><br><span class="line">#<span class="type">Preview</span> &#123;</span><br><span class="line">    <span class="type">SwiftUIView</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h1><h2 id="添加文本"><a href="#添加文本" class="headerlink" title="添加文本"></a>添加文本</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">&quot;Hello world!&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>显示文本为<code>&quot;Hello world!&quot;</code></p>
@@ -363,7 +363,7 @@
   </entry>
   <entry>
     <title>【里程碑】Broadcom 宣布 VMware Workstation 与 Fusion 对个人及商业用户免费</title>
-    <url>/2024/11/13/%E3%80%90%E9%87%8C%E7%A8%8B%E7%A2%91%E3%80%91Broadcom%E5%AE%A3%E5%B8%83VMware-Workstation-%E4%B8%8E-Fusion-%E5%AF%B9%E4%B8%AA%E4%BA%BA%E5%8F%8A%E5%95%86%E4%B8%9A%E7%94%A8%E6%88%B7%E5%85%8D%E8%B4%B9/</url>
+    <url>/post/53edf0be.html</url>
     <content><![CDATA[<p>2024 年 5 月，VMware 宣布对个人用户免费提供 VMware Workstation Pro 和 Fusion Pro 。而2024 年 11 月 11 日，博通 (Broadcom) 直接更进一步，宣布这两款软件对个人和<code>商业</code>用户完全免费&#96;。</p>
 <p>看到这个消息我其实是震惊的，毕竟我早就开始用 VMware Workstation Pro 了，记得那时还是 VMware Workstation 9。</p>
 <p>我只记得当时直接搜<code>vmware密钥</code>就能直接出来一大堆，而且随便一个就能用。</p>
@@ -385,7 +385,7 @@
   </entry>
   <entry>
     <title>Batch批处理循环分析</title>
-    <url>/2024/11/11/Batch%E6%89%B9%E5%A4%84%E7%90%86%E5%BE%AA%E7%8E%AF%E5%88%86%E6%9E%90/</url>
+    <url>/post/16c91c9f.html</url>
     <content><![CDATA[<p>众所周知，批处理经常要用到循环。不管是认真的还是<del>整人</del>。这里大致收集了几种批处理的循环方式以及各种附加语句。</p>
 <h1 id="goto-循环"><a href="#goto-循环" class="headerlink" title="goto 循环"></a>goto 循环</h1><p>这种应该是最简单的语句了，如下:</p>
 <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">:<span class="built_in">start</span></span><br><span class="line">[command]</span><br><span class="line"><span class="keyword">goto</span> <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
@@ -453,7 +453,7 @@
   </entry>
   <entry>
     <title>使用iOS 18.1一周多后，我很无语</title>
-    <url>/2024/11/08/%E4%BD%BF%E7%94%A8iOS-18-1%E4%B8%80%E5%91%A8%E5%A4%9A%E5%90%8E%EF%BC%8C%E6%88%91%E5%BE%88%E6%97%A0%E8%AF%AD/</url>
+    <url>/post/9bbf7230.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>10月28日，啪一下，很快啊，iOS 18.1、iPadOS 18.1、watchOS 11.1<code>正式版</code>就出来了。</p>
 <p>我也是<code>第一时间</code>将手上所有设备都更新了该版本。</p>
 <blockquote>
@@ -494,7 +494,7 @@
   </entry>
   <entry>
     <title>在不支持的地区强行用AirPods Pro 2做听力测试</title>
-    <url>/2024/11/06/%E5%9C%A8%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%9C%B0%E5%8C%BA%E5%BC%BA%E8%A1%8C%E7%94%A8AirPods-Pro-2%E5%81%9A%E5%90%AC%E5%8A%9B%E6%B5%8B%E8%AF%95/</url>
+    <url>/post/52940354.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>Apple最近为<code>AirPods Pro 2</code>代带来了全新的听力测试、听力保护和助听功能，很明显<code>中国大陆</code>暂时是没有的。（不是你澳大利亚都没有是什么鬼啊）</p>
 <p><a href="https://www.apple.com/cn/airpods-pro/feature-availability/">AirPods听力健康可用性 (简体中文)</a></p>
 <h2 id="你需要"><a href="#你需要" class="headerlink" title="你需要"></a>你需要</h2><blockquote>
@@ -521,7 +521,7 @@
   </entry>
   <entry>
     <title>在macOS上为游戏启用MetalHUD</title>
-    <url>/2024/11/05/%E5%9C%A8macOS%E4%B8%8A%E4%B8%BA%E6%B8%B8%E6%88%8F%E5%90%AF%E7%94%A8MetalHUD/</url>
+    <url>/post/adc37c83.html</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>作为<del>帧率敏感型玩家</del>极客，肯定希望在游戏时看到电脑的实时状况。</p>
 <p>因此在 Windows 下，我们有<code>MSI Afterburner</code>这个解决方案，可以在游戏中看到实时帧率和占用情况。</p>
 <p>macOS就不友好了：没有第三方软件可以做到这一点。</p>
@@ -559,7 +559,7 @@
   </entry>
   <entry>
     <title>Apple TV无法通过iOS设备认证连接强制认证网络的解决方案</title>
-    <url>/2024/10/22/Apple-TV%E6%97%A0%E6%B3%95%E9%80%9A%E8%BF%87iOS%E8%AE%BE%E5%A4%87%E8%AE%A4%E8%AF%81%E8%BF%9E%E6%8E%A5%E5%BC%BA%E5%88%B6%E8%AE%A4%E8%AF%81%E7%BD%91%E7%BB%9C%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <url>/post/eb93311c.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>前几天把Apple TV连接到我学生公寓的电视上，由于我的公寓采用的是<code>强制门户网络</code> (Captive Newrork)，因此将会弹出登录界面，认证完成后即可使用。</p>
 <p>早在<a href="https://support.apple.com/en-au/guide/tv/atvb00f5b993/15.0/tvos/15.0">tvOS 15.0</a>就支持了强制网络登录，因此靠近的iOS设备会弹出网络认证界面，直接从该设备登录此网络即可。</p>
 <p>到这里，一切正常。</p>
@@ -595,7 +595,7 @@
   </entry>
   <entry>
     <title>SwiftUI的一种简易设计</title>
-    <url>/2024/10/06/SwiftUI%E7%9A%84%E4%B8%80%E7%A7%8D%E7%AE%80%E6%98%93%E8%AE%BE%E8%AE%A1/</url>
+    <url>/post/91a91cd1.html</url>
     <content><![CDATA[<p>一个简洁的SwiftUI主页设计。</p>
 <blockquote>
 <p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>参阅<a href="https://developer.apple.com/documentation/swiftui/building-layouts-with-stack-views">Apple Developer</a>网站来了解各种视图。</p>
@@ -621,7 +621,7 @@
   </entry>
   <entry>
     <title>Windows on ARM安装adb与Fastboot驱动解决安卓刷机折腾问题</title>
-    <url>/2024/07/21/Windows-on-ARM%E5%AE%89%E8%A3%85adb%E4%B8%8EFastboot%E9%A9%B1%E5%8A%A8%E8%A7%A3%E5%86%B3%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA%E6%8A%98%E8%85%BE%E9%97%AE%E9%A2%98/</url>
+    <url>/post/f06ee8de.html</url>
     <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>众所周知，Windows on ARM的兼容性其实并不能媲美x86，即使拥有转译。正常的安卓刷机驱动装上去要不就没反应，要不直接报错。</p>
 <p>感谢<a href="https://github.com/HikariCalyx">HikariCalyx</a>提供的<a href="https://github.com/HikariCalyx/OSTRemote/blob/master/tccadb_arm64_drivers/README.md">Triple-color company ADB - Fastboot Driver for Windows 10 on ARM</a>驱动使得Fastboot驱动成为可能。</p>
 <p>虽然是<code>Windows 10</code>的驱动，但是<code>Windows 11</code>也是可以用的，<del>毕竟换皮嘛</del>。</p>
@@ -663,14 +663,14 @@
   </entry>
   <entry>
     <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
-    <url>/2023/12/24/%E5%85%B3%E4%BA%8E%E5%9C%A8macOS%E4%B8%8A%E9%83%A8%E7%BD%B2hexo%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0Spawn-failed-at-ChildProcess%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <url>/post/ee739bc9.html</url>
     <content><![CDATA[<h1 id="问题复现"><a href="#问题复现" class="headerlink" title="问题复现"></a>问题复现</h1><p>在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行<code>hexo d</code>时直接报错。（如下所示）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
@@ -691,7 +691,7 @@
   </entry>
   <entry>
     <title>macOS环境下部署Hexo并应用Butterfly主题+部署到Github</title>
-    <url>/2023/08/08/macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2hexo%E5%B9%B6%E5%BA%94%E7%94%A8Butterfly%E4%B8%BB%E9%A2%98/</url>
+    <url>/post/bf1c8be8.html</url>
     <content><![CDATA[<p> 网上好多教程都是 Windows 环境下的， 那我就做一篇<code>macOS</code>环境下的吧。</p>
 <p> 不能说很像，但是事实就是很像，<del>又水一篇</del>。</p>
 <p> Butterfly主题的诞生离不开<a href="https://github.com/jerryc127">Jerry</a>，本网站即使用<a href="https://hexo.io/">Hexo</a>框架以及<a href="https://butterfly.js.org/">Butterfly</a>主题构建。</p>
@@ -758,7 +758,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2022/07/27/hello-world/</url>
+    <url>/post/4a17b156.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
