@@ -11,19 +11,23 @@
 
 @media screen and (max-width: 1023px) {
     #footer-image .image-wall {
-        width: 100%; /* 响应式宽度调整 */
-        height: auto; /* 响应式高度调整 */
+        width: 100%; /* 容器宽度 100% */
+        height: auto; /* 高度自适应 */
+        position: relative; /* 使得图片可以绝对定位 */
     }
 }
 
 #footer-image img.image {
-    position: relative;
+    position: absolute; /* 使图片可以绝对定位 */
+    bottom: 0; /* 将图片吸附到底部 */
+    left: 0; /* 向左对齐 */
     width: 100%; /* 图片宽度填充父容器 */
-    max-width: 2000px; /* 限制图片最大宽度 */
-    height: auto; /* 高度调节 */
+    max-width: 100%; /* 最大宽度为容器的宽度 */
+    height: auto; /* 保持图片的比例 */
     margin: 0 auto; /* 居中显示 */
     display: block;
     opacity: 1.0;
+    object-fit: cover; /* 保持图片比例，不拉伸 */
 }
 
 #footer-bar {
