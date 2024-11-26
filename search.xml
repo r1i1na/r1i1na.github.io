@@ -117,7 +117,7 @@
 <blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>请做好备份工作！魔改不规范，恢复两行泪！</p>
 </blockquote>
-<h1 id="1、修改文章链接格式"><a href="#1、修改文章链接格式" class="headerlink" title="1、修改文章链接格式"></a>1、修改文章链接格式</h1><p>如果你的文章标题有中文，那么链接就会包含中文，复制下来直接一团乱麻（尤其是分享的时候）。<br>我们使用<code>hexo-abbrlink</code>来解决这个问题。<br>注意应用完成后可能需要修改主题的配置文件（置顶文章链接等），不然会404。</p>
+<h1 id="1、修改文章链接格式"><a href="#1、修改文章链接格式" class="headerlink" title="1、修改文章链接格式"></a>1、修改文章链接格式</h1><p>如果你的文章标题有中文，那么链接就会包含中文，复制下来直接一团乱麻（尤其是分享的时候）。<br>我们使用<code>hexo-abbrlink</code>来解决这个问题。<br>注意应用完成后可能需要修改主题的配置文件（置顶文章链接等），不然会404。<br>还有评论，可能得去你的数据库手动链接一下评论到新的文章链接。如果你评论数量多的话，那估计比较麻烦（</p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>终端定位到博客根目录，输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
 <h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>打开<code>_config.yml</code>，将<code>permalink: :year/:month/:day/:title/</code>替换为：</p>
