@@ -35,7 +35,7 @@
 /* 针对1024px及以上的电脑端 */
 @media screen and (min-width: 1024px) {
     #footer-image .image-wall {
-        width: 30%; /* 容器宽度调整为80% */
+        width: 80%; /* 容器宽度调整为80% */
         height: auto; /* 高度自适应 */
         margin: 0 auto; /* 居中显示容器 */
     }

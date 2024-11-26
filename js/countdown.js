@@ -104,7 +104,7 @@ const CountdownTimer = (() => {
             .cd-count-left .cd-time {
                 font-size: 30px;
                 font-weight: bold;
-                color: var(--anzhiyu-main);
+                color: var(--efu-fontcolor);
             }
             .cd-count-left .cd-date {
                 font-size: 12px;
@@ -116,7 +116,7 @@ const CountdownTimer = (() => {
                 right: -0.8rem;
                 width: 2px;
                 height: 80%;
-                background-color: var(--anzhiyu-main);
+                background-color: var(--efu-fontcolor);
                 opacity: 0.5;
             }
             .cd-count-right {
@@ -146,13 +146,13 @@ const CountdownTimer = (() => {
                 height: 100%;
                 width: 100%;
                 border-radius: 8px;
-                background-color: var(--anzhiyu-background);
+                background-color: var(--efu-background);
                 overflow: hidden;
             }
             .cd-progress-bar {
                 height: 100%;
                 border-radius: 8px;
-                background-color: var(--anzhiyu-main);
+                background-color: var(--efu-theme);
             }
             .cd-percentage,
             .cd-remaining {
@@ -162,7 +162,7 @@ const CountdownTimer = (() => {
                 transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             }
             .cd-many {
-                color: #fff;
+                color: var(--efu-white);
             }
             .cd-remaining {
                 opacity: 0;
