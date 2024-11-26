@@ -260,7 +260,7 @@ return;
 
  if (welcomeInfoElement) {
      welcomeInfoElement.innerHTML =
-         `欢迎来自 <b><span style="color: var(--efu-main)">${pos}</span></b> 的朋友！💖<br>当前位置距我约 <b><span style="color: var(--efu-main)">${dist.toFixed(2)}</span></b> 公里！<br>我这（?）还蛮大的（bushi)，欢迎来我这玩～<br>Tip：<b><span style="font-size: 15px;">${posdesc}</span></b>`;
+         `欢迎来自 <b><span style="color: var(--efu-main)">${pos}</span></b> 的朋友！💖<br>你的位置距我约 <b><span style="color: var(--efu-main)">${dist.toFixed(2)}</span></b> 公里！<br>我这（?）还蛮大的（bushi)，欢迎来我这玩～<br>Tip：<b><span style="font-size: 15px;">${posdesc}</span></b>`;
  }
 }
 
