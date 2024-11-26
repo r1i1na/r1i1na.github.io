@@ -47,7 +47,7 @@
         height: auto; /* 高度自适应，保持比例 */
         margin: 0 auto; /* 居中显示 */
         display: block;
-        opacity: 1.0;
+        opacity: 0.7;
         object-fit: cover; /* 保持图片比例，不拉伸 */
     }
 }
