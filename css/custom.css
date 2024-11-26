@@ -3,3 +3,29 @@
     src: url("../fonts/ZZAY.woff2") format("truetype");
     font-weight: 300;
   }
+
+#footer-image {
+    position: relative;
+    width: 100%;
+}
+
+@media screen and (max-width: 1023px) {
+    #footer-image .image-wall {
+        width: 90%; /* 响应式宽度调整 */
+        height: 150px; /* 响应式高度调整 */
+    }
+}
+
+#footer-image img.image {
+    position: relative;
+    width: 100%; /* 图片宽度填充父容器 */
+    max-width: 2000px; /* 限制图片最大宽度 */
+    height: auto; /* 高度调节 */
+    margin: 0 auto; /* 居中显示 */
+    display: block;
+    opacity: 1.0;
+}
+
+#footer-bar {
+    margin-top: 0 !important;
+}
