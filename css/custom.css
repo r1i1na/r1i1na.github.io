@@ -4,54 +4,74 @@
     font-weight: 300;
   }
 
-/* 适用于所有屏幕 */
 #footer-image {
     position: relative;
     width: 100%;
 }
 
-/* 针对最大宽度1023px以下的移动端 */
-@media screen and (max-width: 1023px) {
-    #footer-image .image-wall {
-        width: 100%; /* 容器宽度 100% */
-        height: auto; /* 高度自适应 */
-        position: relative;
-    }
-
-    #footer-image img.image {
-        position: absolute; /* 使图片绝对定位 */
-        bottom: 0; /* 将图片吸附到底部 */
-        left: 0; /* 向左对齐 */
-        width: 100%; /* 图片宽度填充父容器 */
-        max-width: 100%; /* 最大宽度为容器的宽度 */
-        height: auto; /* 保持图片的比例 */
-        margin: 0 auto; /* 居中显示 */
-        display: block;
-        opacity: 1.0;
-        object-fit: cover; /* 保持图片比例，不拉伸 */
-    }
-}
-
-/* 针对1024px及以上的电脑端 */
-@media screen and (min-width: 1024px) {
-    #footer-image .image-wall {
-        width: 80%; /* 容器宽度调整为80% */
-        height: auto; /* 高度自适应 */
-        margin: 0 auto; /* 居中显示容器 */
-    }
-
-    #footer-image img.image {
-        position: relative; /* 使图片相对定位 */
-        width: 100%; /* 宽度填充父容器 */
-        max-width: 1600px; /* 限制图片最大宽度 */
-        height: auto; /* 高度自适应，保持比例 */
-        margin: 0 auto; /* 居中显示 */
-        display: block;
-        opacity: 0.7;
-        object-fit: cover; /* 保持图片比例，不拉伸 */
-    }
+#footer-image img.image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    opacity: 0.7;
+    object-fit: cover; 
 }
 
 #footer-bar {
     margin-top: 0 !important;
+}
+
+[data-theme=light] #nav .menus_items .menus_item .menus_item_child {
+    background-color: #ffffff4f!important;
+    backdrop-filter: blur(7px)!important;
+    -webkit-backdrop-filter: blur(7px)!important
+}
+
+[data-theme=dark] #nav .menus_items .menus_item .menus_item_child {
+    background-color: #1d1e224f!important;
+    backdrop-filter: blur(7px)!important;
+    -webkit-backdrop-filter: blur(7px)!important
+}
+
+[data-theme=dark] #page-header.nav-fixed #nav {
+    background: #0000006f!important
+}
+
+[data-theme=light] #page-header.nav-fixed #nav {
+    background: #ffffff4f!important;
+}
+
+#page-header.nav-fixed #nav {
+    outline: 1px #7c7c7c43 solid!important;
+    backdrop-filter: blur(7px)!important;
+    -webkit-backdrop-filter: blur(7px)!important
+}
+
+@media screen and (max-width: 768px) {
+    #nav {
+        background:#fff0!important
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body[data-type=post] #page-header #nav {
+        --font-color:#fff
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #page-header.nav-fixed #nav {
+    --font-color: var(--efu-fontcolor)!important;
+    }
+}
+
+[data-theme=dark] #page-header.nav-fixed #nav {
+    background: #1d1e224f!important;
+    backdrop-filter: blur(7px)!important;
+    -webkit-backdrop-filter: blur(7px)!important
 }
