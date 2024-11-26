@@ -11,8 +11,8 @@
 
 @media screen and (max-width: 1023px) {
     #footer-image .image-wall {
-        width: 90%; /* 响应式宽度调整 */
-        height: 150px; /* 响应式高度调整 */
+        width: 100%; /* 响应式宽度调整 */
+        height: auto; /* 响应式高度调整 */
     }
 }
 
