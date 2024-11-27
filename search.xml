@@ -184,15 +184,15 @@
 <p>最后<strong>一键三连</strong>就能看到效果了。</p>
 <h1 id="3-修改代码高亮样式"><a href="#3-修改代码高亮样式" class="headerlink" title="3.修改代码高亮样式"></a>3.修改代码高亮样式</h1><p>个人觉得默认的代码高亮样式有点太亮了，因此对其样式进行修改。</p>
 <p>在<code>/themes/solitude/css/custom.css</code>中加入：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">code</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class*=<span class="string">&#x27;language-&#x27;</span>]</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--efu-red) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--efu-background) <span class="meta">!important</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">code</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class*=<span class="string">&#x27;language-&#x27;</span>]</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--efu-red) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--efu-background) <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样可以覆盖原来的样式。<br>接着修改<code>color var</code>和<code>background var</code>的值即可。<br><code>/themes/solitude/css/_mode/index.styl</code>中存储了所有预设颜色，填入你需要的颜色即可。<br>例如：<code>color var(--efu-red)</code>，即可将其代码高亮修改为<code>红色(#ff3842)</code>。</p>
 <h2 id="自定义颜色"><a href="#自定义颜色" class="headerlink" title="自定义颜色"></a>自定义颜色</h2><p>注意到该<code>index.styl</code>的格式为：</p>
 <figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">--efu-&#123;name&#125; &#123;hex&#125;</span><br></pre></td></tr></table></figure>
 <p>同时可以看到<code>data-theme=dark</code>和<code>data-theme=light</code>，这意味着可以分别自定义深色和浅色的颜色。</p>
 <h3 id="举个栗子："><a href="#举个栗子：" class="headerlink" title="举个栗子："></a>举个栗子：</h3><p>在<code>/themes/solitude/css/custom.css</code>中加入：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--efu-code-text</span>: <span class="number">#f47466</span>;</span><br><span class="line">    <span class="attr">--efu-code-background</span>: <span class="number">#f3f4f4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="line">    <span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--efu-code-text</span>: <span class="number">#f47466</span>;</span><br><span class="line">    <span class="attr">--efu-code-background</span>: <span class="number">#2c2c2c</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;dark&quot;</span>]</span> &#123;</span><br><span class="line">    <span class="attr">--efu-code-background</span>: <span class="number">#2c2c2c</span>;</span><br><span class="line">    <span class="attr">--efu-code-text</span>: <span class="number">#f47466</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[data-theme=<span class="string">&quot;light&quot;</span>]</span> &#123;</span><br><span class="line">    <span class="attr">--efu-code-background</span>: <span class="number">#f3f4f4</span>;</span><br><span class="line">    <span class="attr">--efu-code-text</span>: <span class="number">#f47466</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着继续加入：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">code</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class*=<span class="string">&#x27;language-&#x27;</span>]</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--efu-code-text) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--efu-code-background) <span class="meta">!important</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">code</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class*=<span class="string">&#x27;language-&#x27;</span>]</span>) &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--efu-code-text);</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">var</span>(--efu-code-background);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>深色效果：<br><img src="https://s1.imagehub.cc/images/2024/11/24/abd5eec6d75317a387698aed0287bf5a.png" alt="修改后的代码高亮（深色）"><br>浅色效果：<br><img src="https://s1.imagehub.cc/images/2024/11/24/d4caf421e2197d2358829325fa768897.png" alt="修改后的代码高亮（浅色）"></p>
 <h1 id="4-修改引用块颜色"><a href="#4-修改引用块颜色" class="headerlink" title="4.修改引用块颜色"></a>4.修改引用块颜色</h1><p>个人观点，默认的样式有点太淡了。<br>在<code>/themes/solitude/css/custom.css</code>中加入：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--efu-secondbg);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--efu-secondtext)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -675,7 +675,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>将:</p>
 <p>“<a href="https://github.com/[yourgitname]/[yourgitname].github.io.git">https://github.com/[yourgitname]/[yourgitname].github.io.git</a>“</p>
 <p>替换为:</p>
-<p>“<a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
@@ -690,8 +690,8 @@
       </categories>
       <tags>
         <tag>技术领域</tag>
-        <tag>macOS</tag>
         <tag>Hexo</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -756,9 +756,9 @@
       </categories>
       <tags>
         <tag>技术领域</tag>
-        <tag>macOS</tag>
         <tag>Hexo</tag>
         <tag>主题</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
