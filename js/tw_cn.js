@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         targetEncoding = targetEncoding === 1 ? 2 : 1;
         button.lastChild.textContent = targetEncoding === 1 ? simplified : traditional;
 
-        utils.snackbarShow(targetEncoding === 1 ? '目前正在以繁體中文顯示！' : '目前正在以简体中文显示！');
+        utils.snackbarShow(targetEncoding === 1 ? '你已切換為繁體' : '你已切换为简体');
         utils.saveToLocal.set(targetEncodingCookie, targetEncoding, 2);
         setLang();
         translateBody();
