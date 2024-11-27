@@ -59,10 +59,7 @@ blockquote {
         width: 30%;
         max-width: 100%;
         height: auto;
-        margin: 0 auto;
-        display: block;
         opacity: 0.9;
-        object-fit: cover;
     }
 }
 
