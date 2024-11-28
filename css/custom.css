@@ -115,28 +115,14 @@ blockquote {
     -webkit-backdrop-filter: blur(7px)!important
 }
 
-body {
-    cursor: url('/cur/nor.cur'), auto !important;   
+body, html {
+    cursor: url('/cur/nor.cur'), auto !important;
 }
-a:hover {
+
+a, button, .clickable, .site-page {
     cursor: url('/cur/link_select.cur'), pointer !important;
 }
-button, a, .clickable {
-    cursor: url('/cur/link_select.cur'), pointer !important;
-}
-.recent-post-item, a, .post_cover img {
-    cursor: url('/cur/link_select.cur'), pointer !important;
-}
-span, .recent-post-item, a {
-    cursor: url('/cur/link_select.cur'), pointer !important;
-}
-.li-style {
-    cursor: url('/cur/link_select.cur'), pointer !important;
-    display: inline-block;
-}
-.site-page {
-    cursor: url('/cur/link_select.cur'), pointer !important;
-}
-textarea, input[type="text"], input[type="password"] {
+
+*::selection {
     cursor: url('/cur/text_select.cur'), text !important;
 }
