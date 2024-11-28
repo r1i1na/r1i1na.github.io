@@ -114,3 +114,14 @@ blockquote {
     backdrop-filter: blur(7px)!important;
     -webkit-backdrop-filter: blur(7px)!important
 }
+
+body {
+    cursor: url('/cur/nor.cur'), auto !important;
+    
+}
+a:hover {
+    cursor: url('/cur/link_select.cur'), pointer !important;
+}
+textarea, input[type="text"], input[type="password"] {
+    cursor: url('/cur/text_select.cur'), text !important;
+}
