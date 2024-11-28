@@ -115,14 +115,18 @@ blockquote {
     -webkit-backdrop-filter: blur(7px)!important
 }
 
-body, html {
-    cursor: url('/cur/nor.cur'), auto !important;
+html, body {
+    cursor: url('/cur/nor.cur'), auto !important; 
 }
 
-a, button, .clickable, .site-page {
+a, button, .clickable {
     cursor: url('/cur/link_select.cur'), pointer !important;
 }
 
-*::selection {
+textarea, input, select {
     cursor: url('/cur/text_select.cur'), text !important;
+}
+
+* {
+    cursor: inherit !important;
 }
