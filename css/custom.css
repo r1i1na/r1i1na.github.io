@@ -5,6 +5,8 @@
   }
 
 [data-theme="dark"] {
+    --efu-background: #2d1a1e;
+    --efu-card-bg: #2d1a1e;
     --efu-code-background: #2c2c2c;
     --efu-code-text: #f47466;
 }
