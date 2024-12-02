@@ -851,7 +851,7 @@
 <p>完成后，直接在终端中输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
 <h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>在其官网上下载<code>macOS</code>版本并安装。</p>
-<p><a href="https://nodejs.org/">Nodejs</a></p>
+<p><a href="https://nodejs.org/">Node.js</a></p>
 <h2 id="检查安装是否完成"><a href="#检查安装是否完成" class="headerlink" title="检查安装是否完成"></a>检查安装是否完成</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">git -v</span><br></pre></td></tr></table></figure>
 <p>若能出现版本号即安装成功。</p>
 <h1 id="Hexo部署"><a href="#Hexo部署" class="headerlink" title="Hexo部署"></a>Hexo部署</h1><h2 id="安装位置"><a href="#安装位置" class="headerlink" title="安装位置"></a>安装位置</h2><p>选择你喜欢的位置放置新建一个<code>文件夹</code>用于你的所有blog文件。路径最好不要存在<code>中文</code>或其他<del>雷普的符号</del>。</p>
