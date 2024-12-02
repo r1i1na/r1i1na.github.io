@@ -10,7 +10,6 @@
     --efu-secondbg: #342024;
     --efu-code-background: #2c2c2c;
     --efu-code-text: #f47466;
-    --efu-link-ba: #1C141E;
 }
 
 [data-theme="light"] {
@@ -122,7 +121,7 @@ blockquote {
 .efu-link {
     display: grid;
     margin: 10px;
-    background: var(--efu-link-ba);
+    background: var(--efu-hltools-bg);
     border-radius: 10px;
     grid-template-rows: 28px min-content;
     grid-template-columns: 80px calc(100% - 80px);
