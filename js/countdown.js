@@ -195,3 +195,12 @@ const CountdownTimer = (() => {
 
     return { start, stop: () => timer && clearInterval(timer) };
 })();
+
+setTimeout(() => {
+    document.addEventListener('pjax:complete', decorateLinks);
+  }, 1000);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    decorateLinks();
+    document.addEventListener('pjax:complete', decorateLinks);
+  });
