@@ -190,17 +190,12 @@ const CountdownTimer = (() => {
         timer = setInterval(updateCountdown, 600000);
     };
 
-    ['pjax:complete', 'DOMContentLoaded'].forEach(event => document.addEventListener(event, start));
+    ['pjax:complete', 'DOMContentLoaded'].forEach(event => document.addEventListener(event, () => {
+        clearInterval(timer);
+        start();
+    }));
+
     document.addEventListener('pjax:send', () => timer && clearInterval(timer));
 
     return { start, stop: () => timer && clearInterval(timer) };
 })();
-
-setTimeout(() => {
-    document.addEventListener('pjax:complete', decorateLinks);
-  }, 1000);
-
-  document.addEventListener('DOMContentLoaded', function () {
-    decorateLinks();
-    document.addEventListener('pjax:complete', decorateLinks);
-  });
