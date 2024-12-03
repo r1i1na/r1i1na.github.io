@@ -16,6 +16,7 @@
 }
 
 code:not([class*='language-']) {
+    color: var(--efu-fontcolor) !important;
     background: var(--efu-code-background) !important;
 }
 
