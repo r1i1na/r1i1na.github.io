@@ -8,17 +8,14 @@
     --efu-background: #342024;
     --efu-card-bg: #342024;
     --efu-secondbg: #342024;
-    --efu-code-background: #2c2c2c;
-    --efu-code-text: #f47466;
+    --efu-code-background: #4b3539;
 }
 
 [data-theme="light"] {
     --efu-code-background: #f3f4f4;
-    --efu-code-text: #f47466;
 }
 
 code:not([class*='language-']) {
-    color: var(--efu-code-text) !important;
     background: var(--efu-code-background) !important;
 }
 
