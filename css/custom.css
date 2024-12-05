@@ -16,7 +16,7 @@
 [data-theme="light"] {
     --efu-code-background: #f3f4f4;
     --efu-chat-background: #332c36;
-    --efu-chat-a-background: #121826;
+    --efu-chat-a-background: #f7f9fe;
 }
 
 code:not([class*='language-']) {
@@ -253,7 +253,7 @@ blockquote {
 .chat-item.assistant .chat-bubble {
     background-color: var(--efu-chat-a-background);
     text-align: left;
-    color: #ffffff;
+    color: var(--efu-fontcolor);
     margin-top: 15px;
   }
 .chat-item.user .chat-nickname {
