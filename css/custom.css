@@ -7,18 +7,20 @@
 [data-theme="dark"] {
     --efu-background: linear-gradient(90deg, #280e16, #2c3035);
     --efu-card-bg: linear-gradient(90deg, #280e16, #2c3035);
-    --efu-secondbg: linear-gradient(90deg, #280e16, #2c3035);
     --efu-code-background: #4b3539;
     --efu-chat-background: #4b3539;
     --efu-chat-a-background: #2b3a5c;
     --efu-but: #000000;
+    --efu-scr: #2c3035;
 }
 
 [data-theme="light"] {
+    --efu-background: linear-gradient(90deg, #bf97a3, #bacbe0);
     --efu-code-background: #f3f4f4;
     --efu-chat-background: #332c36;
     --efu-chat-a-background: #f7f9fe;
     --efu-but: #ffffff;
+    --efu-scr: #fff;
 }
 
 code:not([class*='language-']) {
@@ -131,12 +133,29 @@ blockquote {
 }
 
 .el-button--primary {
-    background-color: #409eff !important;
+    background-color: var(--efu-theme) !important;
+}
+
+.main-hero-waves-area .waves-svg {
+    display: none;
+  }
+
+::-webkit-scrollbar-track {
+    background: var(--efu-theme)
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--efu-scr);
+    opacity: 0.5;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid var(--efu-scr);
 }
 
 #post .post-tools-right .tag_share .post-meta__tag-list .post-meta__tags .tagsPageCount,
 #tag-page-tags .tagsPageCount {
-    background: var(--efu-but);
+    background: var(--efu-secondbg);
+    color: var(--efu-fontcolor);
 }
 
 .efu-link {
@@ -302,3 +321,20 @@ blockquote {
     border-radius: 5px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   }
+
+.post #page-header.post-bg::before {
+    background-color: var(--efu-bakcground);
+}
+
+[data-theme=dark] #aside-content > .card-widget.card-info:before {
+    background: var(--efu-bakcground) !important;
+}
+
+.banner-button {
+    background: var(--efu-secondbg) !important;
+    color: var(--efu-fontcolor) !important;
+}
+
+.banner-button:hover {
+    background: var(--efu-theme) !important;
+}
