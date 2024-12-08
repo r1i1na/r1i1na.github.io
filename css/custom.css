@@ -11,12 +11,14 @@
     --efu-code-background: #4b3539;
     --efu-chat-background: #4b3539;
     --efu-chat-a-background: #2b3a5c;
+    --efu-but: #000000;
 }
 
 [data-theme="light"] {
     --efu-code-background: #f3f4f4;
     --efu-chat-background: #332c36;
     --efu-chat-a-background: #f7f9fe;
+    --efu-but: #ffffff;
 }
 
 code:not([class*='language-']) {
@@ -119,7 +121,10 @@ blockquote {
     backdrop-filter: blur(7px)!important;
     -webkit-backdrop-filter: blur(7px)!important
 }
-  
+
+#page-header #nav #nav-right .nav-button a.totopbtn {
+    color: var(--efu-but);
+}
 .efu-link {
     display: grid;
     margin: 10px;

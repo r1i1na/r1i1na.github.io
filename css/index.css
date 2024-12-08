@@ -3497,24 +3497,6 @@ span.tags-punctuation i {
   background: var(--efu-main);
   transform: scale(1.1);
 }
-#footer #footer_deal .footer_mini_logo {
-  width: 50px;
-  height: 50px;
-  margin: 0 1rem;
-  cursor: pointer;
-  transition: cubic-bezier(0, 0, 0, 1.29) 0.5s;
-  user-select: none;
-  border-radius: 50px;
-  overflow: hidden;
-}
-@media screen and (max-width: 768px) {
-  #footer #footer_deal .footer_mini_logo {
-    display: none;
-  }
-}
-#footer #footer_deal .footer_mini_logo:hover {
-  transform: scale(1.2);
-}
 #footer #st-footer {
   display: flex;
   flex-direction: row;
