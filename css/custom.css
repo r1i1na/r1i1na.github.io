@@ -125,6 +125,20 @@ blockquote {
 #page-header #nav #nav-right .nav-button a.totopbtn {
     color: var(--efu-but);
 }
+
+.el-button {
+    background-color: var(--efu-background) !important;
+}
+
+.el-button--primary {
+    background-color: #409eff !important;
+}
+
+#post .post-tools-right .tag_share .post-meta__tag-list .post-meta__tags .tagsPageCount,
+#tag-page-tags .tagsPageCount {
+    background: var(--efu-but);
+}
+
 .efu-link {
     display: grid;
     margin: 10px;
