@@ -5,9 +5,9 @@
   }
 
 [data-theme="dark"] {
-    --efu-background: #332c36;
-    --efu-card-bg: #332c36;
-    --efu-secondbg: #332c36;
+    --efu-background: linear-gradient(90deg, #280e16, #2c3035);
+    --efu-card-bg: linear-gradient(90deg, #280e16, #2c3035);
+    --efu-secondbg: linear-gradient(90deg, #280e16, #2c3035);
     --efu-code-background: #4b3539;
     --efu-chat-background: #4b3539;
     --efu-chat-a-background: #2b3a5c;
