@@ -339,6 +339,6 @@ blockquote {
     background: var(--efu-theme) !important;
 }
 
-[data-theme=dark] html, body {
+html, body {
     background-color: #2c3035;
 }
