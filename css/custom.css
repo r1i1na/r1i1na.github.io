@@ -296,7 +296,7 @@ blockquote {
   }
 .chat-item.user .chat-nickname {
     position: absolute;
-    top: -18px;
+    top: -22px;
     right: 0;
     font-size: 12px;
     font-weight: bold;
@@ -310,7 +310,7 @@ blockquote {
   
 .chat-item.assistant .chat-nickname {
     position: absolute;
-    top: -18px;
+    top: -22px;
     left: 0;
     font-size: 12px;
     font-weight: bold;
@@ -341,4 +341,11 @@ blockquote {
 
 html, body {
     background-color: #2c3035;
+}
+
+.card-recent-comment .aside-list-item .thumbnail img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
 }
