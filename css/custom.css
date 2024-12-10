@@ -379,17 +379,18 @@ html, body {
     margin-top: 0px;
 }
 
-div#banners {
+[data-theme=dark] div#banners {
     width: 150.5% !important;
-    background-image: url('/img/banner.jpg');
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-@media (max-width: 768px) {
-    div#banners {
-      background-image: url('path/to/mobile-image.jpg');
-    }
-  }
+[data-theme=light] div#banners {
+    width: 150.5% !important;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
