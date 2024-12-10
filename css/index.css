@@ -4655,14 +4655,16 @@ span.tags-punctuation {
   height: 4px;
   background: var(--efu-loader);
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
 }
 .pace.pace-inactive {
   opacity: 0;
-  transition: 0.3s;
+  transition: opacity 0.3s ease-out;
 }
 .pace.pace-inactive .pace-progress {
-  opacity: 0;
-  transition: 0.3s ease-in;
+  width: var(--loading-progress, 0%);
+  transition: width 0.5s ease-out;
 }
 .pace .pace-progress {
   box-sizing: border-box;
@@ -4675,51 +4677,84 @@ span.tags-punctuation {
   height: 100%;
   width: 0;
   background: var(--efu-theme);
-  animation: android-loader 2s ease infinite;
+  animation: android-loader 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   background-size: 200%;
+}
+.pace .pace-inactive .pace-progress {
+  width: 100%;
+  opacity: 0;
+  transition: width 0.5s ease-out, opacity 0.3s ease-out;
 }
 @-moz-keyframes android-loader {
   0% {
     width: 0;
   }
+  25% {
+    width: 25%;
+  }
   50% {
     width: 50%;
   }
+  75% {
+    width: 75%;
+  }
   100% {
     width: 100%;
+    transform: translateX(0);
   }
 }
 @-webkit-keyframes android-loader {
   0% {
     width: 0;
   }
+  25% {
+    width: 25%;
+  }
   50% {
     width: 50%;
   }
+  75% {
+    width: 75%;
+  }
   100% {
     width: 100%;
+    transform: translateX(0);
   }
 }
 @-o-keyframes android-loader {
   0% {
     width: 0;
   }
+  25% {
+    width: 25%;
+  }
   50% {
     width: 50%;
   }
+  75% {
+    width: 75%;
+  }
   100% {
     width: 100%;
+    transform: translateX(0);
   }
 }
 @keyframes android-loader {
   0% {
     width: 0;
   }
+  25% {
+    width: 25%;
+  }
   50% {
     width: 50%;
   }
+  75% {
+    width: 75%;
+  }
   100% {
     width: 100%;
+    transform: translateX(0);
   }
 }
 #pagination {
