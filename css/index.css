@@ -1739,7 +1739,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: "monospace", monospace;
+  font-family: comicsans;
   font-size: 16px;
 }
 small {
@@ -4649,21 +4649,16 @@ span.tags-punctuation {
   user-select: none;
   z-index: 2000;
   position: fixed;
-  margin: auto;
-  top: 4px;
+  top: 0;
   left: 0;
   right: 0;
-  height: 8px;
-  border-radius: 8px;
-  width: 4rem;
-  background: var(--efu-secondbg);
-  border: var(--style-border);
+  height: 4px;
+  background: var(--efu-loader);
   overflow: hidden;
 }
 .pace.pace-inactive {
   opacity: 0;
   transition: 0.3s;
-  top: -8px;
 }
 .pace.pace-inactive .pace-progress {
   opacity: 0;
@@ -4672,17 +4667,60 @@ span.tags-punctuation {
 .pace .pace-progress {
   box-sizing: border-box;
   transform: translate3d(0, 0, 0);
-  max-width: 200px;
   z-index: 2000;
   display: block;
   position: absolute;
   top: 0;
-  right: 100%;
+  left: 0;
   height: 100%;
-  width: 100%;
-  background: var(--efu-logo-color);
-  animation: gradient 2s ease infinite;
+  width: 0;
+  background: var(--efu-theme);
+  animation: android-loader 2s ease infinite;
   background-size: 200%;
+}
+@-moz-keyframes android-loader {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes android-loader {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-o-keyframes android-loader {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes android-loader {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 #pagination {
   width: 100%;
@@ -5517,7 +5555,7 @@ span.tags-punctuation {
 }
 @media screen and (min-width: 1201px) {
   #bannerGroup {
-    width: calc(50% - 0.25rem);
+    width: 100%;
     height: calc(328px + 0.5rem);
     display: flex;
     flex-direction: column;
@@ -5634,106 +5672,45 @@ span.tags-punctuation {
 .top-post-info .article-title:hover {
   color: var(--efu-fontcolor);
 }
-.topGroup .todayCard {
-  display: none;
+.topGroup .todayCard display none .banner-button-group {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  transition: 0.3s;
 }
-@media screen and (min-width: 1201px) {
-  .topGroup .todayCard {
-    position: absolute;
-    width: 100%;
-    z-index: 3;
-    height: 100%;
-    top: 0;
-    right: 0;
-    background: var(--efu-card-bg);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.3s;
-    display: flex;
-    cursor: pointer;
-    pointer-events: all;
-  }
-  .topGroup .todayCard::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    box-shadow: 0 -109px 133px -9px none inset;
-  }
-  .topGroup .todayCard.hide {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .topGroup .todayCard .todayCard-info {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 2;
-    color: var(--efu-white);
-    max-width: 60%;
-    transition: 0.3s;
-  }
-  .topGroup .todayCard .todayCard-info .todayCard-tips {
-    opacity: 0.8;
-    font-size: 0.6rem;
-  }
-  .topGroup .todayCard .todayCard-info .todayCard-title {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 36px;
-  }
-  .topGroup .todayCard .todayCard-cover {
-    position: absolute;
-    min-width: 100%;
-    min-height: 100%;
-    top: 0;
-    left: 0;
-    background-size: cover;
-    z-index: -1;
-    transition: 0.3s;
-  }
-  .topGroup .todayCard .banner-button-group {
-    position: absolute;
-    right: 2rem;
-    bottom: 2rem;
-    display: flex;
-    transition: 0.3s;
-  }
-  .topGroup .todayCard .banner-button {
-    background: var(--efu-white-op);
-    border-radius: 20px;
-    color: var(--efu-white);
-    display: flex;
-    align-items: center;
-    z-index: 1;
-    transition: 0.3s;
-    cursor: pointer;
-    backdrop-filter: saturate(180%) blur(20px);
-    transform: translateZ(0);
-    height: 40px;
-    width: 118px;
-    justify-content: center;
-  }
-  .topGroup .todayCard .banner-button i {
-    margin-right: 8px;
-    font-size: 22px;
-  }
-  .topGroup .todayCard .banner-button:hover {
-    background: var(--efu-theme);
-    color: var(--efu-white);
-  }
-  .topGroup .todayCard.hide .todayCard-info {
-    bottom: 1rem;
-    opacity: 0;
-  }
-  .topGroup .todayCard.hide .todayCard-cover {
-    transform: scale(1.2);
-  }
-  .topGroup .todayCard.hide .banner-button-group {
-    bottom: 1rem;
-  }
+.topGroup .todayCard display none .banner-button {
+  background: var(--efu-white-op);
+  border-radius: 20px;
+  color: var(--efu-white);
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  transition: 0.3s;
+  cursor: pointer;
+  backdrop-filter: saturate(180%) blur(20px);
+  transform: translateZ(0);
+  height: 40px;
+  width: 118px;
+  justify-content: center;
+}
+.topGroup .todayCard display none .banner-button i {
+  margin-right: 8px;
+  font-size: 22px;
+}
+.topGroup .todayCard display none .banner-button:hover {
+  background: var(--efu-theme);
+  color: var(--efu-white);
+}
+.topGroup .todayCard display none.hide .todayCard-info {
+  bottom: 1rem;
+  opacity: 0;
+}
+.topGroup .todayCard display none.hide .todayCard-cover {
+  transform: scale(1.2);
+}
+.topGroup .todayCard display none.hide .banner-button-group {
+  bottom: 1rem;
 }
 .banners-links {
   display: flex;

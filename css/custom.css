@@ -2,7 +2,13 @@
     font-family: "ZZAY";
     src: url("../fonts/ZZAY.woff2") format("truetype");
     font-weight: 300;
-  }
+}
+
+@font-face {
+    font-family: "comicsans";
+    src: url("../fonts/comicsans.woff2") format("truetype");
+    font-weight: 300;
+}
 
 [data-theme="dark"] {
     --efu-background: linear-gradient(90deg, #280e16, #2c3035);
@@ -12,6 +18,7 @@
     --efu-chat-a-background: #2b3a5c;
     --efu-but: #000000;
     --efu-scr: #2c3035;
+    --efu-loader: #353438
 }
 
 [data-theme="light"] {
@@ -21,6 +28,7 @@
     --efu-chat-a-background: #f7f9fe;
     --efu-but: #ffffff;
     --efu-scr: #fff;
+    --efu-loader: #f3f0f4
 }
 
 code:not([class*='language-']) {
@@ -296,7 +304,7 @@ blockquote {
   }
 .chat-item.user .chat-nickname {
     position: absolute;
-    top: -22px;
+    top: -25px;
     right: 0;
     font-size: 12px;
     font-weight: bold;
@@ -310,7 +318,7 @@ blockquote {
   
 .chat-item.assistant .chat-nickname {
     position: absolute;
-    top: -22px;
+    top: -25px;
     left: 0;
     font-size: 12px;
     font-weight: bold;
@@ -349,3 +357,39 @@ html, body {
     border-radius: 50%;
     object-fit: cover;
 }
+
+.banners-title {
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 90%;
+}
+.banners-title-big {
+    font-size: clamp(24px, 3vw, 48px); 
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.banners-title-small {
+    font-size: clamp(15px, 1.5vw, 48px); 
+    text-align: center;
+    margin-top: 0px;
+}
+
+div#banners {
+    width: 150.5% !important;
+    background-image: url('/img/banner.jpg');
+    background-color: rgba(255, 255, 255, 0.3);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+    div#banners {
+      background-image: url('path/to/mobile-image.jpg');
+    }
+  }
