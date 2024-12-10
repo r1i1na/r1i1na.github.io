@@ -19,21 +19,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-let progress = 0;
-const interval = setInterval(() => {
-  progress += Math.random() * 10;
-  document.documentElement.style.setProperty('--loading-progress', `${Math.min(progress, 100)}%`);
-  if (progress >= 100) {
-    clearInterval(interval);
-  }
-}, 300);
-
-function finishLoading() {
-    const pace = document.querySelector('.pace');
-    pace.classList.add('pace-inactive');
-  }
-
-setTimeout(() => {
-    document.querySelector('.pace').classList.add('pace-inactive');
-  }, 2000);
