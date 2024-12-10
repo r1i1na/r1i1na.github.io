@@ -380,7 +380,7 @@ html, body {
 }
 
 [data-theme=dark] div#banners {
-    width: 150.5% !important;
+    width: 150.5%;
     background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
     background-position: center;
@@ -388,7 +388,7 @@ html, body {
 }
 
 [data-theme=light] div#banners {
-    width: 150.5% !important;
+    width: 150.5%;
     background-color: rgba(255, 255, 255, 0.5);
     background-size: cover;
     background-position: center;
