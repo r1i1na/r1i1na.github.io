@@ -394,3 +394,7 @@ html, body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+#nav .menus_items .menus_item .menus_item_child {
+    transform: box-shadow var(--mdui-motion-duration-short4) var(--mdui-motion-easing-linear);
+}
