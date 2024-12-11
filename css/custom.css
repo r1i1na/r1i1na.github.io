@@ -377,3 +377,11 @@ html, body {
 .article-sort .article-sort-item .article-sort-item-img {
     display: none;
 }
+
+.relatedPosts .relatedPosts-list > div .cover {
+    display: none;
+}
+
+.relatedPosts > .relatedPosts-list > div {
+    height: 60px;
+}
