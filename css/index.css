@@ -1920,8 +1920,8 @@ iframe {
 }
 blockquote {
   border: var(--style-border-always);
-  background-color: var(--rin-secondbg);
-  color: var(--rin-secondtext);
+  background-color: var(--rin-theme);
+  color: var(--rin-white);
   border-radius: 8px;
   margin: 1rem 0;
   padding: 0.5rem 0.8rem;
