@@ -396,5 +396,9 @@ html, body {
 }
 
 #nav .menus_items .menus_item .menus_item_child {
-    transition: 0.3s cubic-bezier(.3, 0, 1, 1);
+    transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-home-button {
+    transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

@@ -11270,3 +11270,27 @@ button.el-button.tk-cancel.el-button--default.el-button--small {
 .OwO .OwO-body .OwO-bar .OwO-packages li {
   line-height: 45px !important;
 }
+.el-button.tk-preview {
+  background-color: var(--efu-card-bg) !important;
+  border: 1px solid var(--efu-fontcolor) !important;
+  color: var(--efu-fontcolor) !important;
+  border-radius: 8px !important;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.el-button.tk-preview:hover {
+  background-color: var(--efu-lighttext) !important;
+  color: var(--efu-card-bg) !important;
+}
+.tk-submit .tk-row.actions .tk-preview {
+  margin-left: 10px;
+}
+.tk-comment-preview {
+  margin-top: 16px;
+  padding: 10px;
+  border: 1px solid var(--efu-fontcolor);
+  border-radius: 8px;
+  background-color: var(--efu-secondbg);
+  color: var(--efu-fontcolor);
+}
