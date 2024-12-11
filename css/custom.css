@@ -396,5 +396,5 @@ html, body {
 }
 
 #nav .menus_items .menus_item .menus_item_child {
-    transform: box-shadow var(--mdui-motion-duration-short4) var(--mdui-motion-easing-linear);
+    transition: 0.3s cubic-bezier(.3, 0, 1, 1);
 }
