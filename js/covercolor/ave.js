@@ -9,7 +9,7 @@ const coverColor = () => {
 }
 
 const handleApiColor = (path) => {
-    const cacheGroup = JSON.parse(localStorage.getItem('Solitude')) || { postcolor: {} };
+    const cacheGroup = JSON.parse(localStorage.getItem('Eureka')) || { postcolor: {} };
     const color = cacheGroup.postcolor[path]?.value;
     if (color) {
         setThemeColors(color);
@@ -58,9 +58,9 @@ const setDefaultThemeColors = () => {
 }
 
 const cacheColor = (src, color) => {
-    const cacheGroup = JSON.parse(localStorage.getItem('Solitude')) || { postcolor: {} };
+    const cacheGroup = JSON.parse(localStorage.getItem('Eureka')) || { postcolor: {} };
     cacheGroup.postcolor[src] = { value: color, expiration: Date.now() + coverColorConfig.time };
-    localStorage.setItem('Solitude', JSON.stringify(cacheGroup));
+    localStorage.setItem('Eureka', JSON.stringify(cacheGroup));
 }
 
 const adjustBrightness = (r, g, b) => {

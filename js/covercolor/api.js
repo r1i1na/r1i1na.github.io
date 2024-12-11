@@ -14,7 +14,7 @@ const coverColor = () => {
 }
 
 function handleApiColor(path) {
-    const cacheGroup = JSON.parse(localStorage.getItem('Solitude')) || {};
+    const cacheGroup = JSON.parse(localStorage.getItem('Eureka')) || {};
     if (cacheGroup.postcolor?.[path]) {
         setThemeColors(cacheGroup.postcolor[path].value);
     } else {
@@ -38,10 +38,10 @@ function img2color(src) {
 function setThemeColors(value) {
     if (value) {
         const [r, g, b] = value.match(/\w\w/g).map(x => parseInt(x, 16));
-        document.documentElement.style.setProperty('--efu-main', value);
-        document.documentElement.style.setProperty('--efu-main-op', `${value}23`);
-        document.documentElement.style.setProperty('--efu-main-op-deep', `${value}dd`);
-        document.documentElement.style.setProperty('--efu-main-none', `${value}00`);
+        document.documentElement.style.setProperty('--rin-main', value);
+        document.documentElement.style.setProperty('--rin-main-op', `${value}23`);
+        document.documentElement.style.setProperty('--rin-main-op-deep', `${value}dd`);
+        document.documentElement.style.setProperty('--rin-main-none', `${value}00`);
         adjustBrightness(r, g, b);
         document.getElementById("coverdiv").classList.add("loaded");
         initThemeColor();
@@ -51,29 +51,29 @@ function setThemeColors(value) {
 }
 
 function setDefaultThemeColors() {
-    document.documentElement.style.setProperty('--efu-main', 'var(--efu-theme)');
-    document.documentElement.style.setProperty('--efu-main-op', 'var(--efu-theme-op)');
-    document.documentElement.style.setProperty('--efu-main-op-deep', 'var(--efu-theme-op-deep)');
-    document.documentElement.style.setProperty('--efu-main-none', 'var(--efu-theme-none)');
+    document.documentElement.style.setProperty('--rin-main', 'var(--rin-theme)');
+    document.documentElement.style.setProperty('--rin-main-op', 'var(--rin-theme-op)');
+    document.documentElement.style.setProperty('--rin-main-op-deep', 'var(--rin-theme-op-deep)');
+    document.documentElement.style.setProperty('--rin-main-none', 'var(--rin-theme-none)');
     initThemeColor();
 }
 
 function cacheColor(src, color) {
-    const cacheGroup = JSON.parse(localStorage.getItem('Solitude')) || {};
+    const cacheGroup = JSON.parse(localStorage.getItem('Eureka')) || {};
     cacheGroup.postcolor = cacheGroup.postcolor || {};
     cacheGroup.postcolor[src] = { value: color, expiration: Date.now() + coverColorConfig.time };
-    localStorage.setItem('Solitude', JSON.stringify(cacheGroup));
+    localStorage.setItem('Eureka', JSON.stringify(cacheGroup));
 }
 
 function adjustBrightness(r, g, b) {
     const brightness = Math.round(((r * 299) + (g * 587) + (b * 114)) / 1000);
     if (brightness < 125) {
         [...document.getElementsByClassName('card-content')].forEach(item => {
-            item.style.setProperty('--efu-card-bg', 'var(--efu-white)');
+            item.style.setProperty('--rin-card-bg', 'var(--rin-white)');
         });
         [...document.getElementsByClassName('author-info__sayhi')].forEach(item => {
-            item.style.setProperty('background', 'var(--efu-white-op)');
-            item.style.setProperty('color', 'var(--efu-white)');
+            item.style.setProperty('background', 'var(--rin-white-op)');
+            item.style.setProperty('color', 'var(--rin-white)');
         });
     }
 }

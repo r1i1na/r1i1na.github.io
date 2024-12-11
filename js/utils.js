@@ -120,7 +120,7 @@
             };
 
             if (lightboxType === 'mediumZoom') {
-                mediumZoom && mediumZoom(selector, { background: "var(--efu-card-bg)" });
+                mediumZoom && mediumZoom(selector, { background: "var(--rin-card-bg)" });
             } else if (lightboxType === 'fancybox') {
                 selector.forEach(i => {
                     if (i.parentNode.tagName !== 'A') {

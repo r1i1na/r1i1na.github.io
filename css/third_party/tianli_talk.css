@@ -1,4 +1,4 @@
-#efuTalk {
+#rinTalk {
   display: flex;
   align-items: center;
   z-index: 1001;
@@ -8,23 +8,23 @@
   height: 38px;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: var(--efu-shadow-border);
-  background: var(--efu-card-bg);
+  box-shadow: var(--rin-shadow-border);
+  background: var(--rin-card-bg);
   border-radius: 20px;
   overflow: hidden;
   padding: 10px;
-  color: var(--efu-fontcolor);
+  color: var(--rin-fontcolor);
   width: 42px;
   border: var(--style-border-always);
 }
-#efuTalk.on,
-#efuTalk:hover {
-  background: var(--efu-lighttext);
-  color: var(--efu-card-bg);
+#rinTalk.on,
+#rinTalk:hover {
+  background: var(--rin-lighttext);
+  color: var(--rin-card-bg);
   width: 159px;
-  border-color: var(--efu-lighttext);
+  border-color: var(--rin-lighttext);
 }
-#efuTalk span.efuTalkTitle {
+#rinTalk span.rinTalkTitle {
   display: flex;
   font-size: 14px;
   padding: 0 12px;
@@ -40,20 +40,20 @@ maxWidth768()
 #postChat_iframeContainer {
   z-index: 1000;
   border: var(--style-border-always);
-  background: var(--efu-card-bg);
+  background: var(--rin-card-bg);
   animation: to_show_fromLeftBottom 0.2s ease-out;
   border-radius: 12px;
 maxWidth768()
 }
-#efuTalk.on span.efuTalkTitle,
-#efuTalk:hover span.efuTalkTitle {
-  color: var(--efu-card-bg);
+#rinTalk.on span.rinTalkTitle,
+#rinTalk:hover span.rinTalkTitle {
+  color: var(--rin-card-bg);
   opacity: 1;
 }
 #postChat_button {
   display: none !important;
 }
-#efuTalk i.solitude.efuTalkIcon {
+#rinTalk i.solitude.rinTalkIcon {
   width: 18px;
   height: 18px;
   font-size: 18px;

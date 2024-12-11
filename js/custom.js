@@ -19,22 +19,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-document.querySelector('.tk-preview').addEventListener('click', function(event) {
-    event.preventDefault(); // 阻止默认事件，防止页面跳转
-  
-    const commentContent = document.querySelector('.tk-meta-input .el-input__inner').value; // 获取评论内容
-    const previewContainer = document.querySelector('.tk-comment-preview'); // 创建或选择一个用于展示预览的区域
-    
-    if (!previewContainer) {
-      const newPreviewContainer = document.createElement('div');
-      newPreviewContainer.className = 'tk-comment-preview';
-      document.querySelector('.tk-submit').appendChild(newPreviewContainer);
-    }
-  
-    // 显示预览内容
-    document.querySelector('.tk-comment-preview').innerHTML = `
-      <h4>评论预览:</h4>
-      <p>${commentContent}</p>
-    `;
-  });
