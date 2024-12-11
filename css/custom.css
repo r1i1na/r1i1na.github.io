@@ -373,3 +373,7 @@ html, body {
         background-color: var(--rin-background) !important;
     }
 }
+
+.article-sort .article-sort-item .article-sort-item-img {
+    display: none;
+}
