@@ -125,7 +125,7 @@
     color: var(--rin-fontcolor);
 }
 
-.rin-link {
+.efu-link {
     display: grid;
     margin: 10px;
     background: var(--rin-hltools-bg);
@@ -142,7 +142,7 @@
     position: relative
 }
 
-.rin-link:after {
+.efu-link:after {
     content: "";
     top: 50%;
     position: absolute;
@@ -154,7 +154,7 @@
     mask-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB0PSIxNzI1Mjk1MDA0Njc5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE2NTciIGlkPSJteF9uXzE3MjUyOTUwMDQ2NzkiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTgxNi42NTMwOTMgNDY5LjU0NDA0OWMtMS40OTUwNS0xLjQ5NTA1LTMuMDYwNzA5LTIuODc0NDY3LTQuNjc2NTA5LTQuMTU5NzRMNDI4LjQ3NTE5IDc5Ljg5NTY1NWMtMjEuMzUxMjg0LTIxLjM1MDI2MS01NS45Njc2ODYtMjEuMzUwMjYxLTc3LjMxNzk0NiAwLTIxLjM1MDI2MSAyMS4zNTEyODQtMjEuMzUwMjYxIDU1Ljk2NjY2MyAwIDc3LjMxNzk0NmwzNDkuMjU5NTIyIDM1MS4yNDc4MDZMMzQzLjY1NjQwOSA4NjQuODgzMDQ5Yy0yMS4zNTAyNjEgMjEuMzUxMjg0LTIxLjM1MDI2MSA1NS45NjY2NjMgMCA3Ny4zMTg5NyAyMS4zNTAyNjEgMjEuMzUwMjYxIDU1Ljk2NjY2MyAyMS4zNTAyNjEgNzcuMzE3OTQ2IDBsMzkwLjk5ODEzNS0zOTAuNjYxNDY4YzEuNjE2ODI0LTEuMjg2Mjk2IDMuMTgzNTA2LTIuNjY0Njg5IDQuNjc5NTc5LTQuMTYwNzYzIDEwLjc0MDYyMi0xMC43NDA2MjIgMTYuMDczMDctMjQuODM5NzM1IDE2LjAwNjU1Ni0zOC45MTczNThDODMyLjcyNjE2NCA0OTQuMzgyNzYgODI3LjM5MzcxNSA0ODAuMjg0NjcxIDgxNi42NTMwOTMgNDY5LjU0NDA0OXoiIGZpbGw9InZhcigtLWFyaWEtZm9udGNvbG9yKSIgcC1pZD0iMTY1OCI+PC9wYXRoPjwvc3ZnPg==)
 }
 
-.rin-link-tip {
+.efu-link-tip {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row: 1;
@@ -168,12 +168,12 @@
     border-bottom: var(--rin-code-background)
 }
 
-.rin-link-subtitle {
+.efu-link-subtitle {
     grid-column: 2;
     grid-row: 3
 }
 
-.rin-link-img {
+.efu-link-img {
     grid-column: 1;
     grid-row-start: 2;
     grid-row-end: 4;
@@ -184,30 +184,39 @@
     object-fit: cover
 }
 
-.rin-link-title {
+.efu-link-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.rin-link-subtitle {
+.efu-link-subtitle {
     font-size: 12px;
     color: var(--rin-fontcolor)
 }
 
-.rin-link:hover {
+.efu-link:hover {
     background-color: var(--rin-theme);
     box-shadow: 0 0 8px var(--rin-theme);
     border: 1px solid var(--rin-theme)
 }
 
-.rin-link:hover * {
+.efu-link:hover * {
     color: #fff
 }
 
-.rin-link:hover:after {
+.efu-link:hover:after {
     background-color: #fff
 }
+
+.article-container img:not(.post_bg) {
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 450px;
+  }
 
 .article-container img:not(.post_bg) {
     border-radius: 12px;
@@ -324,4 +333,43 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.recent-post-item .post_cover img.post_bg {
+    display: none
+  }
+
+@media screen and (max-width: 768px) {
+    .recent-post-item .post_cover img.post_bg {
+    display: none
+    }
+  }
+
+.recent-post-item .post_cover {
+    display: none
+}
+
+@media screen and (max-width: 768px) {
+    .recent-post-item .post_cover {
+        display: none
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post .post-bg .coverdiv {
+        display: none
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post #post-info {
+        padding-top: 4rem
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .post #page-header.post-bg {
+        height: 15rem;
+        background-color: var(--rin-background) !important;
+    }
 }
