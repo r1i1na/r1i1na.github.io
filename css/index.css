@@ -8546,7 +8546,6 @@ div#banners .bannerText {
 }
 .post #page-header.post-bg {
   height: 20rem;
-  background-color: var(--rin-background);
   transition: 0.6s;
   overflow: hidden;
 }
@@ -8557,8 +8556,7 @@ div#banners .bannerText {
 }
 @media screen and (max-width: 768px) {
   .post #page-header.post-bg {
-    height: 30rem;
-    background-color: var(--rin-main) !important;
+    height: 15rem;
     transition: 0s;
     margin-bottom: -12px;
   }
@@ -8566,7 +8564,6 @@ div#banners .bannerText {
 .post #page-header.post-bg::before {
   transition: 0.3s;
   height: 20rem;
-  background-color: var(--rin-background);
   opacity: 1;
   position: absolute;
   top: 0;
@@ -8577,9 +8574,8 @@ div#banners .bannerText {
 }
 @media screen and (min-width: 1300px) {
   .post #page-header.post-bg::before {
-    height: 25rem;
+    height: 20rem;
     opacity: 0;
-    background-color: var(--rin-main);
     animation: slide-in-op 0.6s 0s forwards;
   }
 }
@@ -8662,7 +8658,7 @@ div#banners .bannerText {
     transform: rotate(0) translateY(0) scale(1);
     filter: blur(0);
     width: 100%;
-    height: 30rem;
+    height: 15rem;
   }
   .post .post-bg .coverdiv:after {
     box-shadow: 0 0 205px 59px var(--rin-main) inset;
