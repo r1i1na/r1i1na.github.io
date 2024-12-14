@@ -3706,7 +3706,7 @@ span.tags-punctuation i {
   }
 }
 .post #page-header:not(.nav-fixed) #nav #nav-right .nav-button .console_switchbutton label i {
-  background: var(--rin-but);
+  background: var(--rin-white);
 }
 #page-header #site-title {
   margin: 0;
