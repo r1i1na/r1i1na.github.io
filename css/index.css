@@ -2248,6 +2248,12 @@ span.tags-punctuation i {
   border-width: 0;
   border-top: 1px dashed var(--rin-theme-op);
 }
+.medium-zoom--opened .medium-zoom-overlay {
+  z-index: 10;
+}
+.medium-zoom-image--opened {
+  z-index: 11;
+}
 .article-sort-title {
   font-weight: 700;
   font-size: 2em;
