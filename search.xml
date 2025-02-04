@@ -1084,7 +1084,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
@@ -1108,7 +1108,7 @@
     <url>/post/bf1c8be8.html</url>
     <content><![CDATA[<p> 网上好多教程都是 Windows 环境下的， 那我就做一篇<code>macOS</code>环境下的吧。</p>
 <p> 不能说很像，但是事实就是很像，<del>又水一篇</del>。</p>
-<p> Butterfly主题的诞生离不开<code>Jerry</code>，本网站即使用<code>Hexo</code>框架以及<code>Butterfly</code>主题构建。</p>
+<p> Butterfly主题的诞生离不开<code>Jerry</code>，本网站即使用<code>Hexo</code>框架<del>以及Butterfly主题</del>构建。</p>
 <h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><blockquote>
 <p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>本文中的部分命令的执行及网站访问可能需要特定的网络环境。如果你在中国大陆地区，可能会出现速度缓慢甚至无法访问的情况，进而出现Error。<br>你可以使用科学上网解决该问题。<br>你需要的是耐心，细心，完善网站是一个漫长的过程。</p>
 </blockquote>
@@ -1151,12 +1151,12 @@
 <h2 id="上传blog"><a href="#上传blog" class="headerlink" title="上传blog"></a>上传blog</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> npm install hexo-deployer-git --save <span class="comment"># 安装 hexo-deployer-git</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>中间会出现一个登录界面，可以用令牌登录。</p>
 <blockquote>
-<p><i class="fa-solid fa-pen fa-lg"></i> <font size="4">2023-12-24 更新</font><br>若出现<code>Spawn failed at ChildProcess</code>错误，可以参考此解决方案<br><a href="/post/ee739bc9.html/">关于在macOS上部署hexo到github时出现Spawn-failed-at-ChildProcess报错的解决方案</a></p>
+<p><i class="fa-solid fa-pen fa-lg"></i> <font size="4">2023-12-24 更新</font><br>若出现<code>Spawn failed at ChildProcess</code>错误，可以参考此解决方案<br><a href="/post/ee739bc9.html">关于在macOS上部署hexo到github时出现Spawn-failed-at-ChildProcess报错的解决方案</a></p>
 </blockquote>
 <p>等待部署，过程大约30-60s。</p>
 <p>这时打开<code>[username].github.io</code>，即可访问你的博客。</p>
 <h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><h2 id="所有文章均使用-Markdown-编写"><a href="#所有文章均使用-Markdown-编写" class="headerlink" title="所有文章均使用 Markdown 编写"></a>所有文章均使用 Markdown 编写</h2><p>因此，学习它是很重要的。</p>
-<p><a href="https://markdown.com.cn/">Markdown</a></p>
+<p><a href="https://markdown.com.cn/">Markdown 教程</a></p>
 <h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置_config.yml"></a>配置_config.yml</h2><p>用来个性化你的博客。</p>
 <h2 id="访问Hexo官方文档，Butterfly官方文档以及Github进行学习"><a href="#访问Hexo官方文档，Butterfly官方文档以及Github进行学习" class="headerlink" title="访问Hexo官方文档，Butterfly官方文档以及Github进行学习"></a>访问Hexo官方文档，Butterfly官方文档以及Github进行学习</h2><p>从入门到 <del>入土</del> 完善。</p>
 <h1 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h1><p><a href="https://hexo.io/zh-cn/docs/">Hexo官方文档</a></p>
