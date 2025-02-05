@@ -162,7 +162,7 @@ const CountdownTimer = (() => {
                     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
                 }
                 .cd-many {
-                    color: var(--rin-white);
+                    color: var(--rin-fontcolor);
                 }
                 .cd-remaining {
                     opacity: 0;

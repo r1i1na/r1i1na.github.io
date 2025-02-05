@@ -69,11 +69,11 @@ function adjustBrightness(r, g, b) {
     const brightness = Math.round(((r * 299) + (g * 587) + (b * 114)) / 1000);
     if (brightness < 125) {
         [...document.getElementsByClassName('card-content')].forEach(item => {
-            item.style.setProperty('--rin-card-bg', 'var(--rin-white)');
+            item.style.setProperty('--rin-card-bg', 'var(--rin-fontcolor)');
         });
         [...document.getElementsByClassName('author-info__sayhi')].forEach(item => {
             item.style.setProperty('background', 'var(--rin-white-op)');
-            item.style.setProperty('color', 'var(--rin-white)');
+            item.style.setProperty('color', 'var(--rin-fontcolor)');
         });
     }
 }
