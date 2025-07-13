@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>iTerm2 个人快速美化指北</title>
+    <url>/post/662a8c4d.html</url>
+    <content><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>因 macOS 的默认终端可玩性太低，遂转用<code>iTerm2</code>代替原终端，在寻找插件的同时顺便做了简单的美化。<br><del>好看才有动力（暴论</del></p>
+<blockquote>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>本文中软件均使用 Homebrew 安装，若没有安装 Homebrew，请先安装。<br>目前 macOS 默认终端为 zsh。</p>
+</blockquote>
+<h1 id="安装-iTerm2-和-Oh-My-Zsh"><a href="#安装-iTerm2-和-Oh-My-Zsh" class="headerlink" title="安装 iTerm2 和 Oh My Zsh"></a>安装 iTerm2 和 Oh My Zsh</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install iterm2</span><br></pre></td></tr></table></figure>
+
+<p>Oh My Zsh官方自动安装脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="安装前置字体"><a href="#安装前置字体" class="headerlink" title="安装前置字体"></a>安装前置字体</h1><p><a href="https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#fonts">GitHub - romkatv&#x2F;powerlevel10k</a><br>将Fonts下的四个字体下载后直接安装。<br><img src="https://s1.imagehub.cc/images/2025/07/13/e3d3927fc6b1acb574bb7e175234e573.png" alt="前置字体"><br>导航到iTerm2的<code>Settings-&gt;Profiles-&gt;Font</code>，将字体修改为<code>MesloLGS NF</code><br><img src="https://s1.imagehub.cc/images/2025/07/13/9b78c9734d51c22a75780d051b5a9aa9.png" alt="Font配置"></p>
+<h1 id="背景图修改"><a href="#背景图修改" class="headerlink" title="背景图修改"></a>背景图修改</h1><p>导航到iTerm2的<code>Settings-&gt;Profiles</code> (此处可新建一个Profile备份)，选择<code>Window</code>即可更改背景。可以根据需要自行调节其它配置。<br><img src="https://s1.imagehub.cc/images/2025/07/13/608721a3ecaea9c7771ab583d8bd836c.png" alt="Window配置"></p>
+<h1 id="安装-Powerlevel10k-主题"><a href="#安装-Powerlevel10k-主题" class="headerlink" title="安装 Powerlevel10k 主题"></a>安装 Powerlevel10k 主题</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install powerlevel10k</span><br></pre></td></tr></table></figure>
+<p>编辑<code>.zshrc</code>，加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme</span><br></pre></td></tr></table></figure>
+<p>同时删除原<code>ZSH_THEME=xxx</code></p>
+<p>应用配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>第一次加载时会进入 Powerlevel10k 的配置向导，根据提示选择外观即可。<br>若没有弹出则手动唤出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">p10k configure</span><br></pre></td></tr></table></figure>
+
+<h1 id="部分-Plugins"><a href="#部分-Plugins" class="headerlink" title="部分 Plugins"></a>部分 Plugins</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install zsh-autosuggestions <span class="comment">#自动补全</span></span><br><span class="line">brew install zsh-syntax-highlighting <span class="comment">#语句高亮</span></span><br></pre></td></tr></table></figure>
+<p>添加到<code>Plugins</code>下方即可，注意 Homebrew 安装需要手动指定路径。<br><img src="https://s1.imagehub.cc/images/2025/07/13/3a35cbebad74a99ef798b5a164d8ce57.png" alt="注入Plugins"></p>
+<p>最终效果如下：（使用<code>fastfetch</code>）<br><img src="https://s1.imagehub.cc/images/2025/07/13/114a472536cf066939d3a3d053d3caf9.png" alt="效果"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于注册表的Windows更新导致AMD显卡驱动回滚的解决方案</title>
     <url>/post/4616c65b.html</url>
     <content><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>某日，笔者在尝试打开AMD Software时报错提示不兼容，提示Windows更新<code>自动替换</code>了驱动：<br><img src="https://s1.imagehub.cc/images/2025/03/13/e9f60db929163fe053bb1d5b334104ca.png" alt="报错"><br>打开设备管理器，果不其然，AMD Radeon Graphics的驱动被回滚到了<code>2021年</code>：<br><img src="https://s1.imagehub.cc/images/2025/03/13/e84b544c4c8408592022d579c219e805.png" alt="回滚的驱动"></p>
@@ -916,8 +950,8 @@
         <category>系统简评</category>
       </categories>
       <tags>
-        <tag>tvOS</tag>
         <tag>日常</tag>
+        <tag>tvOS</tag>
         <tag>macOS</tag>
         <tag>iOS</tag>
         <tag>体验</tag>
@@ -1103,7 +1137,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#111;&#109;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>

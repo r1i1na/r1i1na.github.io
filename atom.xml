@@ -6,7 +6,7 @@
   <link href="https://r1n.top/atom.xml" rel="self"/>
   
   <link href="https://r1n.top/"/>
-  <updated>2025-03-13T10:08:15.000Z</updated>
+  <updated>2025-07-13T11:51:29.000Z</updated>
   <id>https://r1n.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iTerm2 个人快速美化指北</title>
+    <link href="https://r1n.top/post/662a8c4d.html"/>
+    <id>https://r1n.top/post/662a8c4d.html</id>
+    <published>2025-07-13T11:51:29.000Z</published>
+    <updated>2025-07-13T11:51:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>因 macOS 的默认终端可玩性太低，遂转用<code>iTerm2</code>代替原终端，在寻找插件的同时顺便做了简单的美化。<br><del>好看才有动力（暴论</del></p><blockquote><p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>本文中软件均使用 Homebrew 安装，若没有安装 Homebrew，请先安装。<br>目前 macOS 默认终端为 zsh。</p></blockquote><h1 id="安装-iTerm2-和-Oh-My-Zsh"><a href="#安装-iTerm2-和-Oh-My-Zsh" class="headerlink" title="安装 iTerm2 和 Oh My Zsh"></a>安装 iTerm2 和 Oh My Zsh</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install iterm2</span><br></pre></td></tr></table></figure><p>Oh My Zsh官方自动安装脚本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure><h1 id="安装前置字体"><a href="#安装前置字体" class="headerlink" title="安装前置字体"></a>安装前置字体</h1><p><a href="https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#fonts">GitHub - romkatv&#x2F;powerlevel10k</a><br>将Fonts下的四个字体下载后直接安装。<br><img src="https://s1.imagehub.cc/images/2025/07/13/e3d3927fc6b1acb574bb7e175234e573.png" alt="前置字体"><br>导航到iTerm2的<code>Settings-&gt;Profiles-&gt;Font</code>，将字体修改为<code>MesloLGS NF</code><br><img src="https://s1.imagehub.cc/images/2025/07/13/9b78c9734d51c22a75780d051b5a9aa9.png" alt="Font配置"></p><h1 id="背景图修改"><a href="#背景图修改" class="headerlink" title="背景图修改"></a>背景图修改</h1><p>导航到iTerm2的<code>Settings-&gt;Profiles</code> (此处可新建一个Profile备份)，选择<code>Window</code>即可更改背景。可以根据需要自行调节其它配置。<br><img src="https://s1.imagehub.cc/images/2025/07/13/608721a3ecaea9c7771ab583d8bd836c.png" alt="Window配置"></p><h1 id="安装-Powerlevel10k-主题"><a href="#安装-Powerlevel10k-主题" class="headerlink" title="安装 Powerlevel10k 主题"></a>安装 Powerlevel10k 主题</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install powerlevel10k</span><br></pre></td></tr></table></figure><p>编辑<code>.zshrc</code>，加入：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme</span><br></pre></td></tr></table></figure><p>同时删除原<code>ZSH_THEME=xxx</code></p><p>应用配置：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure><p>第一次加载时会进入 Powerlevel10k 的配置向导，根据提示选择外观即可。<br>若没有弹出则手动唤出：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p10k configure</span><br></pre></td></tr></table></figure><h1 id="部分-Plugins"><a href="#部分-Plugins" class="headerlink" title="部分 Plugins"></a>部分 Plugins</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh-autosuggestions <span class="comment">#自动补全</span></span><br><span class="line">brew install zsh-syntax-highlighting <span class="comment">#语句高亮</span></span><br></pre></td></tr></table></figure><p>添加到<code>Plugins</code>下方即可，注意 Homebrew 安装需要手动指定路径。<br><img src="https://s1.imagehub.cc/images/2025/07/13/3a35cbebad74a99ef798b5a164d8ce57.png" alt="注入Plugins"></p><p>最终效果如下：（使用<code>fastfetch</code>）<br><img src="https://s1.imagehub.cc/images/2025/07/13/114a472536cf066939d3a3d053d3caf9.png" alt="效果"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h1&gt;&lt;p&gt;因 macOS 的默认终端可玩性太低，遂转用&lt;code&gt;iTerm2&lt;/code&gt;代替原终端，在寻找插件的同时顺便做了简单的美化。&lt;br&gt;&lt;</summary>
+      
+    
+    
+    
+    <category term="教程" scheme="https://r1n.top/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="macOS" scheme="https://r1n.top/tags/macOS/"/>
+    
+  </entry>
   
   <entry>
     <title>基于注册表的Windows更新导致AMD显卡驱动回滚的解决方案</title>
@@ -472,9 +496,9 @@
     <category term="系统简评" scheme="https://r1n.top/categories/%E7%B3%BB%E7%BB%9F%E7%AE%80%E8%AF%84/"/>
     
     
-    <category term="tvOS" scheme="https://r1n.top/tags/tvOS/"/>
-    
     <category term="日常" scheme="https://r1n.top/tags/%E6%97%A5%E5%B8%B8/"/>
+    
+    <category term="tvOS" scheme="https://r1n.top/tags/tvOS/"/>
     
     <category term="macOS" scheme="https://r1n.top/tags/macOS/"/>
     
@@ -544,34 +568,6 @@
     <category term="游戏" scheme="https://r1n.top/tags/%E6%B8%B8%E6%88%8F/"/>
     
     <category term="CrossOver" scheme="https://r1n.top/tags/CrossOver/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Apple TV无法通过iOS设备认证连接强制认证网络的解决方案</title>
-    <link href="https://r1n.top/post/eb93311c.html"/>
-    <id>https://r1n.top/post/eb93311c.html</id>
-    <published>2024-10-22T08:57:06.000Z</published>
-    <updated>2024-10-22T08:57:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>前几天把Apple TV连接到我学生公寓的电视上，由于我的公寓采用的是<code>强制门户网络</code> (Captive Newrork)，因此将会弹出登录界面，认证完成后即可使用。</p><p>早在 tvOS 15.0 就支持了强制网络登录，因此靠近的iOS设备会弹出网络认证界面，直接从该设备登录此网络即可。<br><a href="https://support.apple.com/en-au/guide/tv/atvb00f5b993/15.0/tvos/15.0">Change network settings on Apple TV</a></p><p>到这里，一切正常。</p><p>但是！这个登录界面始终一片空白，最后直接报错，提示无法连接，尝试多次依然无果。</p><p><img src="https://s1.imagehub.cc/images/2024/11/17/3e42c7fb2049dd92274539ced0d37223.jpeg" alt="又双叒叕报错"></p><h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>1、基于对的定义，我们不难得出，该强制门户根据<code>MAC地址</code>追踪已连接设备，并判断是否已经通过认证。因此，我们只需要保证Apple TV的MAC地址通过该强制门户认证即可。<br><a href="https://zh.wikipedia.org/zh-hans/%E5%BC%BA%E5%88%B6%E9%97%A8%E6%88%B7">强制门户</a><br>2、Apple TV连接Wi-Fi使用硬件MAC地址，因此，其MAC地址并<code>不会改变</code>。</p><h1 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h1><h2 id="确认Apple-TV的MAC地址"><a href="#确认Apple-TV的MAC地址" class="headerlink" title="确认Apple TV的MAC地址"></a>确认Apple TV的MAC地址</h2><p>很简单，只需进入<code>设置-网络</code>（设置-通用-关于本机也可以）即可看到MAC地址：</p><p><img src="https://s1.imagehub.cc/images/2024/11/17/60c0c3e581ddb305d1b48c09bc291554.jpeg" alt="查看MAC地址"></p><h2 id="通过其他设备更改MAC地址，使Apple-TV通过认证"><a href="#通过其他设备更改MAC地址，使Apple-TV通过认证" class="headerlink" title="通过其他设备更改MAC地址，使Apple TV通过认证"></a>通过其他设备更改MAC地址，使Apple TV通过认证</h2><blockquote><p><i class="fa-solid fa-circle-info fa-lg"></i> <font size="4">提示</font><br>此处以Mac为例。</p></blockquote><p>首先给Mac和Apple TV都断开连接要登录的Wi-Fi。在Mac上按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标，记下网络接口名称（一般是en0）。</p><p><img src="https://s1.imagehub.cc/images/2024/11/17/16507afc06563f887dfdcd6d1a7b8fe8.jpeg" alt="网络接口"></p><p>打开终端，输入以下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> ifconfig en0 ether [Apple TV的MAC地址]</span><br></pre></td></tr></table></figure><p>此时连接需要登录的Wi-Fi，不出意外将弹出登录界面，在按住<code>Option</code>键的同时点击状态栏上的Wi-Fi图标后，可以发现用于连接此Wi-Fi的MAC地址已经变成Apple TV的MAC地址。如果没有弹出登录界面，可以尝试重新连接或者随便打开一个网页。</p><p><img src="https://s1.imagehub.cc/images/2024/11/17/4a1a19a314c2158efacfbfdab20038b9.jpeg" alt="登录"></p><p>登录完成后，可打开几个网页测试连通性。</p><h2 id="后续操作"><a href="#后续操作" class="headerlink" title="后续操作"></a>后续操作</h2><p>重启你的<code>Mac</code>，之前修改MAC地址将会被完全清除。</p><p>将Apple TV连接到此Wi-Fi，此时会发现状态栏的感叹号已经消失，可以正常访问网络了。</p><p><img src="https://s1.imagehub.cc/images/2024/11/17/d0c6d2480f7e561e9035d3de5c01b38c.jpeg" alt="正常连接网络"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;前置&quot;&gt;&lt;a href=&quot;#前置&quot; class=&quot;headerlink&quot; title=&quot;前置&quot;&gt;&lt;/a&gt;前置&lt;/h1&gt;&lt;p&gt;前几天把Apple TV连接到我学生公寓的电视上，由于我的公寓采用的是&lt;code&gt;强制门户网络&lt;/code&gt; (Captive Newror</summary>
-      
-    
-    
-    
-    <category term="Apple TV 解决方案" scheme="https://r1n.top/categories/Apple-TV-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-    
-    <category term="Apple TV" scheme="https://r1n.top/tags/Apple-TV/"/>
-    
-    <category term="技术领域" scheme="https://r1n.top/tags/%E6%8A%80%E6%9C%AF%E9%A2%86%E5%9F%9F/"/>
-    
-    <category term="tvOS" scheme="https://r1n.top/tags/tvOS/"/>
     
   </entry>
   
