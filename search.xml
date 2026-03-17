@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>新一代互联网络——澳洲nbn组网杂谈</title>
+    <url>/post/28584484.html</url>
+    <content><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>应该是很久没有更新了，事情实在是太多了（悲），<del>趁着搬家的空挡水一篇</del>。<br>针对宽带需求对于新房的宽带的接入方面进行了解，得知澳洲目前正在推广的全新网络接入方式——<code>nbn</code> (National Broadband Network 国家宽带网络)。<br><img src="https://www.nbnco.com.au/etc.clientlibs/nbnco2/clientlibs/clientlib-base/resources/images/website-updated-blue.svg" alt="nbn"><br>官方描述 (简体中文) 为：</p>
+<blockquote>
+<p>nbn™网络是澳大利亚激动人心的新一代固定电话和互联网络。目前正在澳大利亚全国推出，并且其设计的宗旨是让所有人都能享受到快速可靠的网络，无论您居住在哪里。<br>nbn co limited (nbn)是一个政府商业实体，是推出 nbn™网络的幕后团队。我们负责向您的电话和网络供应商提供批发服务。做为批发商，我们不能直接对公众销售。也就是说如&gt; 果您希望将所使用的服务转到nbn™网络，您需要与您选择的电话或网络供应商联系，并选择一个适合您需要的新计划。</p>
+</blockquote>
+<p><a href="https://www.nbnco.com.au/utility/multilingual-support/simplified-chinese">Information on Simplified Chinese - nbn</a></p>
+<p>同时另外还有一种接入方式，即<code>5G Home Internet</code>，也就是路由器通过接收运营商的5G信号来进行Wi-Fi信号共享的方案。不过受限于其原理，网络并不如宽带稳定，因此依旧考虑使用nbn接入。</p>
+<h1 id="多技术混合"><a href="#多技术混合" class="headerlink" title="多技术混合"></a>多技术混合</h1><p>由于澳洲参差不齐的网络基建质量，nbn采用了多种技术来满足不同地区基建设施的需求。除开有线连接和无线连接两个大类之外，其下又可细分为多种：</p>
+<h2 id="光纤到路边（FTTC）"><a href="#光纤到路边（FTTC）" class="headerlink" title="光纤到路边（FTTC）"></a>光纤到路边（FTTC）</h2><p>用户通过铜线连接，利用现有的电话插头接入FTTC网络。nbn为连接设备提供一个以太网端口，用于连接路由器。<br>通常用于光纤电缆已靠近每户或每家商户的情况。它通过位于街道井道内、靠近物业边界的小型配线单元 (DPU) 连接到现有的铜线。每个 DPU 最多可服务四个连接。DPU 由 nbn 提供的市电供电的 FTTC 连接设备（NTD）供电。</p>
+<h2 id="光纤到节点（FTTN）"><a href="#光纤到节点（FTTN）" class="headerlink" title="光纤到节点（FTTN）"></a>光纤到节点（FTTN）</h2><p>现有铜缆连接将保留，并使用现有插头，用户使用 VDSL2 调制解调器接入网络，该调制解调器通常从零售服务提供商 (RSP) 购买。<br>FTTN 网络由从交换机到节点的光纤和从节点到现有配线架的铜缆组成。然后，每户用户都接入一对铜缆。每个节点最多可服务384户家庭。</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/67929e8ef161a5060dfeb79110e90c13.png" alt="FTTx 架构"></p>
+<h2 id="弊端"><a href="#弊端" class="headerlink" title="弊端"></a>弊端</h2><p>很显然，这两种方案都有一个问题，因为末端使用了原有电话线的铜线，抗干扰能力极差，且传输速率限制导致无法实现超高宽带网速，因此部分地区根本无法购买高速套餐（悲）。</p>
+<h2 id="光纤到户-FTTP"><a href="#光纤到户-FTTP" class="headerlink" title="光纤到户 (FTTP)"></a>光纤到户 (FTTP)</h2><p><img src="https://s1.imagehub.cc/images/2026/03/17/4fe3c527d4a3ef45d3ee96f3b2200dda.png" alt="FTTP 连接示意图"><br>FTTP 基于无源光网络（PON）技术，通过位于中心机房的光线路终端（OLT）将下行数据调制为光信号，经由主干光纤（Distribution Fibre）传输至无源分光器（HUB&#x2F;Splitter）进行物理层级的功率分配，再通过配线光纤（Local Fibre）与入户光纤（Drop Fibre）实现点对多点（P2MP）的扇出，最终在用户侧由网络终端单元（NTU&#x2F;ONT）完成光电转换与协议解封装。</p>
+<p>显然，FTTP 才是最最优解，不过是否采用 FTTP 是由家庭住址决定的，通过各大运营商的网站输入地址即可查询接入方案。</p>
+<p>可以查询到我家的住址已经预先安排了 FTTP 接入，因此可以直接购入高速套餐。</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/b09ef647d65423400d07e3b005ba8be0.png" alt="Superloop 提供的地址查询服务"></p>
+<h1 id="服务迁移"><a href="#服务迁移" class="headerlink" title="服务迁移"></a>服务迁移</h1><p>在家中很快就找到了nbn白盒子，并且为4口，证明该地址已经接入nbn，且最多可以开设4个网络服务：<br>连接Wi-Fi网络后发现该地址已经预先签约了<code>Occom</code>公司的网络服务，进行测速后发现下载峰值约为 500Mbps，显然这是一个 500M 的套餐。</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/6eb5759df829583b91b91f5f2301b5d8.png" alt="测速结果 来自 Speedtest"></p>
+<p>本着体验不降级的原则，我选择了 Superloop 的 1000M 套餐。由于nbn的原理，切换服务说白话就是不同的服务商 (Wholesale) 来“顶号”，如图所示：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/2f698121df16a0defe2568e3cfd316f3.png" alt="运营商如何连接到 nbn 网络"></p>
+<p>因此，直接在新运营商的官网上下单即可，然后等待新服务激活。因为没有旧nbn服务的账单，提示激活可能要比较久的时间。。。</p>
+<p>但是，4分钟后我就收到了服务已激活的邮件。（！？逆天效率？！）</p>
+<p>按照提示将路由器拨号方式改为自动ip，至此服务迁移成功。</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/681a3866c150bb411f0fef06c168893b.png" alt="测速结果 来自 Speedtest"></p>
+<h1 id="获取独立公网IPv4地址"><a href="#获取独立公网IPv4地址" class="headerlink" title="获取独立公网IPv4地址"></a>获取独立公网IPv4地址</h1><blockquote>
+<p><i class="fa-solid fa-triangle-exclamation fa-lg"></i> <font size="4">注意</font><br>需要一定的安全意识再去尝试获得公网IPv4地址，否则你在公网上无异于裸奔。</p>
+</blockquote>
+<p>不同于国内千金难求的独立公网IPv4，澳洲的独立v4还是相对简单获取的，动态v4甚至不需要额外加钱。</p>
+<p>不过为了缓解IPv4资源枯竭，运营商默认还是会把普通用户加入<code>CGNAT</code>（运营商级地址转换），导致外边无法访问设备，不过可以直接联系客服申请。</p>
+<p>CGNAT 的弊端：</p>
+<ul>
+<li>与任何形式的NAT一样，CGNAT违背了端到端原则.</li>
+<li>由于其有状态的特性，CGNAT有显著的安全性、可扩展性和可靠性问题。</li>
+<li>CGNAT使执法行动查阅变得更加困难，因为需要保留额外的NAT日志。</li>
+<li>在CGNAT下无法运行网络托管服务。</li>
+<li>无法对需要公网IPv4地址的业务（如网络托管服务）使用CGNAT，因而其对解决IPv4地址枯竭问题作用有限。</li>
+</ul>
+<p>在与AI客服<del>battle</del>友好交流后，成功获取了独立v4地址：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/d711604ffd45fb7ca9335286bb2cd83e.png" alt="获取动态公网IPv4"></p>
+<p>路由器重新拨号后，可以看到出口WAN ip和访问公网使用的ip已经相同：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/4c2549375a7470d1579863a5ba50ff43.png" alt="WAN IP"></p>
+<h1 id="部分路由配置"><a href="#部分路由配置" class="headerlink" title="部分路由配置"></a>部分路由配置</h1><h2 id="连线方案"><a href="#连线方案" class="headerlink" title="连线方案"></a>连线方案</h2><p>我的win主机是使用网线直连路由器的，华硕的 BE3600 因为只有一个 2.5G 网口，且外网为 1000M，因此决定直接将主机连接到 2.5G 网口，同时外网连接 1000M，优先保障内网的传输效率。2.5G 协议仅需一根 <code>CAT6</code> 以上的网线即可搞定：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/79f3977b7607e45d2e0c9cdd8dc1b9c5.png" alt="成功握手"></p>
+<h2 id="配置公网访问"><a href="#配置公网访问" class="headerlink" title="配置公网访问"></a>配置公网访问</h2><p>首先，在路由端和设备端配置<code>防火墙</code>，做好安全保护措施。</p>
+<h3 id="配置DDNS"><a href="#配置DDNS" class="headerlink" title="配置DDNS"></a>配置DDNS</h3><p>因为拿到的是动态独立ip，因此配置 DDNS 是必要的，毕竟重启一下路由器ip就有可能变化。在华硕路由器上直接进入<code>WAN - DDNS</code>即可一键配置，以后即可使用该域名在公网上连接到设备了。</p>
+<h3 id="配置端口转发"><a href="#配置端口转发" class="headerlink" title="配置端口转发"></a>配置端口转发</h3><p>需要端口转发才能将公网访问的端口映射到内网，直接在<code>WAN - Port forwarding</code>操作即可。</p>
+<h3 id="内网IP绑定"><a href="#内网IP绑定" class="headerlink" title="内网IP绑定"></a>内网IP绑定</h3><p>因为DHCP配置会更换内网ip，之前设置的端口转发可能会失效，因此需要手动为需要连接的设备指定ip，我使用路由器后台的手动绑定功能来指定 DHCP 服务器返回给客户端的 IP：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/130b3713e4d3393e965bee37ab6cf911.png" alt="手动绑定"></p>
+<p>一般情况配置好这些，在公网上就可以稳定访问你的设备了。</p>
+<p>仅需使用<code>DDNS + 端口号</code>即可像正常局域网连接一样访问。</p>
+<h2 id="配置-IPv6"><a href="#配置-IPv6" class="headerlink" title="配置 IPv6"></a>配置 IPv6</h2><p>使用<code>Native</code>方式即可：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/80e978972b032e720eb799eb148edee5.png" alt="IPv6 配置"></p>
+<h1 id="关于小米设备在澳洲的-Wi-Fi-7-兼容性问题"><a href="#关于小米设备在澳洲的-Wi-Fi-7-兼容性问题" class="headerlink" title="关于小米设备在澳洲的 Wi-Fi 7 兼容性问题"></a>关于小米设备在澳洲的 Wi-Fi 7 兼容性问题</h1><p>在插入澳洲本地 SIM 卡 (MCC &#x3D; 505)后，系统会应用澳洲的保守网络策略导致回落到 Wi-Fi 6标准：</p>
+<p>使用 Cellular Z 可见，虽然路由器广播的是 Wi-Fi 7，但是设备握手的是Wi-Fi 6。</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/ded21ac7158033a530a6321cc6afd1c2.jpeg" alt="返回结果"></p>
+<p>因为我使用的是 xiaomi.eu 的系统，直接在设置将 Wi-Fi Region 修改为 <code>United States</code>即可：</p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/c958e87cc5c9584cce0124e5db8e3456.jpg" alt="地区修改"></p>
+<p><img src="https://s1.imagehub.cc/images/2026/03/17/0f570d9c71043dfa73754de6287bb7a0.jpg" alt="成功连接 Wi-Fi 7"></p>
+<h1 id="后续…"><a href="#后续…" class="headerlink" title="后续…"></a>后续…</h1><p>折腾到这就告一段落了。</p>
+<p>后面可能会把家里的 HP 小主机带来作为服务器使用，毕竟已经有了独立公网ip，直接连接即可。</p>
+<p>目前使用稳定性不错。</p>
+]]></content>
+      <tags>
+        <tag>日常</tag>
+        <tag>技术领域</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iTerm2 个人快速美化指北</title>
     <url>/post/662a8c4d.html</url>
     <content><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>因 macOS 的默认终端可玩性太低，遂转用<code>iTerm2</code>代替原终端，在寻找插件的同时顺便做了简单的美化。<br><del>好看才有动力（暴论</del></p>
@@ -1137,7 +1207,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</span><br><span class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">&#x27;https://github.com&#x27;</span>: No error</span><br><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: bash: /dev/tty: No such device or address</span></span><br><span class="line"><span class="string">error: failed to execute prompt script (exit code 1)</span></span><br><span class="line"><span class="string">fatal: could not read Username for &#x27;</span>https://github.com<span class="string">&#x27;: No error</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)</span></span><br><span class="line"><span class="string">    at emitTwo (events.js:106:13)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:191:7)</span></span><br><span class="line"><span class="string">    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)</span></span><br><span class="line"><span class="string">    at maybeClose (internal/child_process.js:920:16)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>替换为:</p>
-<p>“<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
+<p>“<a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#x6d;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#x6d;</a>:[yourgitname]&#x2F;[yourgitname].github.io.git”</p>
 <h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git</span><br></pre></td></tr></table></figure>
 
 <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>1.打开hexo<code>根目录</code>下的<code>_config.yml</code></p>
