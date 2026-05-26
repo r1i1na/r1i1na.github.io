@@ -1,0 +1,1310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Apple TV无法通过iOS设备认证连接强制认证网络的解决方案</title>
+    <url>/post/eb93311c.html</url>
+    <content><![CDATA[前置前几天把Apple TV连接到我学生公寓的电视上，由于我的公寓采用的是强制门户网络 (Captive Newrork)，因此将会弹出登录界面，认证完成后即可使用。
+早在 tvOS 15.0 就支持了强制网络登录，因此靠近的iOS设备会弹出网络认证界面，直接从该设备登录此网络即可。Change network settings on Apple TV
+到这里，一切正常。
+但是！这个登录界面始终一片空白，最后直接报错，提示无法连接，尝试多次依然无果。
+
+理论1、基于对的定义，我们不难得出，该强制门户根据MAC地址追踪已连接设备，并判断是否已经通过认证。因此，我们只需要保证Apple TV的MAC地址通过该强制门户认证即可。强制门户2、Apple TV连接Wi-Fi使用硬件MAC地址，因此，其MAC地址并不会改变。
+解决：确认Apple TV的MAC地址很简单，只需进入设置-网络（设置-通用-关于本机也可以）即可看到MAC地址：
+
+通过其他设备更改MAC地址，使Apple TV通过认证
+ 提示此处以Mac为例。
+
+首先给Mac和Apple TV都断开连接要登录的Wi-Fi。在Mac上按住Option键的同时点击状态栏上的Wi-Fi图标，记下网络接口名称（一般是en0）。
+
+打开终端，输入以下命令：
+sudo ifconfig en0 ether [Apple TV的MAC地址]
+
+此时连接需要登录的Wi-Fi，不出意外将弹出登录界面，在按住Option键的同时点击状态栏上的Wi-Fi图标后，可以发现用于连接此Wi-Fi的MAC地址已经变成Apple TV的MAC地址。如果没有弹出登录界面，可以尝试重新连接或者随便打开一个网页。
+
+登录完成后，可打开几个网页测试连通性。
+后续操作重启你的Mac，之前修改MAC地址将会被完全清除。
+将Apple TV连接到此Wi-Fi，此时会发现状态栏的感叹号已经消失，可以正常访问网络了。
+
+]]></content>
+      <categories>
+        <category>Apple TV 解决方案</category>
+      </categories>
+      <tags>
+        <tag>Apple TV</tag>
+        <tag>技术领域</tag>
+        <tag>tvOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 入门实操之数组逆置</title>
+    <url>/post/3ae7ebc8.html</url>
+    <content><![CDATA[前置无聊开个新坑，最近学校在学 C++ ，那么这边也跟进一下实操分析。主要还是当备忘录使的，[保存回家路线，防止迷路（bushi）]
+本蒟蒻 C++ 其实很菜的，各位大佬别喷 www。
+本题难度：入门代码中只有数组，没有逆置函数、指针等，请放心食用。（什）
+题目现在输入数据，要求在输入前询问需要输入的数据个数，记为 n，接着接收这 n 个数据保存到数组中，然后输出逆置 (Reverse) 后的数组。
+样例输入：513458
+
+样例输出：你输入的数组：1 3 4 5 8逆置后数组：8 5 4 3 1
+
+分析动态数组首先要求输入数据个数，那么直接 int 一个变量 n 再cin接收变量 n 即可。显然，数组长度是不确定的，所以我们需要用vector来创建一个动态数组。
+#include &lt;vector&gt;vector&lt;int&gt; arr(n);
+接着，循环 n 次来接收数组中的 n 个元素，可以直接使用 for 循环搞定，然后输出刚刚接收的所有元素即可。
+元素交换我们假设第一个元素为start，最后一个元素为end。第一个元素为arr[0]，最后一个元素就是arr[n-1]（因为从 0 开始）。要逆置数组，只需要先取出第一个元素即arr[0] ，这里先 int 一个temp变量，然后将arr[0]放入temp变量中。接着，将最后一个元素即arr[n-1]覆盖到arr[0]的位置，最后再用temp覆盖掉arr[n-1]。这样就完成了首尾元素的交换。
+循坏完成一次交换后，让start + 1，end - 1 ，这样就可以进行第二个元素和倒数第二个元素的位置交换，不难发现，在start &lt; end条件满足的情况下，循环将持续进行。通过 start++ 和 end– 来确保在交换每一对元素后，start 和 end 向中间靠拢，直到整个数组逆置完成。
+全部完成后，输出新的数组即可。
+代码（有注释）#include &lt;iostream&gt;#include &lt;vector&gt; // 引入头文件using namespace std;int main() &#123;    int n;    cout &lt;&lt; &quot;输入数组的大小：&quot;;    cin &gt;&gt; n;    vector&lt;int&gt; arr(n); // 创建动态数组    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; &quot;输入你的数据：&quot;;         cin &gt;&gt; arr[i]; // 循环 n 次，接收输入的数据    &#125;    cout &lt;&lt; &quot;你输入的数组：&quot; &lt;&lt; endl;    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; arr[i] &lt;&lt; &quot;\t&quot;; // 输出输入的数组    &#125;    cout &lt;&lt; endl;    int start = 0;    int end = n - 1;    while (start &lt; end) &#123; // 数组逆置通解        int temp = arr[start];        arr[start] = arr[end];        arr[end] = temp;        start++;        end--;    &#125;    cout &lt;&lt; &quot;逆置后数组：&quot;  &lt;&lt; endl;    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; arr[i] &lt;&lt; &quot;\t&quot;; // 输出新数组，\t用于对齐文本    &#125;    cout &lt;&lt; endl; // 换行    return 0;&#125;
+代码（无注释）#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;int main() &#123;    int n;    cout &lt;&lt; &quot;输入数组的大小：&quot;;    cin &gt;&gt; n;    vector&lt;int&gt; arr(n);    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; &quot;输入你的数据：&quot;;         cin &gt;&gt; arr[i];    &#125;    cout &lt;&lt; &quot;你输入的数组：&quot; &lt;&lt; endl;    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; arr[i] &lt;&lt; &quot;\t&quot;;    &#125;    cout &lt;&lt; endl;    int start = 0;    int end = n - 1;    while (start &lt; end) &#123;        int temp = arr[start];        arr[start] = arr[end];        arr[end] = temp;        start++;        end--;    &#125;    cout &lt;&lt; &quot;逆置后数组：&quot;  &lt;&lt; endl;    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; arr[i] &lt;&lt; &quot;\t&quot;;    &#125;    cout &lt;&lt; endl;    return 0;&#125;
+直接倒序输出#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;int main() &#123;    int n;    cout &lt;&lt; &quot;输入数组的大小：&quot;;    cin &gt;&gt; n;    vector&lt;int&gt; arr(n);    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; &quot;输入你的数据：&quot;;         cin &gt;&gt; arr[i];    &#125;    cout &lt;&lt; &quot;你输入的数组：&quot; &lt;&lt; endl;    for (int i = 0; i &lt; n; i++) &#123;         cout &lt;&lt; arr[i] &lt;&lt; &quot;\t&quot;;    &#125;    cout &lt;&lt; endl;    cout &lt;&lt; &quot;逆置后数组：&quot;  &lt;&lt; endl;    for (int i = n - 1; i &gt;= 0; i--) &#123;         cout &lt;&lt; arr[i] &lt;&lt; &quot;\t&quot;;    &#125;    cout &lt;&lt; endl;    return 0;&#125;
+END
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Batch批处理循环分析</title>
+    <url>/post/16c91c9f.html</url>
+    <content><![CDATA[众所周知，批处理经常要用到循环。不管是认真的还是整人。这里大致收集了几种批处理的循环方式以及各种附加语句。
+goto 循环这种应该是最简单的语句了，如下:
+@echo off:start[command]goto start
+中间的command即为要循环的语句。此时这些命令将无限循环。
+可以搭配延时语句choice /t [time] /d y /n &gt;nul实现间隔循环，例如：
+@echo off:startecho man!choice /t 5 /d y /n &gt;nulgoto start
+此时将每隔5秒输出一次man!
+for 循环这个是最为强大的语句，但是相对繁琐，此处仅介绍基本用法。
+由于cmd窗口中for之后的形式变量必须使用%来引用，因此其在cmd窗口中的基本形态为：
+For %var in (set) do command [command-parameters]
+同样的，在批处理文件中for之后的形式变量必须使用%%来引用，因此其在批处理文件中的基本形态为：
+For %%var in (set) do command [command-parameters]
+
+ 注意1.For、in和 do 不能分开使用。2.对于var，可为26个字母的任意一个，并且区分大小写。3.语句set两旁的括号不可省略。4.无论何时，不能没有变量。
+
+eg1-遍历字符：@echo offFor %%i in (ABC) do @echo %%ipause
+输出结果为：
+ABCPress any key to continue...
+分析：首先，该语句将A赋予到变量i中，之后执行后面的@echo %%i命令，输出结果A。接着，该语句将B赋予到变量i中，之后执行后面的@echo %%i命令，输出结果B，如此循环直到(A B C)中所有元素被提取完毕，循环结束。
+eg2-遍历换行字符:@echo offFor %%i in (A B C) do @echo %%ipause
+输出结果为：
+ABCPress any key to continue...
+如果把空格换成逗号，等号是等效的。
+eg3-遍历数字:@echo offFor /l %%i in (1, 1, 100) do (    echo %%i    echo man!)pause
+运行后屏幕上将会打印100个”man！”。其类似for (i=0; i&lt;n; i++)。
+eg4-遍历文件：For %%F in (*.txt) do (    echo %%F)
+将会遍历文件夹下所有后缀为.txt的文件。
+eg5-嵌套循环：For %%i in (1 2 3) do (    For %%j in (a b c) do (        echo %%i %%j    ))
+此处将两个for循环嵌套使用，输出数值将成对出现。
+eg6-遍历字符串：可以用此循环遍历字符串，并按指定分隔符分割字符串。
+Set text=A,B,CFor /F &quot;tokens=1-3 delims=,&quot; %% in (&quot;%text%&quot;) do (    echo %%i    echo %%j    echo %%k)
+
+ 提示“tokens&#x3D;1-3” 用于指定获取前三个部分。“delims&#x3D;,” 用于指定逗号作为分隔符。
+
+运行结果为：
+ABC
+do while 循环
+ 注意批处理中并没有此结构，只可以通过goto循环与条件判断模拟，不常用。
+
+eg:
+@echo offSet /A counter=1:WhileLoopif %counter% GTR 5 goto EndLoopecho %counter%Set /A counter+=1goto WhileLoop:EndLoop
+counter的初始值为1，每循环一次+1。当counter的值到5时，将结束循环。
+do until 循环
+ 注意批处理中并没有此结构，只可以通过goto循环与条件判断模拟，不常用。while与until是相反的。
+
+eg:
+@echo offSet /A counter=1:UntilLoopecho %counter%Set /A counter+=1if %counter% LEQ 5 goto UntilLoop
+执行结果与do while相同。
+无限循环
+ 危险无限循环可能存在危险性，请不要滥用，更不要以此来整别人，严重情况可能导致系统崩溃，文件丢失等，后果自负！
+
+eg1:@echo off:Loopecho man!timeout /t 1 &gt;nulgoto Loop
+此操作将在屏幕上持续打印”man!”，时间间隔为1秒。
+eg2:%0 |%0
+此操作将无限打开cmd.exe直到系统资源不足导致死机，可能需要重启才能恢复。
+]]></content>
+      <categories>
+        <category>批处理小记</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+        <tag>Windows</tag>
+        <tag>Batch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2024 小记 - 平凡、机遇、摆烂、向前</title>
+    <url>/post/2efcafd.html</url>
+    <content><![CDATA[前置咕咕咕咕咕咕咕咕咕咕咕咕咕咕。也就咕了 20 天吧，不会有事的。（确信
+2024，后疫情时代。虽然表面平静，实则暗流涌动。对未来的迷茫，对琐碎生活的厌倦，对生命的感悟，或平常，或深入。
+又是一年过去，转眼 2025 就在眼前。你说得对，但是明天就是 Python 年啦！
+这一年，经历了很多，学到了很多，也干了很多。
+高考 (Jan - Jun)
+生活索然无味，尸体 cos 人类。
+
+1月 - 6月，奋战的半年，迷茫与希望共存的半年，无数次的跌倒，无数次的爬起。数不清的日夜，奋战于书桌前，极少的休闲时间，呆坐在电脑前，不知何所。
+这几个月，技术方面基本为 0。。。这是一个内卷的时代，文化课卷不过别人，只有被淘汰（大概也是暂时的），那有心思往别的地方放呢？
+三个字：人麻了。这6个月，很快就过去了。整个人犹如机器一般，没啥感情，有的只是动笔。
+5月8日，学校组织研学，难得的放松：
+
+6月9日，高考落下帷幕，朋友各奔东西，十二年寒窗就此画上句号，新的旅程即将开始。
+考完去新疆玩了一趟，风景还是很漂亮的：
+
+Jul众所周知，高考完并没有什么作业。（我例外）
+因为下定决心去国外读大学，因此整个 7 月我都在备考 IELTS（头痛）。
+7月23日，很顺利地考完了。总分 6.5，预料之中，不算太好也不算太差。
+Aug玩机之路180 收了台小米 MIX 2s 8+256 顶配版本，电源排线有点问题，无限重启，被卖家贱卖了。
+几块换了根电源排线（笑），完美复活！
+
+      
+        ???
+        赛博华佗啊!
+
+      
+    
+
+前前后后刷了一大堆系统，还是很好玩的ww：
+也不是一切顺利吧，有的时候就是会发电（）：
+Sep非常平凡的一个月，主要浅学了一下C++, Python, js等各种 Programming Language。
+还有人类语言: English
+Oct澳大利亚学校10月8日开学，但是为了适应，实际上10月1日就去了。
+全新的 environment，全新的一切，不经让我深感好奇，这差不多也是技术进步约为 0 一个月。
+来到这，真的就变成 npc 了。（悲
+这种环境下，见人间烟火，感人世真情，对于 npc 来说已经很高兴了。
+
+Nov全年技术进步最大的的一月。
+11月5日，我重开了2022年就已经尝试过的博客。使用 Hexo 框架，以及 Butterfly 主题。（也就是本站啦）
+具体的博客小故事可见：本站小记
+
+Github 原来的账号不知道为什么掉了（），创了个新的，把原来的仓库都弄了回来。
+前后陆陆续续换了几个主题，通过魔改也变相学习了css, js, html等。
+剩下的便是文化科目的学习，学习，还是学习。。。
+Dec一个学期进入尾声，很顺利地结束了 Mid-term test ，目前 GPA 在 8.2。
+继续在悉尼刷探索度，详情可见：周末杂记 (12.7-8)
+回国回国之后，因为搬家的缘故，我花了一整天的时间重新整理桌子。（要命）
+接下来就是日常继续对各种Programming Languages的学习了，一天天的重复着，无大事发生。
+哦还有一款游戏：《彼方的她-Aliya》，虽然不到一杯奶茶钱，却足以让人产生共鸣。（俗称：后劲太大）
+
+旅途远远没有结束…2025，新的开始。
+追求并不是很高，开心过完每一天即可。
+一点小计划：
+做一点自己感兴趣的项目
+下学期的 GPA 不拉到 6.9 以下
+掌握C++, Python, Swift, js
+去一些好玩的地方
+不要挂科
+还有很多，就不一一列举了，或者说，到时候再说吧
+
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac取暖非正常方案指北</title>
+    <url>/post/bc890828.html</url>
+    <content><![CDATA[前置众所周知，冬天到了，对于 Mac 用户来说又是手凉的季节。因为金属机身摸起来特别冰，而且是功耗贼低的 M 系还不容易发热。此处列举了几种奇奇怪怪的加热方式。
+
+ 注意长时间高负载、高温状态运行可能会导致使用寿命缩短！
+
+软件取暖cat 命令在终端输入：
+nohup cat /dev/urandom | gzip &gt; /dev/null 2&gt;&amp;1&amp;
+多运行几次，使 CPU 跑到 90% 以上。很快 CPU Core 的温度就上来了。过几分钟等 A 面温度上来就可以暖手了。如果需要结束，只需要输入：
+killall cat
+
+yes 命令在终端输入：
+yes &gt; /dev/null/ &amp;
+这个也需要多运行几次，使 CPU 跑到 90% 以上。结束则输入:
+killall yes
+脚本法本质还是终端跑的。这个自己看吧，链接挂一下：MacHeat
+物理取暖放上一个火炉，盖上被子，开几个IDE，挖个矿。
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>玩机</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 双管齐下式部署</title>
+    <url>/post/97cc0ffb.html</url>
+    <content><![CDATA[其实就是同时部署到自己的服务器和Github Pages（首先，确保单独部署到 Github Pages 或自己服务器是正常的，如果没有可以参考以下链接：
+
+  
+    
+  
+  这是一个内部链接，保证安全（？）
+  macOS环境下部署hexo并应用Butterfly主题
+  r1n.top
+
+
+  
+    
+  
+  这是一个外部链接，不能保证安全性。
+  使用 Hexo 搭建个人博客并部署到云服务器
+  www.cnblogs.com
+
+
+接着打开_config.yml修改deploy：
+deploy:  - type: git    repository: git@&lt;ip&gt;:&lt;dict&gt;    branch: master  - type: git    repository: git@github.com:&lt;name&gt;/&lt;name&gt;.github.io.git    branch: main
+执行hexo d就完成了。
+]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SwiftUI 学习小笔记</title>
+    <url>/post/8d1f986e.html</url>
+    <content><![CDATA[基本结构import SwiftUIstruct SwiftUIView: View &#123;    var body: some View &#123;// 程序代码区    &#125;&#125;// 预览#Preview &#123;    SwiftUIView()&#125;
+文本添加文本Text(&quot;Hello world!&quot;)
+显示文本为&quot;Hello world!&quot;
+以变量形式保存文本并显示var t=Text(&quot;Man!&quot;)
+设置文本属性Text(&quot;Hello world!&quot;.capitalized) // 文字首字母大写 反过来是.lowercased    .font(.title) // 字体大小    .fontWeight(.ultraLight) // 字体粗细    .bold() // 粗体    .underline((true, color: Color.red)) // 红色下划线    .italic() // 斜体    .strikethrough(true, color: Color.green) // 绿色删除线        .font(.system(size: 24, weight: semibold, design: .serif)) // 字体大小，粗细和设计    .multilineTextAlignment(.center) // 多行居中    .baselineOffset(50.0) // 行间距为 50.0    .kerning(1.0) // 文字间距为 1.0    .foreground(.red) // 文字颜色为红色    .frame(width: 200, height: 100, alignment: .center) // 文本框宽度为 200，高度 100，居中对齐    .minimumScaleFactor(0.1) // 设置文字自动缩放最小倍率
+图形添加图形Circle() // 圆Ellipse() // 椭圆Capsule() // 胶囊型Rectangle() // 矩形RoundedRectangle() // 圆角矩形
+图形属性Circle()    .foregroundColor(.pink) // 填充粉色（前景色为粉色）    // 空心圆    .stroke() // 空心黑圆    .stroke(Color.red, lineWidth: 30) // 空心红圆，宽度为 30    .stroke(Color.orange, style: StrokeStyle(linewidth: 20, lineCap: .butt, dash[10])) // 虚线外框橙色空心圆，间距为 10    // 设置形状与大小    .trim(from: 0.5, to: 1.0) // 半圆    .frame(width: 200, height: 100) // 宽度 200，高度 100    .inset(by: 40) // 缩小40%    // 范围设置    .frame(minWidth: 100, maxHeight: 200) // 最小宽度 100 最大高度 200    .frame(maxWidth: .infinity, maxHeight: 100) // 最大宽度无限制 即填满    // 其他    .border(Color.black) // 黑色外框    .offset(x: 114, y: 514) // 位置偏移Capsule(style: .circular) // r角更大（？RoundedRectangle(cornerRadius: 50) // r角为 50 的圆角矩形
+留白间距Spacer()
+
+颜色与阴影填充RoundedRectangle()    .fill(Color(UIColor.secongarySystemBackground)) // 系统预置背景色 #2    .shadow(color: Color.red .opacity(0.3), radius: 10, x: 0, y: -20) // 阴影配置    .background(Color.yellow) // 填充背景为黄色
+自定义颜色1.前往Assess.xcassets，添加一个Color Set，命名为CustomColor，之后选择颜色。2.
+RoundedRectangle()    .Color(&quot;CustomColor&quot;) // 应用自定义颜色
+渐变色Rectangle()    .fill(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .bottom))    // 渐变颜色，从上到下逐渐由红变蓝
+图像引用图像将图像添加到Assest中，然后用Image()引用。
+Image(&quot;ImageName&quot;) // 引用名为 ImageName 的图片
+这是个免费自由的图片，将以原始大小显示。
+引用系统图标Image(systemName: &quot;globe&quot;) // 内置地球图标
+图像属性Image(&quot;ImageName&quot;)     .resizable() // 可变大小     .scaledToFit() // 适合屏幕（原始比例缩放）     .scaledToFill() // 缩放以填充
+垂直、水平与叠加视图垂直视图var body: some View &#123;    VStack(        alignment: .leading,        spacing: 10    ) &#123;        ForEach(            1...10,            id: \.self        ) &#123;            Text(&quot;Item \($0)&quot;)        &#125;    &#125;&#125;
+上述10个item将按垂直方向排列，如图所示：
+水平视图var body: some View &#123;    HStack(        alignment: .top,        spacing: 10    ) &#123;        ForEach(            1...5,            id: \.self        ) &#123;            Text(&quot;Item \($0)&quot;)        &#125;    &#125;&#125;
+上述5个item将按水平方向排列，如图所示：
+堆叠视图let colors: [Color] =    [.red, .orange, .yellow, .green, .blue, .purple]var body: some View &#123;    ZStack &#123;        ForEach(0..&lt;colors.count) &#123;            Rectangle()                .fill(colors[$0])                .frame(width: 100, height: 100)                .offset(x: CGFloat($0) * 10.0,                        y: CGFloat($0) * 10.0)        &#125;    &#125;&#125;
+例子创建了6种颜色的大小为100x100的正方形堆叠，并偏移10点。
+var body: some View &#123;    ZStack(alignment: .bottomLeading) &#123; // 左下角对齐        Rectangle()            .fill(Color.red)            .frame(width: 100, height: 50)        Rectangle()            .fill(Color.blue)            .frame(width:50, height: 100)    &#125;    .border(Color.green, width: 1)&#125;
+例子创建了2个堆叠于左下角的矩形，并使用绿色外框。
+Stack 属性VStack（仅左右对齐）VStack (alignment: .leading) &#123; // 向左对齐&#125;VStack (alignment: .trailing) &#123; // 向右对齐&#125;
+HStack（仅上下对齐）HStack (alignment: .top) &#123; // 向上对齐&#125;HStack (alignment: .bottom) &#123; // 向下对齐&#125;
+元素对齐方式Image(systemName: &quot;globe&quot;)	.frame(alignment: .leading) // 向左对齐
+视图间距HStack(spacing: 114)&#123; // 设置间距为 114&#125;
+元素间距Image(systemName: &quot;globe&quot;)    .padding(.trailing, 1) // 右间距    .padding(.leading, 14) // 左间距    .padding(.top, 5) // 上间距    .padding(.bottom, 14) // 下间距    .padding(.horizontal, 19) // 四周间距
+待续…
+]]></content>
+      <categories>
+        <category>SwiftUI</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+        <tag>macOS</tag>
+        <tag>SwiftUI</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SwiftUI的一种简易设计</title>
+    <url>/post/91a91cd1.html</url>
+    <content><![CDATA[一个简洁的SwiftUI主页设计。
+
+ 提示参阅 Apple Developer官方网站来了解各种视图。Building layouts with stack views
+
+引入SwiftUI和嵌套视图ZStack。import SwiftUIstruct LocationView: View &#123;    var body: some View &#123;        ZStack &#123;        &#125;    &#125;&#125;       
+引入垂直视图VStack，创建logo与标题。VStack&#123;   Text(&quot;I&quot;)       .font(.system(size: 80))   Text(&quot;Your text here&quot;)       .foregroundColor(.primary)       .font(.largeTitle)&#125;   
+引入水平视图HStack,创建第一块圆角矩形并引入数据。HStack&#123;    VStack(alignment: .center) &#123;        Text(&quot;Text&quot;)            .foregroundColor(.primary)            .font(.system(size: 18, weight: .bold, design: .rounded))        Text(&quot;Text&quot;.uppercased())            .foregroundColor(.primary)            .font(.system(size: 12, weight: .regular, design: .rounded))    &#125;    Spacer()    VStack(alignment: .center) &#123;        Text(&quot;Text&quot;)            .foregroundColor(.primary)            .font(.system(size: 18, weight: .bold, design: .rounded))        Text(&quot;Text&quot;.uppercased())            .foregroundColor(.primary)            .font(.system(size: 12, weight: .regular, design: .rounded))    &#125;    Spacer()    VStack(alignment: .center) &#123;        Text(&quot;24岁&quot;)            .foregroundColor(.primary)            .font(.system(size: 18, weight: .bold, design: .rounded))        Text(&quot;年龄&quot;.uppercased())            .foregroundColor(.primary)            .font(.system(size: 12, weight: .regular, design: .rounded))    &#125;&#125;.padding().foregroundStyle(LinearGradient(colors: [.blue, .indigo], startPoint: .top, endPoint: .bottom)).background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+创建第二块圆角矩形并引入数据VStack(alignment: .leading, spacing: 2) &#123;    Text(&quot;Your text here.&quot;.uppercased())        .font(.headline)        .foregroundColor(.primary)    HStack(alignment: .top, content: &#123;        Text(&quot;Your text here.&quot;)            .foregroundColor(.primary)            .font(.caption)            .multilineTextAlignment(.leading)            .frame(width: 300, height: 32)        Spacer()        Text(&quot;Text&quot;)            .foregroundColor(.primary)            .font(.system(size: 12, weight: .bold))    &#125;)    .padding(.vertical)    HStack &#123;        VStack(alignment: .center, content: &#123;            Text(&quot;Text&quot;)                .foregroundColor(.primary)                .font(.system(size: 24, weight: .bold, design: .rounded))            Text(&quot;Text&quot;.uppercased())                .foregroundColor(.primary)                .font(.system(size: 12, weight: .regular, design: .rounded))        &#125;)        Spacer()        VStack(alignment: .center, content: &#123;            Text(&quot;Text&quot;)                .font(.system(size: 24, weight: .bold, design: .rounded))                .foregroundColor(.green)            Text(&quot;Text&quot;.uppercased())                .foregroundColor(.primary)                .font(.system(size: 12, weight: .regular, design: .rounded))        &#125;)        Spacer()        VStack(alignment: .center, content: &#123;            Text(&quot;Text&quot;)                .foregroundColor(.primary)                .font(.system(size: 24, weight: .bold, design: .rounded))            Text(&quot;Text&quot;.uppercased())                .foregroundColor(.primary)                .font(.system(size: 12, weight: .regular, design: .rounded))        &#125;)    &#125;&#125;.padding().foregroundColor(Color.black.opacity(0.8)).background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+底部小字Text(&quot;Your text here&quot;)    .foregroundColor(.primary)    .padding()    .foregroundStyle(.black)    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+底部按钮Button(&quot;Button&quot;)&#123;&#125;.frame(width:100.0,height:50.0).background(.tint).foregroundColor(.white).cornerRadius(30.0).padding()
+
+完成后再添加Preview，运行后即可看到效果。
+
+完整代码import SwiftUIstruct LocationView: View &#123;    var body: some View &#123;        ZStack &#123;            VStack &#123;                Text(&quot;I&quot;)                    .font(.system(size: 80))                Text(&quot;Text&quot;)                    .foregroundColor(.primary)                    .font(.largeTitle)                HStack&#123;                    VStack(alignment: .center) &#123;                        Text(&quot;Text&quot;)                            .foregroundColor(.primary)                            .font(.system(size: 18, weight: .bold, design: .rounded))                        Text(&quot;Text&quot;.uppercased())                            .foregroundColor(.primary)                            .font(.system(size: 12, weight: .regular, design: .rounded))                    &#125;                    Spacer()                    VStack(alignment: .center) &#123;                        Text(&quot;Text&quot;)                            .foregroundColor(.primary)                            .font(.system(size: 18, weight: .bold, design: .rounded))                        Text(&quot;Text&quot;.uppercased())                            .foregroundColor(.primary)                            .font(.system(size: 12, weight: .regular, design: .rounded))                    &#125;                    Spacer()                    VStack(alignment: .center) &#123;                        Text(&quot;Text&quot;)                            .foregroundColor(.primary)                            .font(.system(size: 18, weight: .bold, design: .rounded))                        Text(&quot;Text&quot;.uppercased())                            .foregroundColor(.primary)                            .font(.system(size: 12, weight: .regular, design: .rounded))                    &#125;                &#125;                .padding()                .foregroundStyle(LinearGradient(colors: [.blue, .indigo], startPoint: .top, endPoint: .bottom))                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))                VStack(alignment: .leading, spacing: 2) &#123;                    Text(&quot;Text&quot;.uppercased())                        .font(.headline)                        .foregroundColor(.primary)                    HStack(alignment: .top, content: &#123;                        Text(&quot;Your text here.&quot;)                            .foregroundColor(.primary)                            .font(.caption)                            .multilineTextAlignment(.leading)                            .frame(width: 300, height: 32)                        Spacer()                        Text(&quot;Text&quot;)                            .foregroundColor(.primary)                            .font(.system(size: 12, weight: .bold))                    &#125;)                    .padding(.vertical)                    HStack &#123;                        VStack(alignment: .center, content: &#123;                            Text(&quot;Text&quot;)                                .foregroundColor(.primary)                                .font(.system(size: 24, weight: .bold, design: .rounded))                            Text(&quot;Text&quot;.uppercased())                                .foregroundColor(.primary)                                .font(.system(size: 12, weight: .regular, design: .rounded))                        &#125;)                        Spacer()                        VStack(alignment: .center, content: &#123;                            Text(&quot;Text&quot;)                                .font(.system(size: 24, weight: .bold, design: .rounded))                                .foregroundColor(.green)                            Text(&quot;Text&quot;.uppercased())                                .foregroundColor(.primary)                                .font(.system(size: 12, weight: .regular, design: .rounded))                        &#125;)                        Spacer()                        VStack(alignment: .center, content: &#123;                            Text(&quot;Text&quot;)                                .foregroundColor(.primary)                                .font(.system(size: 24, weight: .bold, design: .rounded))                            Text(&quot;Text&quot;.uppercased())                                .foregroundColor(.primary)                                .font(.system(size: 12, weight: .regular, design: .rounded))                        &#125;)                    &#125;                &#125;                .padding()                .foregroundColor(Color.black.opacity(0.8))                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))                Text(&quot;Your text here.&quot;)                    .foregroundColor(.primary)                    .padding()                    .foregroundStyle(.black)                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))                Button(&quot;Button&quot;)&#123;                &#125;                .frame(width:100.0,height:50.0)                .background(.tint)                .foregroundColor(.white)                .cornerRadius(30.0)                .padding()            &#125;        &#125;    &#125;        struct LocationView_Previews: PreviewProvider &#123;        static var previews: some View &#123;            LocationView()        &#125;    &#125;&#125;]]></content>
+      <categories>
+        <category>SwiftUI</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+        <tag>macOS</tag>
+        <tag>SwiftUI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows on ARM安装adb与Fastboot驱动解决安卓刷机折腾问题</title>
+    <url>/post/f06ee8de.html</url>
+    <content><![CDATA[写在前面众所周知，Windows on ARM的兼容性其实并不能媲美x86，即使拥有转译。正常的安卓刷机驱动装上去要不就没反应，要不直接报错。
+感谢HikariCalyx提供的驱动使得Fastboot驱动安装成为可能。
+Triple-color company ADB - Fastboot Driver for Windows 10 on ARM
+虽然是Windows 10的驱动，但是Windows 11也是可以用的，毕竟换皮嘛。
+禁用驱动程序强制签名打开系统设置，依次进入恢复-高级重启，点击重新启动。
+
+依次点击疑难解答-高级选项-启动设置，再次重启。
+
+按下键盘上的7，禁用驱动程序强制签名，此时系统将正常启动。
+
+安装证书克隆一下仓库，我们只需要其中的tccadb_arm64_drivers文件夹。
+git clone https://github.com/HikariCalyx/OSTRemote.git &lt;dict&gt;
+
+打开tccadb_arm64_drivers文件夹，打开hctsw.cer,在弹出的对话框中点击安装证书。
+
+注意，你需要为本地主机安装证书，而不是当前用户。
+
+可能会弹出UAC提示，允许即可，接下来选项都保持默认。
+
+看到此对话框就说明证书导入成功了。
+安装驱动将安卓设备置于Fastboot模式，连接电脑，此时设备管理器中将看到名为Android的未知设备。
+
+ 注意对于同时存在Fastboot的Bootloader重启选项的情况，请务必重启到Bootloader。
+
+右键它，点击更新设备驱动程序，然后选择从本地选取驱动程序。
+
+上面的路径直接填写下载的tccadb_arm64_drivers文件夹即可。
+
+继续后将会弹出警告，这是数字签名导致的，选择仍要安装。
+
+大功告成！现在，你可以开机玩机了！
+
+]]></content>
+      <categories>
+        <category>安卓玩机</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>玩机</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WeChat 通行密钥初体验</title>
+    <url>/post/798e5df3.html</url>
+    <content><![CDATA[前置就今天，微信推出了全新的版本8.0.54，老规矩，更新日志还是一句话：
+
+Bug fixes and improvements.
+
+
+张**，不愧是你。
+新的通行密钥功能这版本的WeChat悄悄加入了Apple设备通行密钥登录的功能。这意味着，登录微信只需要简单的面容ID或触控ID验证即可搞定。
+但是明眼人已经看出来了，这是WeChat而不是微信，这意味着，你需要绑定非中国大陆手机号才能使用这个功能。
+设置很简单，进入设置-账号与安全-通行密钥设置，仅需简单的面容ID或触控ID验证即可成功添加通行密钥。
+使用退出WeChat后，登录时会自动弹出面容ID或触控ID认证界面，认证成功后即可登录。
+感想还是那句话，新功能要不大陆版没有，要不搞灰度测试，难道真的就不能普及使用吗？
+有的功能是真的方便啊（CallKit），但是又被砍了，但是据说又要回归了？
+记得上次在新设备上登小号，又是认证又是啥的，硬控我10分钟。
+没话说。
+]]></content>
+      <categories>
+        <category>新功能体验</category>
+      </categories>
+      <tags>
+        <tag>微信</tag>
+        <tag>iOS</tag>
+        <tag>体验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git push/pull 出现’ssh: connect to host github.com port 22: Connection timed out‘的快速解决方案</title>
+    <url>/post/82688e98.html</url>
+    <content><![CDATA[前置本人在执行git push/pull时持续报错如下：
+ssh: connect to host github.com port 22: Connection timed out fatal: Could not read from remote repository.Please make sure you have the correct access rights and the repository exists.
+既然22端口无法连接，那就直接改为443端口。
+解决终端直接编辑ssh配置：
+nano ~/.ssh/config
+加入：
+Host github.com Hostname ssh.github.com Port 443
+重新执行，ssh应该已经可以正常建立连接。
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Solitude 主题初步改造记录</title>
+    <url>/post/c28e60f4.html</url>
+    <content><![CDATA[
+ 更新更新了部分方案，不在原 css&#x2F;js 上直接修改，而是引入自定义 css&#x2F;js 来确保更新主题样式不会丢失。
+
+前置Solitude 确实有些不能满足我日益增长的需求，于是动手对其进行初步修改。
+
+ 注意请做好备份工作！魔改不规范，恢复两行泪！
+
+1、修改文章链接格式如果你的文章标题有中文，那么链接就会包含中文，复制下来直接一团乱麻（尤其是分享的时候）。我们使用hexo-abbrlink来解决这个问题。注意应用完成后可能需要修改主题的配置文件（置顶文章链接等），不然会404。还有评论，可能得去你的数据库手动链接一下评论到新的文章链接。如果你评论数量多的话，那估计比较麻烦（
+安装插件终端定位到博客根目录，输入：
+npm install hexo-abbrlink --save
+修改配置打开_config.yml，将permalink: :year/:month/:day/:title/替换为：
+permalink: post/:abbrlink.htmlabbrlink:     alg: crc32     rep: hex
+一键三连后就完成了，效果如图：
+2.字体更换知周所众，默认字体看久了是会疲劳的。作为自己的博客，换字体肯定是必要的。
+获得字体废话，没字体怎么继续！
+
+ 注意请注意字体版权，在使用字体前，请确保其可以免费使用或者获得授权！
+
+压缩与裁剪字体显然一个字体文件大小几十MB，肯定是会拖慢网站加载速度的，所以速度和美观只能二选一。
+但是有解决方案，可以使用在线工具或者离线工具。
+离线剪裁与压缩字体：
+brew install ripgrepbrew install fonttools brotlipyftsubset fonts/&#123;字体名称&#125;.ttf --text=$(rg -e &#x27;[\w\d]&#x27; -oN --no-filename|sort|uniq|tr -d &#x27;\n&#x27;) --no-hintingfonttools ttLib.woff2 compress -o fonts/&#123;字体名称&#125;.woff2 fonts/&#123;字体名称&#125;.ttf
+参考：
+
+  
+    
+  
+  这是一个外部链接，不能保证安全性。
+  中文字体压缩的那些事
+  hsingko.github.io
+
+
+
+ 提示反正我是没成功过，还是用在线工具吧。经过测试压缩为.woff2是最好的。我这直接给它压到1MB不到。
+
+应用首先在&#x2F;source下创建fonts文件夹，然后把字体扔进去。
+然后新建/themes/solitude/source/css/custom.css，内容如下:
+@font-face &#123;    font-family: &quot;&#123;字体名称&#125;&quot;;    src: url(&quot;../fonts/&#123;字体名称&#125;.woff2&quot;) format(&quot;truetype&quot;);    font-weight: 300;  &#125;
+
+ 提示请自行调整 font-weight。
+
+附：各种字体格式类型对照：
+
+
+字体格式
+字体类型
+
+
+
+.ttf
+truetype
+
+
+.otf
+opentype
+
+
+.woff
+woff
+
+
+.woff2
+woff2
+
+
+.svg
+svg
+
+
+.eot
+embedded-opentype
+
+
+接着，在_config.solitude.yml配置文件中head下引入该CSS：
+extends:  head:      - &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/custom.css&quot;&gt;
+继续修改主题配置文件，应用字体，填入刚才的font-family名称即可：
+font:  font-size: 16px  code-font-size: 16px  font-family: &quot;&#123;字体名称&#125;&quot;  code-font-family: &#x27;&quot;monospace&quot;, monospace&#x27;
+
+最后一键三连就能看到效果了。
+3.修改代码高亮样式个人觉得默认的代码高亮样式有点太亮了，因此对其样式进行修改。
+在/themes/solitude/css/custom.css中加入：
+code:not([class*=&#x27;language-&#x27;]) &#123;    color: var(--efu-red) !important;    background: var(--efu-background) !important;&#125;
+这样可以覆盖原来的样式。接着修改color var和background var的值即可。/themes/solitude/css/_mode/index.styl中存储了所有预设颜色，填入你需要的颜色即可。例如：color var(--efu-red)，即可将其代码高亮修改为红色(#ff3842)。
+自定义颜色注意到该index.styl的格式为：
+text--efu-&#123;name&#125; &#123;hex&#125;
+同时可以看到data-theme=dark和data-theme=light，这意味着可以分别自定义深色和浅色的颜色。
+举个栗子：在/themes/solitude/css/custom.css中加入：
+[data-theme=&quot;dark&quot;] &#123;    --efu-code-background: #2c2c2c;    --efu-code-text: #f47466;&#125;[data-theme=&quot;light&quot;] &#123;    --efu-code-background: #f3f4f4;    --efu-code-text: #f47466;&#125;
+接着继续加入：
+code:not([class*=&#x27;language-&#x27;]) &#123;    color: var(--efu-code-text) !important;    background: var(--efu-code-background) !important;&#125;
+深色效果：浅色效果：
+4.修改引用块颜色个人观点，默认的样式有点太淡了。在/themes/solitude/css/custom.css中加入：
+blockquote &#123;    background-color: var(--efu-secondbg);    color: var(--efu-secondtext)&#125;
+修改两个颜色值即可。颜色预设依然在/themes/solitude/css/_mode/index.styl
+
+ 注意无论什么情况，请不要修改预设颜色，可能造成无法预料的后果！
+
+例如，将引用块颜色与主题色同步：
+blockquote &#123;    background-color: var(--efu-theme);    color: var(--efu-white)&#125;
+
+ 提示因为我两种颜色都适合白字，所以直接用–efu-white了，因为懒。
+
+附：找到要修改元素对应文件的小技巧例如找到代码高亮的元素：首先用万能的F12大法打开开发者工具，左上角抓取对应的元素，找到Styles。点击右上角的index.css，可以看到文件的大概结构。可以确定是css，那么直接定位到/themes/solitude/css/。接下来，关键词搜索，可以找到该条目对应的原始css文件，即例子中的的article-container.styl。找到对应配置，直接修改即可。
+5.右键菜单拓展添加复制当前页面链接新建/themes/solitude/js/copylink.js，内容如下：
+function copyPostLink() &#123;    const postLink = window.location.href;    navigator.clipboard.writeText(postLink).then(() =&gt; &#123;        utils.snackbarShow(&quot;当前页面链接已复制到剪贴板&quot;, false, 2000);    &#125;).catch(err =&gt; &#123;        console.error(&quot;无法复制链接&quot;, err);        utils.snackbarShow(&quot;复制失败，请重试&quot;, false, 2000);    &#125;);&#125;
+修改_config.solitude.yml，引入js：
+extends:   body:       - &lt;script src=&quot;/js/copylink.js&quot; async&gt;&lt;/script&gt;
+然后右键菜单添加该项即可：
+right_menu:  custom_list:     - name: 复制链接       click: copyPostLink()       id: menu-copyPostLink       class:       icon: fas fa-link
+6.边栏添加倒计时此条目参考了: 梦爱吃鱼的方案给主题侧边栏添加倒计时 - 梦爱吃鱼新建/themes/solitude/layout/includes/aside/card_countdown.pug：
+if theme.aside.card_countdown.enable  .card-widget.card-countdown    .item-content      .cd-count-left#countLeft        span.cd-text 距离        span.cd-name#eventName!= theme.aside.card_countdown.event_name        span.cd-time#daysUntil        span.cd-date#eventDate!= theme.aside.card_countdown.event_date      .cd-count-right#countRight
+新建/themes/solitude/source/js/countdown.js：
+
+ 提示若需要自动切换进度条内字体颜色，请将 .cd-many 后面 color 的值改为 –efu-fontcolor 。
+
+const CountdownTimer = (() =&gt; &#123;    const config = &#123;        units: &#123;            day: &#123; text: &quot;今日&quot;, divider: 1, unit: &quot;小时&quot; &#125;,            week: &#123; text: &quot;本周&quot;, divider: 24, unit: &quot;天&quot; &#125;,            month: &#123; text: &quot;本月&quot;, divider: 24, unit: &quot;天&quot; &#125;,            year: &#123; text: &quot;本年&quot;, divider: 24, unit: &quot;天&quot; &#125;        &#125;    &#125;;    function getTimeUnit(unit) &#123;        const now = new Date();        const start = new Date(now.setHours(0, 0, 0, 0));        const end = new Date(now.setHours(23, 59, 59, 999));        if (unit === &#x27;day&#x27;) &#123;            const currentHour = new Date().getHours();            const remaining = 24 - currentHour;            const percentage = (currentHour / 24) * 100;            return &#123;                name: config.units[unit].text,                remaining: remaining,                percentage: percentage.toFixed(2),                unit: config.units[unit].unit            &#125;;        &#125;        const ranges = &#123;            week: () =&gt; &#123;                start.setDate(start.getDate() - start.getDay());                end.setDate(end.getDate() - end.getDay() + 6);            &#125;,            month: () =&gt; &#123;                start.setDate(1);                end.setMonth(end.getMonth() + 1, 0);            &#125;,            year: () =&gt; &#123;                start.setMonth(0, 1);                end.setMonth(11, 31);            &#125;        &#125;;        ranges[unit]?.();        const total = unit === &quot;day&quot; ? 24 : Math.floor((end - start) / 86400000) + 1;        const passed = Math.floor((now - start) / (3600000 * config.units[unit].divider));        const percentage = (passed / total) * 100;        return &#123;            name: config.units[unit].text,            remaining: total - passed,            percentage: percentage.toFixed(2),            unit: config.units[unit].unit        &#125;;    &#125;    function updateCountdown() &#123;        const elements = [&#x27;eventName&#x27;, &#x27;eventDate&#x27;, &#x27;daysUntil&#x27;, &#x27;countRight&#x27;]            .map(id =&gt; document.getElementById(id));        if (elements.some(el =&gt; !el)) return;        const [eventName, eventDate, daysUntil, countRight] = elements;        const timeData = Object.keys(config.units).reduce((acc, unit) =&gt; (&#123; ...acc, [unit]: getTimeUnit(unit) &#125;), &#123;&#125;);        const daysRemaining = Math.round((new Date(eventDate.textContent) - new Date().setHours(0, 0, 0, 0)) / 86400000);        daysUntil.textContent = daysRemaining;        countRight.innerHTML = Object.entries(timeData)            .map(([_, item]) =&gt; `                &lt;div class=&quot;cd-count-item&quot;&gt;                    &lt;div class=&quot;cd-item-name&quot;&gt;$&#123;item.name&#125;&lt;/div&gt;                    &lt;div class=&quot;cd-item-progress&quot;&gt;                        &lt;div class=&quot;cd-progress-bar&quot; style=&quot;width: $&#123;item.percentage&#125;%; opacity: $&#123;item.percentage / 100&#125;&quot;&gt;&lt;/div&gt;                        &lt;span class=&quot;cd-percentage $&#123;item.percentage &gt;= 46 ? &#x27;cd-many&#x27; : &#x27;&#x27;&#125;&quot;&gt;$&#123;item.percentage&#125;%&lt;/span&gt;                        &lt;span class=&quot;cd-remaining $&#123;item.percentage &gt;= 60 ? &#x27;cd-many&#x27; : &#x27;&#x27;&#125;&quot;&gt;                            &lt;span class=&quot;cd-tip&quot;&gt;还剩&lt;/span&gt;$&#123;item.remaining&#125;&lt;span class=&quot;cd-tip&quot;&gt;$&#123;item.unit&#125;&lt;/span&gt;                        &lt;/span&gt;                    &lt;/div&gt;                &lt;/div&gt;            `).join(&#x27;&#x27;);    &#125;    function injectStyles() &#123;        const styles = `            .card-countdown .item-content &#123;                display: flex;            &#125;            .cd-count-left &#123;                position: relative;                display: flex;                flex-direction: column;                margin-right: 0.8rem;                line-height: 1.5;                align-items: center;                justify-content: center;            &#125;            .cd-count-left .cd-text &#123;                font-size: 14px;            &#125;            .cd-count-left .cd-name &#123;                font-weight: bold;                font-size: 18px;            &#125;            .cd-count-left .cd-time &#123;                font-size: 30px;                font-weight: bold;                color: var(--efu-fontcolor);            &#125;            .cd-count-left .cd-date &#123;                font-size: 12px;                opacity: 0.6;            &#125;            .cd-count-left::after &#123;                content: &quot;&quot;;                position: absolute;                right: -0.8rem;                width: 2px;                height: 80%;                background-color: var(--efu-fontcolor);                opacity: 0.5;            &#125;            .cd-count-right &#123;                flex: 1;                margin-left: .8rem;                display: flex;                flex-direction: column;                justify-content: space-between;            &#125;            .cd-count-item &#123;                display: flex;                flex-direction: row;                align-items: center;                height: 24px;            &#125;            .cd-item-name &#123;                font-size: 14px;                margin-right: 0.8rem;                white-space: nowrap;            &#125;            .cd-item-progress &#123;                position: relative;                display: flex;                flex-direction: row;                align-items: center;                justify-content: space-between;                height: 100%;                width: 100%;                border-radius: 8px;                background-color: var(--efu-background);                overflow: hidden;            &#125;            .cd-progress-bar &#123;                height: 100%;                border-radius: 8px;                background-color: var(--efu-theme);            &#125;            .cd-percentage,            .cd-remaining &#123;                position: absolute;                font-size: 12px;                margin: 0 6px;                transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;            &#125;            .cd-many &#123;                color: var(--efu-white);            &#125;            .cd-remaining &#123;                opacity: 0;                transform: translateX(10px);            &#125;            .card-countdown .item-content:hover .cd-remaining &#123;                transform: translateX(0);                opacity: 1;            &#125;            .card-countdown .item-content:hover .cd-percentage &#123;                transform: translateX(-10px);                opacity: 0;            &#125;        `;        const styleSheet = document.createElement(&quot;style&quot;);        styleSheet.textContent = styles;        document.head.appendChild(styleSheet);    &#125;    let timer;    const start = () =&gt; &#123;        injectStyles();        updateCountdown();        timer = setInterval(updateCountdown, 600000);    &#125;;    [&#x27;pjax:complete&#x27;, &#x27;DOMContentLoaded&#x27;].forEach(event =&gt; document.addEventListener(event, () =&gt; &#123;        clearInterval(timer);        start();    &#125;));    document.addEventListener(&#x27;pjax:send&#x27;, () =&gt; timer &amp;&amp; clearInterval(timer));    return &#123; start, stop: () =&gt; timer &amp;&amp; clearInterval(timer) &#125;;&#125;)();
+修改/themes/solitude/layout/includes/widgets/aside/asideSwitch.pug，加入：
+case item    when &#x27;countdown&#x27;        include ./card_countdown.pug
+在_config.solitude.yml中引入：
+aside:  home: # on the homepage    noSticky: &quot;about,countdown&quot;    Sticky: &quot;newestPost,allInfo&quot;  post: # on the article page    noSticky: &quot;about,countdown&quot;    Sticky: &quot;newestPost&quot;  page: # on the page    noSticky: &quot;about,countdown&quot;    Sticky: &quot;newestPost,allInfo&quot;  card_countdown: # aside countdown    enable: true    event_date: &#x27;2025-01-29&#x27;    event_name: 春节
+最后引入js即可：
+extends:  body:      - &lt;script defer pjax src=&quot;/js/countdown.js&quot;&gt;&lt;/script&gt;
+7.边栏添加访客卡片此条目参考了青桔的方案。Solitude添加来访者卡片 - 青桔气球在 奶思猫API 申请你的API，用于 IPv4&#x2F;IPv6 信息查询。
+奶思猫API
+新建/source/aside.yml，内容如下：
+- name: visinfo  title: 访客信息  class: card-welcome  id:  icon: fas fa-location-dot  content_id: welcome-info  content_css: &#x27;height:160px;overflow:hidden&#x27;  content_html: &#x27;&lt;div class=&quot;welcome_swiper-container&quot; id=&quot;welcome-container&quot; style=&quot;width: 100%;height: 100%;margin-top: 6px&quot;&gt;        &lt;div id=&quot;welcome_container_wrapper&quot; class=&quot;swiper-wrapper&quot;&gt;&lt;/div&gt;    &lt;/div&gt;&#x27;
+新建/themes/solitude/source/js/visinfo.js，内容如下：
+let ipLocation; // 确保 ipLocation 在全局范围内定义// 进行 fetch 请求fetch(&#x27;https://api.nsmao.net/api/ip/query?key=&#123;apikey&#125;&#x27;) //填入你自己的apikey.then(response =&gt; &#123;if (!response.ok) &#123;throw new Error(&#x27;Network response was not ok&#x27;);&#125;return response.json();&#125;).then(data =&gt; &#123;ipLocation = data;if (isHomePage()) &#123;showWelcome();&#125;&#125;).catch(error =&gt; console.error(&#x27;Error:&#x27;, error));function getDistance(e1, n1, e2, n2) &#123;const R = 6371;const &#123; sin, cos, asin, PI, hypot &#125; = Math;let getPoint = (e, n) =&gt; &#123;e *= PI / 180;n *= PI / 180;return &#123; x: cos(n) * cos(e), y: cos(n) * sin(e), z: sin(n) &#125;;&#125;;    let a = getPoint(e1, n1);    let b = getPoint(e2, n2);    let c = hypot(a.x - b.x, a.y - b.y, a.z - b.z);    let r = asin(c / 2) * 2 * R;    return Math.round(r);&#125;function showWelcome() &#123;if (!ipLocation || !ipLocation.data) &#123;console.error(&#x27;ipLocation data is not available.&#x27;);return;&#125; let dist = getDistance(-33.89083, -151.199167, ipLocation.data.lng, ipLocation.data.lat); // 修改自己的经度 let pos = ipLocation.data.country; let ip = ipLocation.ip; let posdesc; switch (ipLocation.data.country) &#123;     case &quot;日本&quot;:         posdesc = &quot;よろしく，一起去看樱花吗&quot;;         break;     case &quot;美国&quot;:         posdesc = &quot;Let us live in peace!&quot;;         break;     case &quot;英国&quot;:         posdesc = &quot;想同你一起夜乘伦敦眼&quot;;         break;     case &quot;俄罗斯&quot;:         posdesc = &quot;干了这瓶伏特加！&quot;;         break;     case &quot;法国&quot;:         posdesc = &quot;C&#x27;est La Vie&quot;;         break;     case &quot;德国&quot;:         posdesc = &quot;Die Zeit verging im Fluge.&quot;;         break;     case &quot;澳大利亚&quot;:         posdesc = &quot;一起去大堡礁吧！&quot;;         break;     case &quot;加拿大&quot;:         posdesc = &quot;拾起一片枫叶赠予你&quot;;         break;     case &quot;中国&quot;:         pos = ipLocation.data.prov + &quot; &quot; + ipLocation.data.city + &quot; &quot; + ipLocation.data.district;         switch (ipLocation.data.prov) &#123;             case &quot;北京市&quot;:                 posdesc = &quot;北——京——欢迎你~~~&quot;;                 break;             case &quot;上海市&quot;:                 posdesc = &quot;走在外滩，感受历史与现代的交融。&quot;;                 break;             case &quot;广东省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;广州市&quot;:                         posdesc = &quot;看小蛮腰，喝早茶了嘛~&quot;;                         break;                     case &quot;深圳市&quot;:                         posdesc = &quot;今天你逛商场了嘛~&quot;;                         break;                     default:                         posdesc = &quot;带你感受广东的热情与美食！&quot;;                         break;                 &#125;                 break;             case &quot;浙江省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;杭州市&quot;:                         posdesc = &quot;西湖美景，三月天~&quot;;                         break;                     case &quot;宁波市&quot;:                         posdesc = &quot;来宁波，感受大海的气息。&quot;;                         break;                     default:                         posdesc = &quot;这里是浙江，充满江南的韵味！&quot;;                         break;                 &#125;                 break;             case &quot;四川省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;成都市&quot;:                         posdesc = &quot;宽窄巷子，成都慢生活。&quot;;                         break;                     case &quot;绵阳市&quot;:                         posdesc = &quot;享受科技城的宁静与创新。&quot;;                         break;                     default:                         posdesc = &quot;来四川，品麻辣火锅，赏壮丽山河。&quot;;                         break;                 &#125;                 break;             case &quot;福建省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;厦门市&quot;:                         posdesc = &quot;鼓浪屿听海，厦门美食让人流连忘返。&quot;;                         break;                     case &quot;福州市&quot;:                         posdesc = &quot;有福之州，来此感受千年古城。&quot;;                         break;                     default:                         posdesc = &quot;福建山水如画，美景无处不在。&quot;;                         break;                 &#125;                 break;             case &quot;山东省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;青岛市&quot;:                         posdesc = &quot;来青岛喝啤酒，看大海吧！&quot;;                         break;                     case &quot;济南市&quot;:                         posdesc = &quot;泉城济南，四面荷花三面柳。&quot;;                         break;                     default:                         posdesc = &quot;山东好客，欢迎来感受齐鲁文化！&quot;;                         break;                 &#125;                 break;             case &quot;江苏省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;南京市&quot;:                         posdesc = &quot;六朝古都南京，历史与现代的碰撞。&quot;;                         break;                     case &quot;苏州市&quot;:                         posdesc = &quot;来苏州，感受园林之美。&quot;;                         break;                     default:                         posdesc = &quot;水乡泽国，江南佳丽地。&quot;;                         break;                 &#125;                 break;             case &quot;河北省&quot;:                 posdesc = &quot;燕赵大地，英雄辈出的河北，等你探索！&quot;;                 break;             case &quot;河南省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;郑州市&quot;:                         posdesc = &quot;中原大地，郑州是交通枢纽与历史重镇。&quot;;                         break;                     case &quot;洛阳市&quot;:                         posdesc = &quot;千年古都洛阳，牡丹花开的城市。&quot;;                         break;                     default:                         posdesc = &quot;这里是河南，历史悠久文化灿烂。&quot;;                         break;                 &#125;                 break;             case &quot;湖南省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;长沙市&quot;:                         posdesc = &quot;热辣长沙，吃小龙虾逛黄兴路步行街。&quot;;                         break;                     default:                         posdesc = &quot;湖南，烟雨迷蒙的湘江流过这片土地。&quot;;                         break;                 &#125;                 break;             case &quot;湖北省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;武汉市&quot;:                         posdesc = &quot;来大武汉，过长江大桥，吃热干面！&quot;;                         break;                     default:                         posdesc = &quot;湖北，长江中游的明珠，风景秀丽。&quot;;                         break;                 &#125;                 break;             case &quot;安徽省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;合肥市&quot;:                         posdesc = &quot;创新之城合肥，科教文化汇聚地。&quot;;                         break;                     default:                         posdesc = &quot;安徽山水，黄山、九华山欢迎你。&quot;;                         break;                 &#125;                 break;             case &quot;广西壮族自治区&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;桂林市&quot;:                         posdesc = &quot;桂林山水甲天下，风景如画。&quot;;                         break;                     case &quot;南宁市&quot;:                         posdesc = &quot;绿城南宁，宜居宜游。&quot;;                         break;                     default:                         posdesc = &quot;广西山清水秀，民俗风情浓郁。&quot;;                         break;                 &#125;                 break;             case &quot;贵州省&quot;:                 posdesc = &quot;来贵州，品茅台，赏黄果树瀑布。&quot;;                 break;             case &quot;云南省&quot;:                 switch (ipLocation.data.city) &#123;                     case &quot;昆明市&quot;:                         posdesc = &quot;春城昆明，四季如春，风景秀丽。&quot;;                         break;                     case &quot;大理市&quot;:                         posdesc = &quot;苍山洱海，大理古城，你来了就不想走。&quot;;                         break;                     default:                         posdesc = &quot;云南风景独特，风情万种。&quot;;                         break;                 &#125;                 break;             case &quot;西藏自治区&quot;:                 posdesc = &quot;世界屋脊西藏，神秘而纯净。&quot;;                 break;             case &quot;新疆维吾尔自治区&quot;:                 posdesc = &quot;辽阔新疆，民族风情与壮丽景观并存。&quot;;                 break;             case &quot;内蒙古自治区&quot;:                 posdesc = &quot;草原辽阔的内蒙古，等你来策马奔腾。&quot;;                 break;             case &quot;宁夏回族自治区&quot;:                 posdesc = &quot;宁夏，塞上江南，黄河流经的美丽地方。&quot;;                 break;             case &quot;海南省&quot;:                 posdesc = &quot;阳光、沙滩、椰风海韵，欢迎来海南度假。&quot;;                 break;             default:                 posdesc = &quot;带我去你的城市逛逛吧！&quot;;                 break;         &#125;         break;     default:         posdesc = &quot;带我去你的国家逛逛吧&quot;;         break; &#125; let welcomeInfoElement = document.getElementById(&quot;welcome-info&quot;); if (welcomeInfoElement) &#123;     welcomeInfoElement.innerHTML =         `欢迎来自 &lt;b&gt;&lt;span style=&quot;color: var(--efu-main)&quot;&gt;$&#123;pos&#125;&lt;/span&gt;&lt;/b&gt; 的朋友！💖&lt;br&gt;当前位置距我约 &lt;b&gt;&lt;span style=&quot;color: var(--efu-main)&quot;&gt;$&#123;dist.toFixed(2)&#125;&lt;/span&gt;&lt;/b&gt; 公里！&lt;br&gt;我这（?）还蛮大的（bushi)，欢迎来我这玩～&lt;br&gt;Tip：&lt;b&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;$&#123;posdesc&#125;&lt;/span&gt;&lt;/b&gt;`; &#125;&#125;   function handlePjaxComplete() &#123;   if (isHomePage()) &#123;   showWelcome();   &#125;   &#125;      function isHomePage() &#123;   return window.location.pathname === &#x27;/&#x27; || window.location.pathname === &#x27;/index.html&#x27;;   &#125;      window.onload = function () &#123;   if (isHomePage()) &#123;   showWelcome();   &#125;   document.addEventListener(&quot;pjax:complete&quot;, handlePjaxComplete);   &#125;
+修改_config.solitude.yml，home 的边栏添加刚才的 visinfo：
+aside:  home: # on the homepage    noSticky: &quot;about,visinfo&quot;    Sticky: &quot;newestPost,allInfo&quot;
+最后引入js即可：
+extends:  body:      - &lt;script defer pjax src=&quot;/js/visinfo.js&quot;&gt;&lt;/script&gt;
+8.底部添加自定义图片此条目由青桔的方案修改而来。
+给你的博客底部添加一排宠物 - 青桔气球
+在/themes/solitude/layout/includes/footer.pug加入：
+div#footer-image        img.image.entered.loaded(            src=&quot;/img/sample.png&quot; // 修改为你图片的地址            onerror=&quot;this.onerror=null;this.src=&#x27;/img/404.jpg&#x27;;&quot;             data-lazy-src=&quot;/img/sample.png&quot; // 修改为你图片的地址            alt=&quot;Photo&quot;            data-ll-status=&quot;loaded&quot;        )
+在/themes/solitude/source/css/custom.css中加入：
+#footer-image &#123;    position: relative;    width: 100%;&#125;@media screen and (max-width: 1023px) &#123;    #footer-image img.image &#123;        position: absolute;        bottom: 0;        left: 0;        width: 100%;        max-width: 100%;        height: auto;        margin: 0 auto;        display: block;        opacity: 0.9;        object-fit: cover;    &#125;&#125;@media screen and (min-width: 1024px) &#123;    #footer-image img.image &#123;        position: absolute;        bottom: 0;        left: 50%;        transform: translateX(-50%);        width: 30%;        max-width: 100%;        height: auto;        opacity: 0.9;    &#125;&#125;#footer-bar &#123;    margin-top: 0 !important;&#125;
+
+9.导航栏模糊效果在/themes/solitude/source/css/custom.css中加入：
+[data-theme=light] #nav .menus_items .menus_item .menus_item_child &#123;    background-color: #ffffff4f!important;    backdrop-filter: blur(7px)!important;    -webkit-backdrop-filter: blur(7px)!important&#125;[data-theme=dark] #nav .menus_items .menus_item .menus_item_child &#123;    background-color: #1d1e224f!important;    backdrop-filter: blur(7px)!important;    -webkit-backdrop-filter: blur(7px)!important&#125;[data-theme=dark] #page-header.nav-fixed #nav &#123;    background: #0000006f!important&#125;[data-theme=light] #page-header.nav-fixed #nav &#123;    background: #ffffff4f!important;&#125;#page-header.nav-fixed #nav &#123;    outline: 1px #7c7c7c43 solid!important;    backdrop-filter: blur(7px)!important;    -webkit-backdrop-filter: blur(7px)!important&#125;@media screen and (max-width: 768px) &#123;    #nav &#123;        background:#fff0!important    &#125;&#125;@media screen and (max-width: 768px) &#123;    body[data-type=post] #page-header #nav &#123;        --font-color:#fff    &#125;&#125;@media screen and (max-width: 768px) &#123;    #page-header.nav-fixed #nav &#123;    --font-color: var(--efu-fontcolor)!important;    &#125;&#125;[data-theme=dark] #page-header.nav-fixed #nav &#123;    background: #1d1e224f!important;    backdrop-filter: blur(7px)!important;    -webkit-backdrop-filter: blur(7px)!important&#125;
+10.自定义鼠标指针新建/themes/solitude/source/cur文件夹，然后把你的鼠标指针图片放进去。（cur or png）在/themes/solitude/source/css/custom.css中加入：
+html, body &#123;    cursor: url(&#x27;/cur/nor.cur&#x27;), auto !important; &#125;a, button, .clickable &#123;    cursor: url(&#x27;/cur/link_select.cur&#x27;), pointer !important;&#125;textarea, input, select &#123;    cursor: url(&#x27;/cur/text_select.cur&#x27;), text !important;&#125;* &#123;    cursor: inherit !important;&#125;
+在/themes/solitude/source/js/custom.js中加入：
+document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () &#123;    document.body.style.cursor = &#x27;url(&quot;/cur/nor.cur&quot;), auto&#x27;;    document.querySelectorAll(&#x27;a, button, .clickable&#x27;).forEach(element =&gt; &#123;        element.addEventListener(&#x27;mouseenter&#x27;, function () &#123;            document.body.style.cursor = &#x27;url(&quot;/cur/link_select.cur&quot;), pointer&#x27;;        &#125;);        element.addEventListener(&#x27;mouseleave&#x27;, function () &#123;            document.body.style.cursor = &#x27;url(&quot;/cur/nor.cur&quot;), auto&#x27;;        &#125;);    &#125;);    document.querySelectorAll(&#x27;textarea, input, select&#x27;).forEach(element =&gt; &#123;        element.addEventListener(&#x27;mouseenter&#x27;, function () &#123;            document.body.style.cursor = &#x27;url(&quot;/cur/text_select.cur&quot;), text&#x27;;        &#125;);        element.addEventListener(&#x27;mouseleave&#x27;, function () &#123;            document.body.style.cursor = &#x27;url(&quot;/cur/nor.cur&quot;), auto&#x27;;        &#125;);    &#125;);&#125;);
+
+ 注意请自行修改鼠标指针的名称。当然你要是指针名字一样当我没说。
+
+引入js：
+extends:  body:      - &lt;script src=&quot;/js/custom.js&quot;&gt;&lt;/script&gt;
+11.修改纯色背景即当background: false时的全局背景。在/themes/solitude/source/css/custom.css中加入：
+[data-theme=&quot;dark&quot;] &#123;    --efu-background: #342024;    --efu-card-bg: #342024;    --efu-secondbg: #342024;&#125;
+这样会将预设中的背景色覆盖，效果并不如本站所示。（滑稽）
+12.修改页面&#x2F;操作提示词与以下文件有关：/themes/solitude/languages/default.yml/themes/solitude/languages/zh-CN.yml/themes/solitude/languages/en.yml/themes/solitude/source/tw_cn.js
+13.链接卡
+ 注意进行此修改会导致 Fancybox 图片灯箱无法正常使用。
+
+链接卡样式参考了Ariasakaの小窝：Ariasakaの小窝
+在/themes/solitude/source/css/custom.css中加入：
+.efu-link &#123;    display: grid;    margin: 10px;    background: var(--efu-hltools-bg);    border-radius: 10px;    grid-template-rows: 28px min-content;    grid-template-columns: 80px calc(100% - 80px);    height: 100px;    padding: 5px;    transition: .2s;    -webkit-transition: .3s;    -moz-transition: .3s;    -ms-transition: .3s;    -o-transition: .3s;    position: relative&#125;.efu-link:after &#123;    content: &quot;&quot;;    top: 50%;    position: absolute;    right: 15px;    width: 16px;    height: 16px;    background-color: var(--efu-fontcolor);    -webkit-mask-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB0PSIxNzI1Mjk1MDA0Njc5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE2NTciIGlkPSJteF9uXzE3MjUyOTUwMDQ2NzkiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTgxNi42NTMwOTMgNDY5LjU0NDA0OWMtMS40OTUwNS0xLjQ5NTA1LTMuMDYwNzA5LTIuODc0NDY3LTQuNjc2NTA5LTQuMTU5NzRMNDI4LjQ3NTE5IDc5Ljg5NTY1NWMtMjEuMzUxMjg0LTIxLjM1MDI2MS01NS45Njc2ODYtMjEuMzUwMjYxLTc3LjMxNzk0NiAwLTIxLjM1MDI2MSAyMS4zNTEyODQtMjEuMzUwMjYxIDU1Ljk2NjY2MyAwIDc3LjMxNzk0NmwzNDkuMjU5NTIyIDM1MS4yNDc4MDZMMzQzLjY1NjQwOSA4NjQuODgzMDQ5Yy0yMS4zNTAyNjEgMjEuMzUxMjg0LTIxLjM1MDI2MSA1NS45NjY2NjMgMCA3Ny4zMTg5NyAyMS4zNTAyNjEgMjEuMzUwMjYxIDU1Ljk2NjY2MyAyMS4zNTAyNjEgNzcuMzE3OTQ2IDBsMzkwLjk5ODEzNS0zOTAuNjYxNDY4YzEuNjE2ODI0LTEuMjg2Mjk2IDMuMTgzNTA2LTIuNjY0Njg5IDQuNjc5NTc5LTQuMTYwNzYzIDEwLjc0MDYyMi0xMC43NDA2MjIgMTYuMDczMDctMjQuODM5NzM1IDE2LjAwNjU1Ni0zOC45MTczNThDODMyLjcyNjE2NCA0OTQuMzgyNzYgODI3LjM5MzcxNSA0ODAuMjg0NjcxIDgxNi42NTMwOTMgNDY5LjU0NDA0OXoiIGZpbGw9InZhcigtLWFyaWEtZm9udGNvbG9yKSIgcC1pZD0iMTY1OCI+PC9wYXRoPjwvc3ZnPg==);    mask-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB0PSIxNzI1Mjk1MDA0Njc5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE2NTciIGlkPSJteF9uXzE3MjUyOTUwMDQ2NzkiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTgxNi42NTMwOTMgNDY5LjU0NDA0OWMtMS40OTUwNS0xLjQ5NTA1LTMuMDYwNzA5LTIuODc0NDY3LTQuNjc2NTA5LTQuMTU5NzRMNDI4LjQ3NTE5IDc5Ljg5NTY1NWMtMjEuMzUxMjg0LTIxLjM1MDI2MS01NS45Njc2ODYtMjEuMzUwMjYxLTc3LjMxNzk0NiAwLTIxLjM1MDI2MSAyMS4zNTEyODQtMjEuMzUwMjYxIDU1Ljk2NjY2MyAwIDc3LjMxNzk0NmwzNDkuMjU5NTIyIDM1MS4yNDc4MDZMMzQzLjY1NjQwOSA4NjQuODgzMDQ5Yy0yMS4zNTAyNjEgMjEuMzUxMjg0LTIxLjM1MDI2MSA1NS45NjY2NjMgMCA3Ny4zMTg5NyAyMS4zNTAyNjEgMjEuMzUwMjYxIDU1Ljk2NjY2MyAyMS4zNTAyNjEgNzcuMzE3OTQ2IDBsMzkwLjk5ODEzNS0zOTAuNjYxNDY4YzEuNjE2ODI0LTEuMjg2Mjk2IDMuMTgzNTA2LTIuNjY0Njg5IDQuNjc5NTc5LTQuMTYwNzYzIDEwLjc0MDYyMi0xMC43NDA2MjIgMTYuMDczMDctMjQuODM5NzM1IDE2LjAwNjU1Ni0zOC45MTczNThDODMyLjcyNjE2NCA0OTQuMzgyNzYgODI3LjM5MzcxNSA0ODAuMjg0NjcxIDgxNi42NTMwOTMgNDY5LjU0NDA0OXoiIGZpbGw9InZhcigtLWFyaWEtZm9udGNvbG9yKSIgcC1pZD0iMTY1OCI+PC9wYXRoPjwvc3ZnPg==)&#125;.efu-link-tip &#123;    grid-column-start: 1;    grid-column-end: 3;    grid-row: 1;    display: inline-flex;    white-space: nowrap;    font-size: 12px;    line-height: 1.5;    color: var(--efu-fontcolor);    margin: 0 15px;    padding-top: 5px;    border-bottom: var(--efu-code-background)&#125;.efu-link-subtitle &#123;    grid-column: 2;    grid-row: 3&#125;.efu-link-img &#123;    grid-column: 1;    grid-row-start: 2;    grid-row-end: 4;    margin: auto;    border-radius: 50%;    width: 60px;    height: 60px;    object-fit: cover&#125;.efu-link-title &#123;    white-space: nowrap;    overflow: hidden;    text-overflow: ellipsis;&#125;.efu-link-subtitle &#123;    font-size: 12px;    color: var(--efu-fontcolor)&#125;.efu-link:hover &#123;    background-color: var(--efu-theme);    box-shadow: 0 0 8px var(--efu-theme);    border: 1px solid var(--efu-theme)&#125;.efu-link:hover * &#123;    color: #fff&#125;.efu-link:hover:after &#123;    background-color: #fff&#125;.article-container img:not(.post_bg) &#123;    border-radius: 12px;    object-fit: cover;    display: block;    margin: auto;    max-width: 90%;    max-height: 450px;  &#125;
+新建/themes/solitude/source/js/link-decorator.js，内容如下：
+function decorateLinks() &#123;    const postContainer = document.querySelector(&#x27;.post-content&#x27;);    if (!postContainer) return;      const links = postContainer.querySelectorAll(&#x27;a[href]&#x27;);    links.forEach(link =&gt; &#123;      const href = link.getAttribute(&#x27;href&#x27;);      const title = link.innerText.trim();        if (href.startsWith(&#x27;http&#x27;) &amp;&amp; !href.includes(window.location.hostname)) &#123;        const card = document.createElement(&#x27;div&#x27;);        card.classList.add(&#x27;efu-link&#x27;);        card.style.cursor = &#x27;pointer&#x27;;          const url = new URL(href);        const domain = url.hostname.replace(/^www\./, &#x27;&#x27;);          card.innerHTML = `          &lt;div class=&quot;efu-link-img&quot;&gt;            &lt;img src=&quot;https://s1.imagehub.cc/images/2024/12/02/632726f0a6dadcc20df6371b774148db.png&quot; alt=&quot;Link Thumbnail&quot;&gt;          &lt;/div&gt;          &lt;div class=&quot;efu-link-tip&quot;&gt;这是一个外部链接，不能保证安全性。&lt;/div&gt;          &lt;div class=&quot;efu-link-title&quot;&gt;$&#123;title&#125;&lt;/div&gt;          &lt;div class=&quot;efu-link-subtitle&quot;&gt;$&#123;domain&#125;&lt;/div&gt;        `;          card.addEventListener(&#x27;click&#x27;, () =&gt; &#123;          window.open(href, &#x27;_blank&#x27;);        &#125;);          link.replaceWith(card);      &#125;    &#125;);  &#125;  setTimeout(() =&gt; &#123;    document.addEventListener(&#x27;pjax:complete&#x27;, decorateLinks);  &#125;, 1000);  document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () &#123;    decorateLinks();    document.addEventListener(&#x27;pjax:complete&#x27;, decorateLinks);  &#125;);
+最后引入一下 js 就大功告成！
+extends:  body:      - &lt;script defer pjax src=&quot;/js/link-decorator.js&quot;&gt;&lt;/script&gt;
+14.加个聊天气泡在Hexo 根目录下新建一个scripts 文件夹，里面存放chat.js，内容如下：
+hexo.extend.tag.register(&#x27;chat&#x27;, function(args, content) &#123;    const [role, nickname] = args;    const text = hexo.render.renderSync(&#123; text: content, engine: &#x27;markdown&#x27; &#125;);    return `      &lt;div class=&quot;chat-item $&#123;role&#125;&quot;&gt;        &lt;div class=&quot;chat-nickname&quot;&gt;$&#123;nickname&#125;&lt;/div&gt;        &lt;div class=&quot;chat-bubble&quot;&gt;$&#123;text&#125;&lt;/div&gt;      &lt;/div&gt;    `;  &#125;, &#123;ends: true&#125;);
+在/themes/solitude/source/css/custom.css中加入：
+[data-theme=&quot;dark&quot;] &#123;    --efu-chat-background: #4b3539;    --efu-chat-a-background: #2b3a5c;&#125;[data-theme=&quot;light&quot;] &#123;    --efu-chat-background: #332c36;    --efu-chat-a-background: #f7f9fe;&#125;.article-post-content-chat-container &#123;    margin: 0;  &#125;  .chat-item &#123;    display: flex;    margin-bottom: 0rem;    position: relative;  &#125;.chat-item.user &#123;    justify-content: flex-end;    margin-bottom: 0rem  &#125;  .chat-item.assistant &#123;    justify-content: flex-start;    margin-bottom: 0rem  &#125;.chat-bubble &#123;    padding: 0px 12px;    border-radius: 10px;    max-width: 70%;    max-height: 50%;    word-wrap: break-word;    word-break: break-word;    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  &#125;  .chat-item.user .chat-bubble &#123;    background-color: var(--efu-chat-background);    text-align: left;    color: #ffffff;    margin-top: 15px;  &#125;  .chat-item.assistant .chat-bubble &#123;    background-color: var(--efu-chat-a-background);    text-align: left;    color: var(--efu-fontcolor);    margin-top: 15px;  &#125;.chat-item.user .chat-nickname &#123;    position: absolute;    top: -18px;    right: 0;    font-size: 12px;    font-weight: bold;    color: var(--efu-fontcolor);    background-color: var(--efu-background);    padding: 2px 5px;    margin-top: 15px;    border-radius: 5px;    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);  &#125;  .chat-item.assistant .chat-nickname &#123;    position: absolute;    top: -18px;    left: 0;    font-size: 12px;    font-weight: bold;    color: var(--efu-fontcolor);    background-color: var(--efu-background);    padding: 2px 5px;    margin-top: 15px;    border-radius: 5px;    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);  &#125;
+这样就完成了，如果需要在Markdown中引用，这么写就可以：
+&#123;% chat assistant &quot;English&quot; %&#125;Hello, world!&#123;% endchat %&#125;&#123;% chat user &quot;简体中文&quot; %&#125;你好，世界！&#123;% endchat %&#125;
+效果：
+
+      
+        English
+        Hello, world!
+
+      
+    
+
+
+      
+        简体中文
+        你好，世界！
+
+      
+    
+15.安卓样式加载条找到/themes/solitude/source/css/layout/pace.styl，直接全部替换：
+if hexo-config(&#x27;loading.pace&#x27;)  .pace    pointer-events: none    user-select: none    z-index: 2000    position: fixed    top: 55px    left: 0    right: 0    height: 4px    background: var(--efu-loader)    overflow: hidden    &amp;.pace-inactive      opacity: 0      transition: .3s      .pace-progress        opacity: 0        transition: .3s ease-in    .pace-progress      box-sizing: border-box      transform: translate3d(0, 0, 0)      z-index: 2000      display: block      position: absolute      top: 0      left: 0      height: 100%      width: 0      background: var(--efu-theme)      animation: android-loader 2s ease infinite      background-size: 200%@keyframes android-loader  0% &#123;    width: 0;  &#125;  50% &#123;    width: 50%;  &#125;  100% &#123;    width: 100%;  &#125;
+Troubleshoot如果遇到样式不生效，不正常，不显示的问题，一般可以通过清除浏览器缓存解决。如果还是不行，那就检查一下修改有没有问题，或者有没有保存吧…
+先更到这吧，如果还想改什么就接着更新…
+]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>Hexo</tag>
+        <tag>主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/post/4a17b156.html</url>
+    <content><![CDATA[梦开始的地方。夢開始的地方。夢が始まる場所。꿈이 시작되는 곳.Where dreams begin.Donde comienzan los sueños.Dove iniziano i sogni.Là où les rêves commencent.Wo Träume beginnen.Waar dromen beginnen.Nơi giấc mơ bắt đầu.Мөрөөдөл хаанаас эхэлдэг.Там, где начинаются мечты.အိပ်မက်တွေက ဘယ်ကစတာလဲ။จุดเริ่มต้นของความฝันحيث تبدأ الأحلام.
+]]></content>
+      <categories>
+        <category>hexo default post</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iTerm2 个人快速美化指北</title>
+    <url>/post/662a8c4d.html</url>
+    <content><![CDATA[起因因 macOS 的默认终端可玩性太低，遂转用iTerm2代替原终端，在寻找插件的同时顺便做了简单的美化。好看才有动力（暴论
+
+ 注意本文中软件均使用 Homebrew 安装，若没有安装 Homebrew，请先安装。目前 macOS 默认终端为 zsh。
+
+安装 iTerm2 和 Oh My Zshbrew install iterm2
+
+Oh My Zsh官方自动安装脚本
+sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+
+安装前置字体GitHub - romkatv&#x2F;powerlevel10k将Fonts下的四个字体下载后直接安装。导航到iTerm2的Settings-&gt;Profiles-&gt;Font，将字体修改为MesloLGS NF
+背景图修改导航到iTerm2的Settings-&gt;Profiles (此处可新建一个Profile备份)，选择Window即可更改背景。可以根据需要自行调节其它配置。
+安装 Powerlevel10k 主题brew install powerlevel10k
+编辑.zshrc，加入：
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+同时删除原ZSH_THEME=xxx
+应用配置：
+source ~/.zshrc
+第一次加载时会进入 Powerlevel10k 的配置向导，根据提示选择外观即可。若没有弹出则手动唤出：
+p10k configure
+
+部分 Pluginsbrew install zsh-autosuggestions #自动补全brew install zsh-syntax-highlighting #语句高亮
+添加到Plugins下方即可，注意 Homebrew 安装需要手动指定路径。
+最终效果如下：（使用fastfetch）
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS环境下部署Hexo并应用Butterfly主题+部署到Github</title>
+    <url>/post/bf1c8be8.html</url>
+    <content><![CDATA[ 网上好多教程都是 Windows 环境下的， 那我就做一篇macOS环境下的吧。
+ 不能说很像，但是事实就是很像，又水一篇。
+ Butterfly主题的诞生离不开Jerry，本网站即使用Hexo框架以及Butterfly主题构建。
+开始之前
+ 注意本文中的部分命令的执行及网站访问可能需要特定的网络环境。如果你在中国大陆地区，可能会出现速度缓慢甚至无法访问的情况，进而出现Error。你可以使用科学上网解决该问题。你需要的是耐心，细心，完善网站是一个漫长的过程。
+
+环境部署安装 git使用 Homebrew 进行安装如果你未安装过Homebrew，请在终端使用该命令安装：
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+
+完成后，直接在终端中输入：
+brew install git
+安装Node.js在其官网上下载macOS版本并安装。
+Node.js
+检查安装是否完成node -vnpm -vgit -v
+若能出现版本号即安装成功。
+Hexo部署安装位置选择你喜欢的位置放置新建一个文件夹用于你的所有blog文件。路径最好不要存在中文或其他雷普的符号。
+接下来，在终端中定位到此目录：
+cd &lt;指定的博客目录&gt;# 例如 cd /users/rin/blogfile
+
+ 提示你可以直接将文件夹拖放到终端中来定位。
+
+安装Hexo并且初始化在终端中直接输入：
+sudo npm install -g hexo-clihexo inithexo installhexo ghexo s
+此时打开浏览器并访问localhost:4000，如果出现hexo的初始界面即表明hexo已经部署成功。
+
+ 提示若要停止本地服务器，请在终端中按 Control+C
+
+Butterfly主题配置安装在终端中执行：
+# 克隆Butterfly仓库git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly# 安装 pug 以及 stylus 的渲染器sudo npm install hexo-renderer-pug hexo-renderer-stylus --save
+
+应用主题使用Nano或VS Code打开hexo根目录下的_config.yml，修改其中的主题配置：
+theme: butterfly
+
+后续配置请参考：Butterfly官方文档
+部署博客至Github新建仓库新建一个仓库，注意名字必须是[username].github.io
+配置SSH keys在终端中执行：
+ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;
+前往/users/username/.ssh，打开id_rsa.pub,复制其中全部内容。
+登录github，在Settings中找到SSH keys并添加刚才复制的key。
+在终端中执行检查绑定情况：
+ssh -T git@github.com
+出现Successfully即绑定成功。
+上传blogsudo npm install hexo-deployer-git --save # 安装 hexo-deployer-githexo d
+中间会出现一个登录界面，可以用令牌登录。
+
+ 2023-12-24 更新若出现Spawn failed at ChildProcess错误，可以参考此解决方案关于在macOS上部署hexo到github时出现Spawn-failed-at-ChildProcess报错的解决方案
+
+等待部署，过程大约30-60s。
+这时打开[username].github.io，即可访问你的博客。
+后续所有文章均使用 Markdown 编写因此，学习它是很重要的。
+Markdown 教程
+配置_config.yml用来个性化你的博客。
+访问Hexo官方文档，Butterfly官方文档以及Github进行学习从入门到 入土 完善。
+附：Hexo官方文档
+Butterfly官方文档
+其他：Terminal Command Cheat Sheet# 安装依赖/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;brew install gitbrew install node@22# 检查安装是否完成node -vnpm -vgit -v# 定位目录cd &lt;指定的博客目录&gt;# 安装Hexo并且初始化sudo npm install -g hexo-clihexo inithexo installhexo ghexo s# 克隆Butterfly仓库git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly# 安装 pug 以及 stylus 的渲染器sudo npm install hexo-renderer-pug hexo-renderer-stylus --save# 配置ssh keysssh-keygen -t rsa -C &quot;你的邮箱地址&quot;ssh -T git@github.com# 上传blogsudo npm install hexo-deployer-git --savehexo d]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>macOS</tag>
+        <tag>Hexo</tag>
+        <tag>主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从 Butterfly 迁移到 Solitude 主题</title>
+    <url>/post/ad6b1c36.html</url>
+    <content><![CDATA[这是一篇大水文前置在经历了几天与审美疲劳的斗争之后，我决定将我博客的主题从 Butterfly 切换为Solitude。
+其实 Hexo 切换主题还是非常简单的。
+安装克隆仓库git clone -b main https://github.com/everfu/hexo-theme-solitude.git themes/solitude
+
+ 注意由于应用主题之前已经安装了 pug 以及 stylus 的渲染器，因此不需要重复安装。
+
+应用主题使用 Nano 或 VS Code 打开hexo根目录下的_config.yml，修改其中的主题配置：
+theme: solitude
+配置
+ 注意强烈建议对当前的博客文件夹进行备份，如果出问题还可以还原！
+
+优化流程对于macOS &#x2F; Linuxcp -rf ./themes/solitude/_config.yml ./_config.solitude.yml
+对于 Windowscopy .\themes\solitude\_config.yml .\_config.solitude.yml
+原主题的操作此时，可以将原有的_config.butterfly.yml移到其他位置以供参考。
+迁移配置Solitude的配置文件与Butterfly有很大的不同，但总体结构相似。
+对于之前配置文件中部分配置的内容，可以直接照搬部分值，但是不要改变结构。
+此处列举评论与搜索功能的迁移。（我使用的是algolia和twikoo）
+迁移搜索# --------------------------- start ---------------------------# Searchsearch:  enable: true  # type: 使用的搜索引擎 / search engine  type: algolia # local / algolia  tags:    # - Solitude    # - Hexo  algolia:    # hits:    #   per_page: 6  local:    preload: false    CDN: # url: search.xml# --------------------------- end ---------------------------
+直接将enable改为true，type改成algolia即可
+迁移评论# --------------------------- start ---------------------------# Comment# 评论comment:  # Which commenting system to use(e.g. waline or waline,twikoo)  # 使用哪个评论系统（例如： waline or waline,twikoo）  use: twikoo # waline, twikoo, valine, artalk, giscus # Up to two comment systems can be turned on at the same time  # Whether to display the hot comment switch.  # 是否显示热门评论开关  commentBarrage: false  # Lazy load  # 懒加载评论区  lazyload: false  # Whether to display the comment count  # 显示评论数  count: true  # PV  pv: false  # Avatar  avatar: https://gravatar.com/avatar  # Hot comment tips  # 热评提示  hot_tip:    enable: false    # Number of hot comments    count: 3  # recent comments(⚠️ Comments need to be configured first.)  # 最新评论(⚠️ 需要先配置评论)  newest_comment:    enable: true    storage: .5 # 缓存时间 1: 1天 / .5 : 半天 / Cache time 1: 1 day .5 : half a day    limit: 5 # 评论数 / Number of comments# Twikoo: https://solitude.js.org/comment/twikootwikoo: # https://twikoo.js.org/  envId: https://***.***/  region: # Environment locale, default is ap-shanghai, Tencent cloud environment fill ap-shanghai or ap-guangzhou; Vercel environment do not fill the.  style: true # Use custom styles when turned on  accessToken: # AccessToken  option: # twikoo option# Waline: https://solitude.js.org/comment/walinewaline: # https://waline.js.org/  envId: # url: https://waline.wzsco.top  pageview: false # Whether to enable page access statistics  option: # waline configuration item# Valine: https://solitude.js.org/comment/valinevaline:  appId:  appKey:  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)  avatar: # https://valine.js.org/avatar.html  visitor: false  style: true # Use custom styles when turned on  option: # options list# Artalk: https://solitude.js.org/comment/artalk# Artalk: https://solitude.js.org/zh/comment/artalkartalk:  server: # server url  site: # site name  option: # options# Giscus: https://solitude.js.org/comment/giscusgiscus:  repo: # GitHub repository name  repo_id: # GitHub repository ID  category_id: # GitHub repository category ID  theme:    light: light    dark: dark  option:# --------------------------- end ---------------------------
+将use改为twikoo,找到 valine 的配置填入之前的envId即可。
+Solitude似乎提供了更多的配置选项，可以按需修改。
+后续对于其它有较大区别的配置，请自行对照原来的配置修改。
+附Solitude官方文档
+]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>Hexo</tag>
+        <tag>主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【里程碑】Broadcom 宣布 VMware Workstation 与 Fusion 对个人及商业用户免费</title>
+    <url>/post/53edf0be.html</url>
+    <content><![CDATA[2024 年 5 月，VMware 宣布对个人用户免费提供 VMware Workstation Pro 和 Fusion Pro 。而2024 年 11 月 11 日，博通 (Broadcom) 直接更进一步，宣布这两款软件对个人和商业用户完全免费&#96;。
+看到这个消息我其实是震惊的，毕竟我早就开始用 VMware Workstation Pro 了，记得那时还是 VMware Workstation 9。
+我只记得当时直接搜vmware密钥就能直接出来一大堆，而且随便一个就能用。
+上头真的管吗（笑）
+总的来说至少目前确实是好事，毕竟别人付费它免费，肯定更加有竞争力，也能提高知名度。
+但是长期来看并不好下结论，作为商业公司，长期使用这种方式可能导致维护与开发的问题。
+但是，VMware 大版本到底更新了啥？？我也不知道。
+又不是不能用（笑）
+对于个人来说，终于可以大大方方用正版了。（确信）
+参考：震撼发布！VMware Fusion 和 Workstation 完全免费，企业用户也不再需要付费VMware Workstation Pro: Now Available Free for Personal Use
+]]></content>
+      <categories>
+        <category>大事记</category>
+      </categories>
+      <tags>
+        <tag>VMware</tag>
+        <tag>大事记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用iOS 18.1一周多后，我很无语</title>
+    <url>/post/9bbf7230.html</url>
+    <content><![CDATA[前置10月28日，啪一下，很快啊，iOS 18.1、iPadOS 18.1、watchOS 11.1正式版就出来了。
+我也是第一时间将手上所有设备都更新了该版本。
+
+ 更(shou)新(hai)设备名单iPhone 16 ProiPad Pro 11-inch (M4)Apple Watch Series 8MacBook Pro 14” (2023年11月)
+
+iOS 18.1最明显的点就是设置中多了Apple Intelligence的选项，可以装B。
+然而这只是噩梦的开始。
+由于我的系统语言是英语(澳大利亚)，因此Apple Intelligence并没有启用，但是我还是能感受到耗电明显加快。
+
+相较于18.0.1，这个续航大约少了快2个小时。。。
+然后就是发热，虽然没有这么离谱，但是还是可以感受到比18.0.1严重。（应该是调度没有那么保守了罢）
+还有各种bug，比如动画随机掉帧，控制中心图标消失，文件夹深浅色显示异常，iPhone镜像状态栏偏移的问题...要不就是根本没解决，要不就是新的。
+Beta版逐渐把那个硕大的网络控制模块分开就是最好的挤牙膏证明。
+好处确实也有，控制中心自定义程度更大，通话录音…都是些小升级，甚至可有可无。
+iPadOS 18.1主要还是耗电！耗电！耗电！
+库克，克雷格！！！
+
+本人用iPad在学校做笔记，电量在那掉得跟水一样。
+还有控制中心的抽象个人热点图标还在（我的iPad是Wi-Fi版本）：
+
+除了AI，没感觉iPad有很大的更新，最近Apple正在疯狂在AI上发力赶上友商，毕竟说落后两年嘛。
+watchOS 11.1逆天掉电。
+但是过几天好了，应该是 Apple 特色了。
+macOS 15.1还不错，或者说无感，Mac目前唯一正常使用AI的设备，国行Mac破解后可以在澳大利亚英语使用Apple Intelligence。
+总结：iOS 和 iPadOS，菜就多练！]]></content>
+      <categories>
+        <category>系统简评</category>
+      </categories>
+      <tags>
+        <tag>tvOS</tag>
+        <tag>日常</tag>
+        <tag>macOS</tag>
+        <tag>iOS</tag>
+        <tag>体验</tag>
+        <tag>iPadOS</tag>
+        <tag>watchOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>周末杂记 (12.7-8)</title>
+    <url>/post/ee82af15.html</url>
+    <content><![CDATA[前置忙碌的考试周终于画上了句号。接下来就是一周水课了。主要是平时出去比较少（泡在哪应该都懂吧），城市探索度太低了。（
+刚好，这个周末和几个朋友可以出去玩。好好欣赏一下这个城市。
+Sat.Night Darling Harbour，启动！
+
+12月每周六晚上都有烟花，鉴于下周就要回国了，早看早享受吧。此段直接上图：
+走街
+Sun.起了个大晚，弄好都11点多了。
+Morning上午出去剪了个头，两个月没剪头发都要炸了。（）以下是对话经过：
+
+      
+        理发师
+        你这头发有点长啊。
+
+      
+    
+
+
+      
+        我
+        是啊，我来这两个月还是第一次剪。
+
+      
+    
+我有点感觉她在憋笑，但是最好是幻视。（
+但是看到我朋友也在笑，好吧，那可能是真的。（
+剪完花了46刀，自觉有点高。
+Noon中午去吃了Show Neua Thai Street Food，泰国菜，挺好吃，就是吃多了感觉味道有点怪。（
+Afternoon和朋友在街上不定点瞎逛，主要去的是MeeQ Sydney，人话就是JellyCat。
+最后啥都没买（），但是朋友买了个。
+据不完全统计，路线出现了多次重合：
+
+
+
+Suburb
+次数
+
+
+
+Town Hall
+3
+
+
+Central
+3
+
+
+Redfern
+1
+
+
+反正上周六开卷的咖啡厅是路过了两次。
+其他：
+Evening经典的1915 Lanzhou Beef Noodle，传统牛肉面 + 羊肉串收尾。
+主要是当天天气不是很好，所以照片不是很多。qwq
+总结最后累死了（）不过还是挺值的。探索度刷了点，但是还是不够。
+根据路线重合的话，悉尼其实挺小的。
+还有4年，足够刷个底朝天了。（）
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上为游戏启用MetalHUD</title>
+    <url>/post/adc37c83.html</url>
+    <content><![CDATA[概述作为帧率敏感型玩家极客，肯定希望在游戏时看到电脑的实时状况。
+因此在 Windows 下，我们有MSI Afterburner这个解决方案，可以在游戏中看到实时帧率和占用情况。
+macOS就不友好了：没有第三方软件可以做到这一点。
+但是！macOS自带了可供开发者调试游戏的 MetalHUD，即使是供开发者使用，我们也可以手动启用它。Monitoring your Metal app’s graphics performance
+通解
+ 注意Crossover 玩家请跳过此部分。MetalHUD 并不适用于 OpenGL。
+
+启用关闭目前你正在运行的所有游戏进程。
+打开终端，直接输入：
+/bin/launchctl setenv MTL_HUD_ENABLED 1
+启动游戏，可以发现 MetalHUD 已经成功显示。
+
+禁用打开终端，直接输入：
+/bin/launchctl setenv MTL_HUD_ENABLED 0
+下次运行游戏时将不再显示MetalHUD。
+CrossOver玩家启用打开CrossOver主界面
+在你要启用的游戏上右键并选择Run with Options
+在弹出窗口中 Environment variables 后面填入MTL_HUD_ENABLED=1
+
+启动游戏，可以发现 MetalHUD 已经成功显示。
+禁用将MTL_HUD_ENABLED=1删除即可。
+
+ 提示若重启Mac，则需要重新操作一遍。
+
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>玩机</tag>
+        <tag>macOS</tag>
+        <tag>游戏</tag>
+        <tag>CrossOver</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新一代互联网络——澳洲nbn组网杂谈</title>
+    <url>/post/28584484.html</url>
+    <content><![CDATA[起因应该是很久没有更新了，事情实在是太多了（悲），趁着搬家的空挡水一篇。针对宽带需求对于新房的宽带的接入方面进行了解，得知澳洲目前正在推广的全新网络接入方式——nbn (National Broadband Network 国家宽带网络)。官方描述 (简体中文) 为：
+
+nbn™网络是澳大利亚激动人心的新一代固定电话和互联网络。目前正在澳大利亚全国推出，并且其设计的宗旨是让所有人都能享受到快速可靠的网络，无论您居住在哪里。nbn co limited (nbn)是一个政府商业实体，是推出 nbn™网络的幕后团队。我们负责向您的电话和网络供应商提供批发服务。做为批发商，我们不能直接对公众销售。也就是说如&gt; 果您希望将所使用的服务转到nbn™网络，您需要与您选择的电话或网络供应商联系，并选择一个适合您需要的新计划。
+
+Information on Simplified Chinese - nbn
+同时另外还有一种接入方式，即5G Home Internet，也就是路由器通过接收运营商的5G信号来进行Wi-Fi信号共享的方案。不过受限于其原理，网络并不如宽带稳定，因此依旧考虑使用nbn接入。
+多技术混合由于澳洲参差不齐的网络基建质量，nbn采用了多种技术来满足不同地区基建设施的需求。除开有线连接和无线连接两个大类之外，其下又可细分为多种：
+光纤到路边（FTTC）用户通过铜线连接，利用现有的电话插头接入FTTC网络。nbn为连接设备提供一个以太网端口，用于连接路由器。通常用于光纤电缆已靠近每户或每家商户的情况。它通过位于街道井道内、靠近物业边界的小型配线单元 (DPU) 连接到现有的铜线。每个 DPU 最多可服务四个连接。DPU 由 nbn 提供的市电供电的 FTTC 连接设备（NTD）供电。
+光纤到节点（FTTN）现有铜缆连接将保留，并使用现有插头，用户使用 VDSL2 调制解调器接入网络，该调制解调器通常从零售服务提供商 (RSP) 购买。FTTN 网络由从交换机到节点的光纤和从节点到现有配线架的铜缆组成。然后，每户用户都接入一对铜缆。每个节点最多可服务384户家庭。
+
+弊端很显然，这两种方案都有一个问题，因为末端使用了原有电话线的铜线，抗干扰能力极差，且传输速率限制导致无法实现超高宽带网速，因此部分地区根本无法购买高速套餐（悲）。
+光纤到户 (FTTP)FTTP 基于无源光网络（PON）技术，通过位于中心机房的光线路终端（OLT）将下行数据调制为光信号，经由主干光纤（Distribution Fibre）传输至无源分光器（HUB&#x2F;Splitter）进行物理层级的功率分配，再通过配线光纤（Local Fibre）与入户光纤（Drop Fibre）实现点对多点（P2MP）的扇出，最终在用户侧由网络终端单元（NTU&#x2F;ONT）完成光电转换与协议解封装。
+显然，FTTP 才是最最优解，不过是否采用 FTTP 是由家庭住址决定的，通过各大运营商的网站输入地址即可查询接入方案。
+可以查询到我家的住址已经预先安排了 FTTP 接入，因此可以直接购入高速套餐。
+
+服务迁移在家中很快就找到了nbn白盒子，并且为4口，证明该地址已经接入nbn，且最多可以开设4个网络服务：连接Wi-Fi网络后发现该地址已经预先签约了Occom公司的网络服务，进行测速后发现下载峰值约为 500Mbps，显然这是一个 500M 的套餐。
+
+本着体验不降级的原则，我选择了 Superloop 的 1000M 套餐。由于nbn的原理，切换服务说白话就是不同的服务商 (Wholesale) 来“顶号”，如图所示：
+
+因此，直接在新运营商的官网上下单即可，然后等待新服务激活。因为没有旧nbn服务的账单，提示激活可能要比较久的时间。。。
+但是，4分钟后我就收到了服务已激活的邮件。（！？逆天效率？！）
+按照提示将路由器拨号方式改为自动ip，至此服务迁移成功。
+
+获取独立公网IPv4地址
+ 注意需要一定的安全意识再去尝试获得公网IPv4地址，否则你在公网上无异于裸奔。
+
+不同于国内千金难求的独立公网IPv4，澳洲的独立v4还是相对简单获取的，动态v4甚至不需要额外加钱。
+不过为了缓解IPv4资源枯竭，运营商默认还是会把普通用户加入CGNAT（运营商级地址转换），导致外边无法访问设备，不过可以直接联系客服申请。
+CGNAT 的弊端：
+
+与任何形式的NAT一样，CGNAT违背了端到端原则.
+由于其有状态的特性，CGNAT有显著的安全性、可扩展性和可靠性问题。
+CGNAT使执法行动查阅变得更加困难，因为需要保留额外的NAT日志。
+在CGNAT下无法运行网络托管服务。
+无法对需要公网IPv4地址的业务（如网络托管服务）使用CGNAT，因而其对解决IPv4地址枯竭问题作用有限。
+
+在与AI客服battle友好交流后，成功获取了独立v4地址：
+
+路由器重新拨号后，可以看到出口WAN ip和访问公网使用的ip已经相同：
+
+部分路由配置连线方案我的win主机是使用网线直连路由器的，华硕的 BE3600 因为只有一个 2.5G 网口，且外网为 1000M，因此决定直接将主机连接到 2.5G 网口，同时外网连接 1000M，优先保障内网的传输效率。2.5G 协议仅需一根 CAT6 以上的网线即可搞定：
+
+配置公网访问首先，在路由端和设备端配置防火墙，做好安全保护措施。
+配置DDNS因为拿到的是动态独立ip，因此配置 DDNS 是必要的，毕竟重启一下路由器ip就有可能变化。在华硕路由器上直接进入WAN - DDNS即可一键配置，以后即可使用该域名在公网上连接到设备了。
+配置端口转发需要端口转发才能将公网访问的端口映射到内网，直接在WAN - Port forwarding操作即可。
+内网IP绑定因为DHCP配置会更换内网ip，之前设置的端口转发可能会失效，因此需要手动为需要连接的设备指定ip，我使用路由器后台的手动绑定功能来指定 DHCP 服务器返回给客户端的 IP：
+
+一般情况配置好这些，在公网上就可以稳定访问你的设备了。
+仅需使用DDNS + 端口号即可像正常局域网连接一样访问。
+配置 IPv6使用Native方式即可：
+
+关于小米设备在澳洲的 Wi-Fi 7 兼容性问题在插入澳洲本地 SIM 卡 (MCC &#x3D; 505)后，系统会应用澳洲的保守网络策略导致回落到 Wi-Fi 6标准：
+使用 Cellular Z 可见，虽然路由器广播的是 Wi-Fi 7，但是设备握手的是Wi-Fi 6。
+
+因为我使用的是 xiaomi.eu 的系统，直接在设置将 Wi-Fi Region 修改为 United States即可：
+
+
+后续…折腾到这就告一段落了。
+后面可能会把家里的 HP 小主机带来作为服务器使用，毕竟已经有了独立公网ip，直接连接即可。
+目前使用稳定性不错。
+]]></content>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>日常</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在不支持的地区强行用AirPods Pro 2做听力测试</title>
+    <url>/post/52940354.html</url>
+    <content><![CDATA[前置Apple最近为AirPods Pro 2代带来了全新的听力测试、听力保护和助听功能，很明显中国大陆暂时是没有的。（不是你澳大利亚都没有是什么鬼啊）
+听力健康功能可用性
+你需要
+一台运行iOS 18.1 (22B83) 或更高版本的设备AirPods Pro 2 且固件版本为7B19或更高
+
+解：很简单，在Safari浏览器中直接输入：
+
+x-apple-health:&#x2F;&#x2F;HearingAppPlugin.healthplugin&#x2F;HearingTest
+
+然后你会发现你直接就跳到了听力测试界面，戴上耳机 找个安静的环境，开始测试吧！
+
+
+ 注意1.此方法仅为打开隐藏的听力测试界面，并不能启用设置中的听力测试选项。2.此方法可以保存听力测试结果。3.听力保护和助听功能暂时无解。
+
+]]></content>
+      <categories>
+        <category>iOS 玩机</category>
+      </categories>
+      <tags>
+        <tag>玩机</tag>
+        <tag>iOS</tag>
+        <tag>AirPods</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于注册表的Windows更新导致AMD显卡驱动回滚的解决方案</title>
+    <url>/post/4616c65b.html</url>
+    <content><![CDATA[前置某日，笔者在尝试打开AMD Software时报错提示不兼容，提示Windows更新自动替换了驱动：打开设备管理器，果不其然，AMD Radeon Graphics的驱动被回滚到了2021年：
+解决既然是Windows更新的锅，那直接禁止Windows更新检查AMD Radeon Graphics的驱动更新即可。又因为笔者的系统为家庭版，因此选择使用注册表的方式解决。
+参考：Prevent Windows Update from Updating Specific Device Driver
+1、打开设备管理器，定位到AMD显卡，记下其硬件ID：
+2、打开注册表编辑器，定位到HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Devicelnstall，新建项Restrictions，之后在其中再次新建一个名为DenyDevicelDs的项。
+3、在Restrictions中新建两个DWORD（32位）值，DenyDevicelDs（值为1）和DenyDeviceIDsRetroactive（值为0），如图所示：
+4、在DenyDevicelDs中新建名为1的字符串值，填入刚刚记下的硬件ID：
+效果Windows更新不再检查该设备的驱动更新，使用一周后也没有出现替换驱动的现象。
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上部署Hexo到Github时出现&quot;Spawn failed at ChildProcess&quot;报错的解决方案</title>
+    <url>/post/ee739bc9.html</url>
+    <content><![CDATA[问题复现在 Windows 下完成了hexo的部署后将其迁移到 macOS 下，大部分功能正常，但是运行hexo d时直接报错。（如下所示）
+error: failed to execute prompt script (exit code 1)fatal: could not read Username for &#x27;https://github.com&#x27;: No errorFATAL Something&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.htmlError: bash: /dev/tty: No such device or addresserror: failed to execute prompt script (exit code 1)fatal: could not read Username for &#x27;https://github.com&#x27;: No error    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)    at emitTwo (events.js:106:13)    at ChildProcess.emit (events.js:191:7)    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)    at maybeClose (internal/child_process.js:920:16)    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)
+
+解决方案替换为:
+“&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;:[yourgitname]&#x2F;[yourgitname].github.io.git”
+命令操作hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git
+
+文件操作1.打开hexo根目录下的_config.yml
+2.修改其结尾为
+deploy:  type: git  repository: git@github.com:[yourgitname]/[yourgitname].github.io.git  branch: main
+
+3.再次运行hexo d，问题应该已经解决。
+
+]]></content>
+      <categories>
+        <category>hexo 部署</category>
+      </categories>
+      <tags>
+        <tag>技术领域</tag>
+        <tag>macOS</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>经济学名词初步整理(English)</title>
+    <url>/post/6cd176d1.html</url>
+    <content><![CDATA[
+ 提示是啊，为什么是英语呢？:-)
+
+FUNDAMENTAL ECONOMIC CONCEPTS:Microeconomics:Microeconomics looks at how individuals and businesses make decisions about what to buy, sell, or produce. For example, it studies how a consumer decides between buying a smartphone or a laptop based on prices and personal preferences.
+Macroeconomics:Macroeconomics studies the overall economy, including topics like unemployment rates, inflation, and economic growth for an entire country. For example, it examines how government policies affect the overall employment levels in a country.
+Economic Development:Economic development focuses on improving living standards and opportunities for people. For example, it involves efforts to build new schools, hospitals, and infrastructure in a developing country to improve quality of life and attract more foreign direct investment.
+Government’s Role:Microeconomics:Governments regulate markets, enforce competition laws, and provide public goods like education and healthcare. For example, regulations on monopolies ensure fair competition, and subsidies for education aim to boost human capital and productivity.
+Macroeconomics:Governments use fiscal and monetary policies to stabilise the economy, control inflation, and promote sustainable growth. For example, during economic downturns, governments may increase spending to stimulate demand and reduce unemployment.
+Economic Development:Governments create long-term strategies to promote growth, reduce poverty, and improve living standards. This involves investing in infrastructure, implementing industrial policies, and attracting foreign investment through incentives. For instance, tax breaks for multinational corporations can promote job creation and diversify the economy.
+THE ECONOMIC PROBLEMThe Economic Problem:The Economic Problem is that resources are limited or scarce, while human needs and wants are unlimited. Scarcity of resources necessitates choices to be made about how to allocate resources efficiently.
+Choices:Choices are decisions made by consumers, producers and government in response to the economic problem.
+Opportunity Cost:Opportunity Cost is the value of the next best alternative that must be foregone when a decision is made to allocate resources in a particular way. It reflects the trade-off involved in choosing one option over another.
+Allocation of Resources:Allocation of Resources refers to the distribution of scare resources among competing uses. This process involves determining how resources such as land, labour and capital are utilised to produce goods and services.
+Production Possibilities Curve (PPC):Production Possibilities Curve is a graphical representation of the different combinations of two goods that can be produced with the available resources and technology. It illustrates the concept of opportunity cost showing the trade-offs involved in producing one good over another.
+DEMANDLaw of Demand:Law of Demand suggests when prices increase, quantity demanded decreases; when prices decrease, quantity demanded increases.
+Quantity Demanded:Quantity Demanded is the amount of a good or service consumers are willing and able to buy at different prices during a given period of time.
+Demand Curve:Demand Curve  is a graph that shows the inverse relationship between price and quantity demanded.
+Demand Schedule:Demand Schedule shows the quantity demanded at different prices and used to create a demand curve.
+Price:Price is the amount consumers pay when buying a good or service.
+SUPPLYLaw of Supply:Law of Supply suggests when prices increase, quantity supplied increases; when prices decrease, quantity supplied decreases.
+Quantity Supplied:Quantity Supplied is the amount of a good or service producers are willing and able to buy at different prices during a given period of time.
+Supply Curve:Supply Curve is a graph that shows the positive relationship between price and quantity supplied.
+Supply Schedule:Supply Schedule shows the quantity supplied at different prices and is used to create a supply curve.
+Price:Price is the amount producers charge when selling a good or service.
+EQUILIBRIUM AND PRICE MECHANISMEquilibrium:Equilibrium occurs when the quantity demanded equals the quantity supplied, resulting in a stable market with no tendency for price and quantity to change.
+Disequilibrium:Disequilibrium occurs when the quantity demanded and quantity supplied are not equal, leading to either a surplus or shortage.
+Shortage:Shortage：occur when the quantity demanded of a good or service exceeds the quantity supplied at a given price. This results in upward pressure on prices, as consumers compete to purchase the limited available supply.
+Surplus：Surplus occurs when the quantity supplied of a good or service exceeds the quantity demanded at a given price. This leads to downward pressure on prices, as producers try to sell the excess stock by making it more attractive to buyers through price reductions.
+The Price Mechanism:The Price Mechanism is the process by which prices are determined in a free market through the interaction of demand and supply. The price mechanism answers the fundamental economic questions of what to produce, how to produce, how much to produce, and for whom to produce.
+Resource Allocation:Resource Allocation refers to the process by which available resources - such as labour, capital, land, and raw materials—are distributed and used to produce goods and services.
+Derived Demand:Derived Demand refers to the demand for a particular product or resource that is driven by the demand for another product. E.g., The demand for steel is derived from the demand for other products that use steel as an input.
+PRICE ELASTICITY OF DEMAND (PED)Elasticity of Demand:Elasticity of Demand measures how much the quantity demanded of a good respond to a change in its price.
+Elastic Demand:1 &lt; PED &lt; ∞: Quantity demanded is relatively responsive to price changes.
+Inelastic Demand:0 &lt; PED &lt; 1: Quantity demanded is relatively unresponsive to price changes.
+Perfectly Inelastic Demand:PED &#x3D; 0: Quantity demanded remains constant regardless of price changes.
+Perfectly Elastic Demand:PED &#x3D; ∞: At the market price P, consumers will buy any quantity that is available. If price rises, quantity demanded drops to zero.
+Unitary Elastic Demand:PED &#x3D; 1: Percentage change in quantity demanded equals percentage change in price changes.
+PRICE ELASTICITY OF SUPPLY (PES)Elasticity of SupplyElasticity of Supply measures how much the quantity supplied of a good respond to a change in its price.
+Elastic Supply:PES &gt; 1: Producers can increase output significantly when prices rise.
+Inelastic Supply:PES &lt; 1: Producers cannot easily change output levels in response to price changes.
+Perfectly Inelastic Supply:PES &#x3D; 0: Quantity supplied remains constant regardless of price changes.
+Perfectly Elastic Supply:PES &#x3D; ∞: Any amount of a good will be supplied at the prevailing price, but nothing is supplied below this prevailing price.
+Unitary Elastic Supply:PES &#x3D; 1: a change in the price of a good results in an equally proportional change in quantity supplied.
+GOVERNMENT INTERVENTIONACCC:Australian Competition and Consumer Commission
+Externalities:Externalities also referred to as spillover costs or benefits, are the side effects of economic activities that are not reflected in the market price.
+Positive consumption externalities:Positive consumption externalities occur when the consumption of certain goods creates benefits for third parties not involved in the transaction.
+Negative production externalities:Negative production externalities occur when the production of a good or service imposes costs on third parties not involved in the transaction.
+Negative consumption externalities:Negative consumption externalities occur when the consumption of certain goods imposes costs on third parties not involved in the transaction.
+Positive production externalities:Positive production externalities occur when the production of a good or service results in benefits to third parties not involved in the transaction.
+Merit goods:Merit goods have positive externalities as people underestimate benefits.
+Demerit goods:Demerit goods have negative externalities as people underestimate costs.
+Public Good:A good that is non-excludable and non-rival.
+Income:Income represents the earnings of an individual derived from providing factors of production.
+Wealth:Wealth includes the values of assets individuals own.
+Transfer Payments:Transfer Payments These are direct disadvantaged and low-income individuals without the requirement to work.
+Progressive Taxation:A tax system payments made by the government to where high-income earners are taxed at a higher rate, proportionally to their income.
+Price controls:Refer to government policies or regulations that dictate the prices at which goods or services can be bought or sold in a market.
+Price Ceiling:Maximum price set by the government that are below the market equilibrium price.
+Price Floors:Minimum prices set by the government that are above the market equilibrium price.
+Production quota:A limit on the quantity of goods that producers are allowed to produce.
+COSTS OF PRODUCTIONVariable and Fixed Factors of Production:Variable factors are the inputs that change with the level of output. Whereas the fixed factors are the inputs that remain constant regardless of the level of output.
+Short Run and Long Run:Short run refers to the period where at least one factor of production is fixed. Long run refers to the period where all factors of production are variable.
+Marginal Product (MP):Marginal Product  is the change in total product when one more unit of variable factor is used.
+Marginal Cost (MC):Marginal Cost is the additional cost incurred by producing one more unit of production.
+Returns to Scale:It refers to how the output of production process changes in response to a proportional change in all inputs. Returns to scale is classified into three types.
+Increasing Returns to Scale:When a proportional increase in all inputs leads to a more than proportional increase in output.
+Constant Returns to Scale:Constant Returns to Scale is when proportional increase in all inputs results in equivalent increase in output.
+Decreasing Returns to Scale:Decreasing Returns to Scale is when a proportional increase in all inputs leads to a less than proportional increase in output.
+REVENUE &amp; PROFIT MAXIMISATIONTotal Revenue (TR):The income earned from selling output. TR &#x3D; P x Q
+Average Revenue (AR):The average income per unit of output sold. AR &#x3D; TR &#x2F; Q
+Marginal Revenue (MR):The additional revenue earned from selling one more unit of output. MR &#x3D; ∆TR&#x2F;∆Q
+Profit Maximisation:The point where a firm achieves the highest possible profit. MR &#x3D; MC
+Profit:Profit is the money a business makes after subtracting all its costs from what it earns. Profit &#x3D; TR – TC or Profit &#x3D; (AR – AC) x Q
+Break Even:The level of output at which the firm is earning zero economic profit. BE &#x3D; TR &#x3D; TC
+Supernormal Profit:Is the profit that is more than what is needed to cover costs and risks. Also referred to as economic profit. SNP &#x3D; AR &gt; AC
+Normal Profit:Is the profit that is just sufficient to keep the enterprise and entrepreneur in the industry. Equal to the opportunity cost. NP &#x3D; AR &#x3D; AC
+Loss:Is when a firm’s costs are greater than the revenue it earns from sales, resulting in a negative financial outcome. Loss &#x3D; AC &gt; AR
+Loss Minimisation:Occurs when a firm continues production even though they are making losses, but able to cover variable costs in the short term. AR &gt; AVC
+Shutdown:Occurs when the firm decides to temporarily cease production in the short term due to inability to cover variable costs. AR &lt; AVC
+PERFECT COMPETITIONMarket Structures:Refer to the different types of markets that exist based on the level of competition. The key factor that distinguishes market structures is the level of market power that firms have.
+Perfect Competition:Is a theoretical market structure used as the starting point to understand firm’s behaviour and how they operate.
+Homogenous Products:Refer to the identical products in quality and characteristics regardless of the producer.
+Price Taker:Refers to the firm in perfect competition, where a firm has no influence over the market price and must accept the prevailing market price for its product.
+Performance:of the firm is evaluated through various efficiencies. Allocative efficiency is when resources are used where they are most valued (achieved in perfect competition). Productive efficiency is when goods are produced at the lowest cost (achieved in perfect competition). Dynamic efficiency is when firms invest in R &amp; D for innovation and long-term growth.
+MONOPOLYMonopoly:Refers to the marketstructure where there is one producer,who can determine the market price byvarying its level of output.
+Barriers to Entry:Refer to the obstacles for new firms entering the market such as patents, high capital investment and government restrictions.
+Price Maker:Is the ability of the monopolist firm that can set the price in the industry.
+Supernormal Profit:Refers to profit exceeding the level which is minimum amount necessary to keep a firm in business.
+High Concentration Ratio:In a monopoly indicates that a single firm dominates the market, controlling a large proportion of the total market share.
+
+这学期就这么整理完了（
+
+]]></content>
+      <categories>
+        <category>经济学</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>经济</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅谈博客设计：我们真的需要花哨的博客吗？</title>
+    <url>/post/3e0a2ad7.html</url>
+    <content><![CDATA[
+ 提示个人观点，仅供参考。
+
+前置这是博客设计的两个极端：花哨和极简。鱼和熊掌不可兼得，你只能二选一。
+花哨的博客往往功能强大，内容复杂，并且存在大量与博客不相关的东西。而简洁的博客，专注的是内容，而非把自己当作全能魔盒。
+如果不了解博客代表着什么的话，可以看一下定义：
+
+博客（英语：blog）是一种在线日记型式的个人网站，借由张帖子章、图片或影片来记录生活、抒发情感或分享信息。博客上的文章通常根据张贴时间，以倒序方式由新到旧排列。许多博客作者专注评论特定的课题或新闻，其他则作为个人日记。一个典型的博客结合了文字、图像、其他博客或网站的超链接、及其它与主题相关的媒体。能够让读者以互动的方式留下意见，是许多博客的重要要素。大部分的博客内容以文字为主，也有一些博客专注艺术、摄影、视频、音乐、播客等各种主题。博客是社会媒体网络的一部分。
+
+博客 - 维基百科
+回归初心正如博客的定义所示，博客注重的是内容，而不是完全在于其设计。诚然，好的设计可以让人耳目一新，但是繁杂的设计也可以让人头晕。当一个博客的设计过于花哨时，反而削弱了内容本身的力量，也失去了博客的本质。相反，一个简洁而清晰的博客主题，更容易让人专注于文字本身，避免无关的视觉元素。简约的设计不仅可以提升用户的阅读体验，也让博客的主题思想更加突出，读者能从中感受到更加纯粹的内容价值。毕竟，在信息爆炸的时代，简洁是一种珍贵的品质。
+核心竞争力：内容的深度与其追求表面的华丽和花哨，不如将更多的精力放在内容的深度上。在这个浮躁的网络世界里，很多博客仅仅停留在浅尝辄止的层面，缺乏对话题的深入剖析，最终难以给读者带来真正的思考。一个简洁、优雅的设计能够提升用户体验，但它的核心作用是增强内容的传达，而非抢夺内容的风头。简洁的设计应该与深刻的内容互相配合，形成一个有机的整体。简洁的布局让读者能更容易找到自己感兴趣的内容，而深刻的文章则能留下长久的印象。
+如何设计总览无非就是：· 简洁的布局· 简洁的内容· 简洁的交互
+有效信息为主举个栗子：· 文章标题· 文章正文这些是博客内容的核心构成，应该是最突出、最易于访问的部分。设计不应让这些关键信息被杂乱无章的装饰所掩盖。简洁明了的布局，让读者能够一目了然地找到自己感兴趣的文章和内容，而不必通过繁杂的菜单或过多的视觉元素（例如各种小标题）来分散注意力。
+排版清晰文字的排版是博客设计中的另一个关键因素。简洁的设计可以通过合适的字体、行间距和段落间距，让文字显得更加清晰易读。避免使用过多的字体样式和颜色，保持字体的统一性，可以有效提升文章的可读性。
+图片的适度使用诚然，图片比文字更有吸引力。首页放上各种花哨的封面，那么读者就会把注意力放在封面上，而不是标题。因此，请尽量减小文章封面的大小，或者完全不使用封面。对于正文，可以适当使用图片加强读者对正文的理解，但是请调整图片的大小，使得图片不会影响正文阅读。
+背景设计对于博客的背景，可以使用纯色或者渐变色背景。透明度过高的图片背景将会严重影响阅读。对于 universe 等星空粒子特效，个人是不建议使用的。
+交互对于交互，在读者阅读正文时，请不要设计主动性交互，例如全屏弹窗，snackbar 或者大量浮夸的动画效果。对于用户的主动交互操作，可以使用 snackbar 或类 toast 通知进行提示。
+删除无关信息最好不要在博客中加入音乐馆，彩蛋甚至是广告。这种将会严重影响读者的专注度，专注于内容传达和阅读体验才是博客设计的最终目标。
+关于本站设计本站使用的是基于 Solitude 魔改的 Eureka 主题，去除了 Solitude 主题部分繁复的设计。以下是部分修改：· 修改 home-top，改为双行大标题 + 小标题，移除了大封面以及滚动图像。· 全局去除了文章封面，使得读者更专注于标题等文章有效信息。· 尽量减少交互干扰，去除文章顶部的波浪效果以及部分弹窗。· 加快了部分动画。
+已经开源，喜欢的话可以拿去玩玩：
+r1i1na&#x2F;hexo-theme-eureka - Github
+总结开始，我们怀着新鲜感，为博客加上非常多的功能，但是当审美疲劳到来，我们不可避免回归内容，回归本质，回归初心。或许最后，我们都可以获得这种珍贵的品质:
+
+  简洁
+]]></content>
+      <categories>
+        <category>漫谈</category>
+      </categories>
+      <tags>
+        <tag>日常</tag>
+        <tag>Hexo</tag>
+        <tag>主题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本站小记</title>
+    <url>/post/23f34f90.html</url>
+    <content><![CDATA[写在前面“旧游无处不堪寻，无寻处，惟有少年心。”——章良能《小重山》
+缘起2022年夏天的一个中午，阳光透过树打在窗前，叶影斑驳。
+“……”
+为期3天的研学依旧历历在目。天下没有不散的宴席。除去加上wx的几个好朋友之外，其他人，或许一生也只能见到一次。他们给我的印象，可能就是照片中出镜，也可能只是作为非拍摄主体的背景而已。许多年后翻看它们，或许隐约感觉到熟悉的面孔，却再也叫不上他们的名字。
+“人此一生，必然是要留点痕迹的。但是，在哪呢？”
+此时的我，没有什么惊天动地的成就，换一种说法就是小透明。
+“或许，互联网？”
+有道理的，毕竟是至少未来几十年内最好留痕方式。
+“你有时间和精力维护它们吗？”
+时间就像海绵里的水，挤挤总会有的。–鲁迅
+“试试就试试，大不了练一练Markdown和YAML，有就行了，之后再补。可以没有内容但是不能没有博客。”
+于是，当年7月27日，我使用Hexo框架搭了一个雏形。由于未保存截图，因此已经丢失。但是就是几乎原版的Hexo设计。
+哦，还有一篇Hexo默认的post，名字是Hello,world。这篇文章仍然可以在主页找到它。
+抛下“你已经有自己的网站了。”
+实际上是Github Pages，即github.io。前几天我会经常访问这个网站，看看设计等。
+“大抵是忘却了罢。”
+但是，那时是高二，由于精力原因，这件事很快抛之脑后。
+“春潮带雨晚来急，野渡无人舟自横。”
+后来，网站就再也没更新过，我最后甚至忘记了之前的github账号。这个账号最后石沉大海。
+中期“你不想记录一下自己的想法吗？”
+之后练习Markdown语法，用Markdown写了几篇随笔，教程类。因为账号相关信息都已遗忘，所以它们都只是一个个md文件。
+2023年，紧张而刺激的一年，高三，为高考必快马加鞭。
+这年，我写了两篇文章，都是关于Hexo的部署和Butterfly主题的安装。
+2024年，快速、急促并奔跑着。
+“悲欢聚散一杯酒，南北东西万里程。”
+百天，弹指而过，迎来了高考的谢幕。各奔东西，近乎无法谋面。
+7月，我用md做了一篇woa装fastboot驱动的教程。此时因为澳大利亚大学Offer的申请的缘故，我没有顾到博客，毕竟没号，只是将其作为 Markdown 的练手。
+重拾“再见少年拉满弓，不惧风雨不惧风。”
+10月，启程澳大利亚。6日，晚上偷闲，我以之前的 SwiftUI 为主题写了一篇文章。
+“你只有Markdown了吗？”
+还是10月的某日，上AC（Applied Computing）时。老师讲到了一个无比熟悉的名字。
+ “Personal Blog”
+“微光还是被点燃了。”
+考虑了一下时间安排，我最终还是重启了这个个人博客。
+11月，我创建了一个新的Github账号，也就是你们现在看到的。
+这次，参照Hexo和Butterfly的官方文档，我把博客重新整理，配置，并上传到新的 Github Page。
+这时，它已经到了可用的程度。
+我将之前的文章重新上传，前前后后又写了几篇别的。
+“准备一直用Github Pages?”
+自定义域名也提上了日程，另外github.io离谱的大陆直连速度也让我明白，托管在Github上并不是长久之计。
+而现在，就是成品的样子了。
+未来未来的话，这个博客将会一直更新下去。
+
+      
+        P01
+        未来还有其他计划吗？
+
+      
+    
+
+
+      
+        陵长镜
+        还没想好，或许哪天就冒出来了呢？
+
+      
+    
+
+……
+写在最后时间的问题总是令人深思。或许时间的意义，直到走出时间桎梏的那一刻，才能明白吧。“”人生真正的结束，不是在物理意义上的结束，而是一个人被全世界遗忘。”（月光轻轻洒下，烛火微微颤动。此刻，光影交错，人影清淡，仿佛时光停驻，万物静谧。）
+]]></content>
+      <categories>
+        <category>漫谈</category>
+      </categories>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+</search>
