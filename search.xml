@@ -1021,8 +1021,8 @@ macOS 15.1还不错，或者说无感，Mac目前唯一正常使用AI的设备�
       </categories>
       <tags>
         <tag>日常</tag>
-        <tag>macOS</tag>
         <tag>tvOS</tag>
+        <tag>macOS</tag>
         <tag>iOS</tag>
         <tag>体验</tag>
         <tag>iPadOS</tag>
@@ -1207,7 +1207,7 @@ git clone https://github.com/HikariCalyx/OSTRemote.git &lt;dict&gt;
 error: failed to execute prompt script (exit code 1)fatal: could not read Username for &#x27;https://github.com&#x27;: No errorFATAL Something&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.htmlError: bash: /dev/tty: No such device or addresserror: failed to execute prompt script (exit code 1)fatal: could not read Username for &#x27;https://github.com&#x27;: No error    at ChildProcess.&lt;anonymous&gt; (/users/rin/Blogfile\node_modules\hexo-util\lib\spawn.js:37:17)    at emitTwo (events.js:106:13)    at ChildProcess.emit (events.js:191:7)    at ChildProcess.cp.emit (/users/rin/Blogfile\node_modules\cross-spawn\lib\enoent.js:40:29)    at maybeClose (internal/child_process.js:920:16)    at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)
 
 解决方案替换为:
-“&#103;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#109;:[yourgitname]&#x2F;[yourgitname].github.io.git”
+“&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#98;&#46;&#x63;&#111;&#x6d;:[yourgitname]&#x2F;[yourgitname].github.io.git”
 命令操作hexo config deploy.repository git@github.com:[yourgitname]/[yourgitname].github.io.git
 
 文件操作1.打开hexo根目录下的_config.yml
@@ -1221,9 +1221,9 @@ deploy:  type: git  repository: git@github.com:[yourgitname]/[yourgitname].githu
         <category>hexo 部署</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>技术领域</tag>
         <tag>Hexo</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1289,9 +1289,9 @@ Butterfly官方文档
         <category>hexo 部署</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>技术领域</tag>
         <tag>Hexo</tag>
+        <tag>macOS</tag>
         <tag>主题</tag>
       </tags>
   </entry>
