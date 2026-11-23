@@ -6675,7 +6675,28 @@ i.bber-gotobb {
   cursor: pointer;
   white-space: nowrap;
 }
+#bber-talk .li-style .essay-preview {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 768px) {
+  #bber-talk .li-style .essay-preview {
+    display: flex;
+  }
+  #bber-talk .li-style .essay-preview .essay-preview-start {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+  }
+  #bber-talk .li-style .essay-preview .essay-preview-end {
+    flex-shrink: 0;
+    white-space: pre;
+  }
+}
 #bber-talk .li-style .solitude {
+  flex-shrink: 0;
   font-size: 1rem;
   margin-left: 0.5rem;
 }
