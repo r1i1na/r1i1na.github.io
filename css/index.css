@@ -1641,7 +1641,7 @@ body {
   background: var(--rin-background);
   color: var(--rin-fontcolor);
   font-size: 16px;
-  font-family: ZZAY;
+  font-family: ZZAY, system-ui, sans-serif;
   line-height: 2;
   -webkit-tap-highlight-color: transparent;
   margin: 0;
@@ -1739,7 +1739,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: comicsans;
+  font-family: comicsans, ui-monospace, monospace;
   font-size: 16px;
 }
 small {

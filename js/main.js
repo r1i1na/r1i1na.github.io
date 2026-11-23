@@ -256,18 +256,20 @@ const sco = {
   showConsole: () => document.getElementById('console')?.classList.toggle('show', true),
   hideConsole: () => document.getElementById('console')?.classList.remove('show'),
   refreshWaterFall() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            waterfall(entry.target).then(() => {
-              entry.target.classList.add('show');
-            });
-          }, 300);
-        }
+    const lists = document.querySelectorAll('.waterfall');
+    if (!lists.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
+        observer.unobserve(target);
+        utils.getScript(GLOBAL_CONFIG.waterfall)
+          .then(() => waterfall(target))
+          .catch(error => console.error('Could not lay out the waterfall list', error))
+          .finally(() => target.classList.add('show'));
       });
     });
-    document.querySelectorAll('.waterfall').forEach(el => observer.observe(el));
+    lists.forEach(el => observer.observe(el));
   },
   addRuntime() {
     const el = document.getElementById('runtimeshow');
@@ -682,10 +684,11 @@ class tabs {
     if (!post_date) return;
     const ex = Math.ceil((new Date().getTime() - new Date(post_date.getAttribute('datetime')).getTime()) / 1000 / 60 / 60 / 24);
     if (expire.time > ex) return;
+    const articleContainer = document.querySelector('#post .article-container');
+    if (!articleContainer) return;
     const ele = document.createElement('div');
     ele.className = 'expire';
     ele.innerHTML = `<i class="solitude fas fa-circle-exclamation"></i>${expire.text_prev}${-(expire.time - ex)}${expire.text_next}`;
-    const articleContainer = document.getElementById('article-container');
     articleContainer.insertAdjacentElement(expire.position === 'top' ? 'afterbegin' : 'beforeend', ele);
   }
 }

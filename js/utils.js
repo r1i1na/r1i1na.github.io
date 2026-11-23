@@ -1,5 +1,23 @@
 (() => {
+    const scripts = new Map();
     const utilsFn = {
+        getScript(url) {
+            if (!scripts.has(url)) {
+                const pending = new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = url;
+                    script.onload = resolve;
+                    script.onerror = () => {
+                        scripts.delete(url);
+                        script.remove();
+                        reject(new Error('Could not load ' + url));
+                    };
+                    document.head.append(script);
+                });
+                scripts.set(url, pending);
+            }
+            return scripts.get(url);
+        },
         throttle: (func, wait, {leading = true, trailing = true} = {}) => {
             let timeout, previous = 0;
             const later = (context, args) => {

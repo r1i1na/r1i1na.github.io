@@ -17,7 +17,7 @@ function decorateLinks() {
 
       card.innerHTML = `
         <div class="efu-link-img">
-          <img src="https://s1.imagehub.cc/images/2024/12/02/632726f0a6dadcc20df6371b774148db.png" alt="Link Thumbnail">
+          <img loading="lazy" decoding="async" src="https://s1.imagehub.cc/images/2024/12/02/632726f0a6dadcc20df6371b774148db.png" alt="Link Thumbnail">
         </div>
         <div class="efu-link-tip">这是一个外部链接，不能保证安全性。</div>
         <div class="efu-link-title">${title}</div>
@@ -32,10 +32,6 @@ function decorateLinks() {
     }
   });
 }
-
-setTimeout(() => {
-  document.addEventListener('pjax:complete', decorateLinks);
-}, 1000);
 
 document.addEventListener('DOMContentLoaded', function () {
   decorateLinks();
