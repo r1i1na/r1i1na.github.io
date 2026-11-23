@@ -3579,7 +3579,6 @@ span.tags-punctuation i {
 }
 #footer-bar {
   color: var(--rin-fontcolor);
-  margin-top: 1rem;
   background: var(--rin-secondbg);
   display: flex;
   overflow: hidden;
