@@ -289,19 +289,6 @@ const sco = {
     });
     utils.snackbarShow(GLOBAL_CONFIG.lang.totalk, false, 2000);
   },
-  initbbtalk() {
-    const bberTalkElement = document.querySelector('#bber-talk');
-    if (bberTalkElement) {
-      new Swiper('.swiper-container', {
-        direction: 'vertical',
-        loop: true,
-        autoplay: {
-          delay: 3000,
-          pauseOnMouseEnter: true
-        },
-      });
-    }
-  },
   addPhotoFigcaption() {
     document.querySelectorAll('.article-container img:not(.gallery-item img)').forEach(image => {
       const captionText = image.getAttribute('alt');
